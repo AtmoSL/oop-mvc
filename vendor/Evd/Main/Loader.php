@@ -2,8 +2,18 @@
 
 namespace vendor\Evd\Main;
 
+/**
+ * Класс загрузчика файлов
+ */
 class Loader
 {
+
+    /**
+     * Автоматическое подключение файла, если он существует
+     *
+     * @param $class
+     * @return void
+     */
     public function load($class)
     {
         $arr = explode("\\", $class);
