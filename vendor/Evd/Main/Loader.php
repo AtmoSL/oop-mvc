@@ -21,7 +21,7 @@ class Loader
         $prefixFile = "";
 
         if($prefix == "app"){
-            $prefixFile = "../app/Controllers";
+            $prefixFile = "../app";
         }elseif ($prefix == "vendor"){
             $prefixFile = "../vendor";
         }
