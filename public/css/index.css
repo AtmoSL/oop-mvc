@@ -1,0 +1,106 @@
+.events__inner {
+    display: flex;
+    padding: 36px 60px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/*Карточка спектакля*/
+
+.events__card {
+    background: #FAFF00;
+    border-radius: 22px;
+    margin-right: 20px;
+    margin-bottom: 80px;
+}
+
+/*Верхняя часть карточки*/
+.event__card__top-section {
+    padding: 23px 30px 34px;
+    display: flex;
+    border-bottom: 1px solid #000000;
+}
+
+.events__card a {
+    color: black;
+}
+
+.event__card__genre {
+    text-align: right;
+}
+
+.event__card__title a,
+.event__card__genre a {
+    text-decoration: none;
+}
+
+.event__card__title a:hover,
+.event__card__genre a:hover {
+    text-decoration: underline;
+}
+
+.event__card__title a {
+    font-size: 27px;
+    line-height: 33px;
+}
+
+.event__card__genre a {
+    text-transform: lowercase;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 23px;
+}
+
+.event__card__theatre a {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.event__card_date {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    margin-top: 30px;
+    margin-left: 35px;
+}
+
+/*Нижняя часть карточки*/
+
+.event__card__bot-section {
+    display: flex;
+}
+
+.event__card__bot-info {
+    margin: 35px 49px 53px 30px;
+}
+
+.event__card_price {
+    text-align: right;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.event__card__count {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.event__card__btn__container{
+    padding-top: 49px;
+}
+
+.event__card__btn{
+    background: #E4E900;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 17px;
+
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 20px 25px;
+}
