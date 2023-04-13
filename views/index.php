@@ -1,17 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>БИЛЕТИКУС</title>
-</head>
-<body>
-<div class="wrapper">
-    <header class="header"></header>
-    <main class="main"></main>
-    <footer class="footer"></footer>
-</div>
-</body>
-</html>
+<?php include_once "layouts/header.php" ?>
+
+<?= /** @var string $message */
+$message ?>
+
+<?php include_once "layouts/footer.php" ?>

@@ -2,9 +2,13 @@
 
 namespace app\Controllers;
 
+use vendor\Evd\Main\Viewer;
+
 class IndexController
 {
     public function index(){
-        echo "Главная страница";
+        $message = "Главная страница";
+
+        Viewer::view("index",compact("message"));
     }
 }
