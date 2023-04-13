@@ -22,6 +22,9 @@ class Router
 
             $controllerObject = new $controllerName();
             $controllerObject->$action();
+        }else{
+            http_response_code(404);
+            Viewer::view('404');
         }
     }
 
