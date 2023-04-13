@@ -3,6 +3,10 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+body._lock {
+    overflow: hidden;
+}
+
 html,
 body {
     height: 100%;
@@ -24,7 +28,8 @@ body {
 }
 
 /*Панель навигации*/
-.header {
+.header__burger {
+    display: none;
 }
 
 .header__nav, .header__nav a {
@@ -42,7 +47,7 @@ body {
     display: flex;
 }
 
-.header__logo__link{
+.header__logo__link {
     text-transform: uppercase;
     font-size: 37px;
     line-height: 45px;
@@ -56,12 +61,12 @@ body {
 
 
 .header__nav__list {
-    margin-top: 24px;
     display: flex;
 }
 
 .header__nav__list li {
     margin-right: 20px;
+    margin-top: 24px;
 }
 
 .header__nav__list a {
@@ -90,10 +95,91 @@ body {
 
     color: #FAFF00;
 }
-.footer__text a{
+
+.footer__text a {
     color: #FAFF00;
 }
 
-.footer__text a:hover{
+.footer__text a:hover {
     text-decoration: none;
+}
+
+/*Адаптив*/
+
+/*Панель навигации*/
+@media (max-width: 850px) {
+    .header__logo__text {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .header__burger {
+        z-index: 5;
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        margin-top: 35px;
+        margin-right: 20px;
+    }
+
+    .header__burger:before,
+    .header__burger:after,
+    .header__burger span {
+        left: 0;
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        transition: all 0.3s ease 0s;
+        background-color: #FAFF00;
+    }
+
+    .header__burger:before,
+    .header__burger:after {
+        content: "";
+    }
+
+    .header__burger:before {
+        top: 0;
+    }
+
+    .header__burger:after {
+        bottom: 0;
+    }
+
+    .header__burger span {
+        top: 50%;
+        transform: scale(1) translate(0px, -50%);
+    }
+
+    .header__burger._active span {
+        transform: scale(0) translate(0px, -50%);
+    }
+    .header__burger._active:before{
+        top: 50%;
+        transform: translate(0px, -50%) rotate(-45deg);
+    }
+    .header__burger._active:after{
+        bottom: 50%;
+        transform: translate(0px, 50%) rotate(45deg);
+    }
+
+    .header__nav__list {
+        position: fixed;
+        top: 0;
+        left: 200%;
+        width: 100%;
+        height: 100%;
+        background-color: #1E1E1E;
+        transition: left 0.3s ease 0s;
+        display: block;
+        text-align: center;
+        padding-top: 150px;
+    }
+
+    .header__nav__list._active {
+        left: 0;
+    }
 }

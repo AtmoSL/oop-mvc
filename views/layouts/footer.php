@@ -8,6 +8,7 @@
             </div>
         </div>
     </footer>
+<script src="/js/burger.js"></script>
 </div>
 </body>
 </html>
