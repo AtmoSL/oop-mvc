@@ -104,3 +104,34 @@
     text-transform: uppercase;
     padding: 20px 25px;
 }
+
+
+/*Адаптив*/
+@media (max-width: 534px) {
+    .event__card__genre{
+        text-align: left;
+    }
+    .event__card__title,
+    .event__card__genre{
+        margin-bottom: 10px;
+    }
+    .event__card__bot-info{
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 495px) {
+    .event__card__bot-section{
+        flex-direction: column;
+        text-align: center;
+    }
+    .event__card__bot-info{
+        margin-bottom: 10px;
+    }
+    .event__card__btn__container{
+        padding-bottom: 50px;
+    }
+    .event__card_price{
+        text-align: center;
+    }
+}
