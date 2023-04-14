@@ -47,7 +47,7 @@
                     <div class="event__card__top-info">
                         <div class="event__card__title">
                             <a href="#">
-                                Бешенные деньги
+                                Без вины виноватые
                             </a>
                         </div>
                         <div class="event__card__genre">
@@ -86,17 +86,17 @@
                     <div class="event__card__top-info">
                         <div class="event__card__title">
                             <a href="#">
-                                Бешенные деньги
+                                Мастер и Маргарита
                             </a>
                         </div>
                         <div class="event__card__genre">
                             <a href="#">
-                                Комедия
+                                Мюзикл
                             </a>
                         </div>
                         <div class="event__card__theatre">
                             <a href="#">
-                                Театр комедии им. Акимова
+                                ЛДМ. Новая-новая сцена
                             </a>
                         </div>
                     </div>
@@ -125,17 +125,17 @@
                     <div class="event__card__top-info">
                         <div class="event__card__title">
                             <a href="#">
-                                Бешенные деньги
+                                Приговор любви
                             </a>
                         </div>
                         <div class="event__card__genre">
                             <a href="#">
-                                Комедия
+                                Мюзикл
                             </a>
                         </div>
                         <div class="event__card__theatre">
                             <a href="#">
-                                Театр комедии им. Акимова
+                                Алеко
                             </a>
                         </div>
                     </div>

@@ -8,6 +8,7 @@
 /*Карточка спектакля*/
 
 .events__card {
+    max-width: 410px;
     background: #FAFF00;
     border-radius: 22px;
     margin-right: 20px;
@@ -19,6 +20,7 @@
     padding: 23px 30px 34px;
     display: flex;
     border-bottom: 1px solid #000000;
+    min-height: 120px;
 }
 
 .events__card a {
