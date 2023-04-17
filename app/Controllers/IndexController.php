@@ -3,6 +3,7 @@
 namespace app\Controllers;
 
 use app\Models\Event;
+use app\Models\Genre;
 use app\Models\Theater;
 use vendor\Evd\DataBase\DB;
 use vendor\Evd\Main\Viewer;
@@ -72,7 +73,10 @@ class IndexController
             header("location: /");
             die();
         }
+        $theater = Genre::one(["id" => $data["id"]], ["title"])->find();
 
-        Viewer::view("index", compact("events"));
+        $filterTitle = $theater->title;
+
+        Viewer::view("index", compact("events", "filterTitle"));
     }
 }
