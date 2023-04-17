@@ -1,3 +1,13 @@
+.events__filter-title{
+    margin: 49px 60px 40px;
+
+    text-transform: uppercase;
+    color: #FAFF00;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+}
+
 .events__inner {
     display: flex;
     padding: 36px 60px;

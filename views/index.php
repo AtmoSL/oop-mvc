@@ -2,12 +2,12 @@
 
     <section class="events">
         <div class="container">
-            <div class="events__inner">
-
-                <?php if(isset($filterTitle)){ ?>
+            <?php if(isset($filterTitle)){ ?>
+                <div class="events__filter-title">
                     <?= $filterTitle ?>
-                <?php }?>
-
+                </div>
+            <?php }?>
+            <div class="events__inner">
                 <?php /** @var array $events */
                 foreach ($events as $event) { ?>
                     <div class="events__card">
