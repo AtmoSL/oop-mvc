@@ -28,7 +28,7 @@ abstract class Model
         $sql = "SELECT $fields FROM $table WHERE 1";
 
         $stmt = DB:: query($sql);
-        $result = $stmt->fetchAll(2);
+        $result = $stmt->fetchAll(\PDO::FETCH_CLASS);
         return $result;
     }
 

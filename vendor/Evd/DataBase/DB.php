@@ -7,7 +7,7 @@ use PDO;
 /**
  * Класс для работы с базой данных
  */
-class DB
+final class DB
 {
     private static $link = null;
 

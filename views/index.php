@@ -10,31 +10,31 @@
                             <div class="event__card__top-info">
                                 <div class="event__card__title">
                                     <a href="#">
-                                        <?= $event['title'] ?>
+                                        <?= $event->title ?>
                                     </a>
                                 </div>
                                 <div class="event__card__genre">
                                     <a href="#">
-                                        <?= $event['genre'] ?>
+                                        <?= $event->genre_id ?>
                                     </a>
                                 </div>
                                 <div class="event__card__theatre">
                                     <a href="#">
-                                        <?= $event['theater']['title'] ?>
+                                        <?= $event->theater_id ?>
                                     </a>
                                 </div>
                             </div>
                             <div class="event__card_date">
-                                <?= $event['date'] ?>
+                                <?= date("d,m", strtotime($event->date)) ?>
                             </div>
                         </div>
                         <div class="event__card__bot-section">
                             <div class="event__card__bot-info">
                                 <div class="event__card__count">
-                                    Осталось: <span><?= $event['count'] ?></span>
+                                    Осталось: <span><?= $event->count ?></span>
                                 </div>
                                 <div class="event__card_price">
-                                    <span><?= $event['price'] ?></span>руб.
+                                    <span><?= $event->price ?></span>руб.
                                 </div>
                             </div>
                             <div class="event__card__btn__container">
