@@ -1,0 +1,16 @@
+
+.theater__list__item{
+    margin: 49px 60px 40px;
+    color: #FAFF00;
+}
+.theater__list__link{
+    text-transform: uppercase;
+    color: #FAFF00;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+    text-decoration: none;
+}
+.theater__list__link:hover{
+    text-decoration: underline;
+}

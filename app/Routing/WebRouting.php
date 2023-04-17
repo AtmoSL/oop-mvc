@@ -19,6 +19,10 @@ $router->setRoutes([
         "action"      => "genreFilter",
         "method"      => "GET",
     ],
+    "/theaters" => [
+        "controller"  => "Theaters",
+        "action"      => "index",
+    ],
 ]);
 
 $router->start();
