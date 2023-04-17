@@ -62,7 +62,13 @@ class IndexController
 //        ];
 
 
-        $events = Event::all();
+        $events = Event::all()
+            ->with("genres", ["id as genre_id", "title as genre_title"])
+            ->with("theaters", ["id as theater_id", "title as theater_title"])
+            ->find();
+
+        var_dump($events[0]);
+        die();
 
         Viewer::view("index", compact("events"));
     }
