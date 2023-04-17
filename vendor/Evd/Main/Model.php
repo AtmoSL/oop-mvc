@@ -15,18 +15,19 @@ abstract class Model
 
     private $fieldsSql = "*"; // Поля для запроса
 
-    protected $where = "1";
+    protected $where = "1"; // Условие
 
-    protected static $sql;
-    protected static $withTables = [];
+    protected static $sql; //Запрос
+    protected static $withTables = []; // Связанные таблицы
 
-    private static $operator;
+    private static $operator; // Оператор запроса
 
-    private static $tables = [];
+    private static $tables = []; // таблицы
 
     /**
-     * Вернуть все записи в виде массива
-     * @return void
+     * Создание запроса для вывода всех записей
+     * @param $fields
+     * @return static
      */
     public static function all($fields = ["*"])
     {
@@ -39,6 +40,12 @@ abstract class Model
         return new static();
     }
 
+    /**
+     * Тобавление информации из связанных таблиц
+     * @param $relatedTable
+     * @param $fields
+     * @return $this
+     */
     public function with($relatedTable, $fields = ["*"])
     {
         $table = static::$table;
@@ -47,9 +54,12 @@ abstract class Model
             $relatedTable => $fields
         ];
         return $this;
-//        self::$sql = "SELECT $table.*, genres.title as genre_title FROM $table INNER JOIN genres ON $table.genre_id=genres.id";
     }
 
+    /**
+     * Получение данных их БД
+     * @return mixed
+     */
     public function find()
     {
         $tableSTR = "";
@@ -80,9 +90,6 @@ abstract class Model
         }
 
         self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join;
-
-//        var_dump(self::$sql);
-//        die();
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);

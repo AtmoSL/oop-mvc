@@ -15,17 +15,17 @@
                                 </div>
                                 <div class="event__card__genre">
                                     <a href="#">
-                                        <?= $event->genre_id ?>
+                                        <?= $event->genre_title ?>
                                     </a>
                                 </div>
                                 <div class="event__card__theatre">
                                     <a href="#">
-                                        <?= $event->theater_id ?>
+                                        <?= $event->theater_title ?>
                                     </a>
                                 </div>
                             </div>
                             <div class="event__card_date">
-                                <?= date("d,m", strtotime($event->date)) ?>
+                                <?= date("d.m", strtotime($event->date)) ?>
                             </div>
                         </div>
                         <div class="event__card__bot-section">
