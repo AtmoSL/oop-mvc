@@ -10,16 +10,14 @@ use vendor\Evd\DataBase\DB;
  */
 abstract class Model
 {
-//    abstract static $table; //Название таблицы
-    protected $fields; //поля таблицы
 
-    private $fieldsSql = ["*"]; // Поля для запроса
 
     private static array $where = []; // Условие
 
     private static $sql; //Запрос
     private static $withTables = []; // Связанные таблицы
 
+    private static $takeOne = false;
     private static $operator; // Оператор запроса
 
     private static $tables = []; // таблицы
@@ -39,8 +37,27 @@ abstract class Model
 
         return new static();
     }
+    /**
+     * Создание запроса для вывода всех записей
+     * @param $fields
+     * @return static
+     */
+    public static function one($where, $fields = ["*"])
+    {
+        $table = static::$table;
+        self::$tables[] = [
+            $table => $fields,
+        ];
+        self::$where = $where;
+        self::$operator = "SELECT";
 
-    public static function where($where, $fields = ["*"]){
+        self::$takeOne = true;
+
+        return new static();
+    }
+
+    public static function where($where, $fields = ["*"])
+    {
         $table = static::$table;
         self::$tables[] = [
             $table => $fields,
@@ -99,19 +116,34 @@ abstract class Model
         }
 
         $whereStr = "1";
-        if(count(self::$where) > 0){
+        if (count(self::$where) > 0) {
             $whereStr = "";
-            foreach (self::$where as $whereField => $whereValue){
-                $whereStr.= "`".$whereField."`"."="."'".$whereValue."'";
+            foreach (self::$where as $whereField => $whereValue) {
+                $whereStr .= "`" . $whereField . "`" . "=" . "'" . $whereValue . "'";
             }
         }
 
-        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table  .  $join. " WHERE " . $whereStr;
+        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . $whereStr;
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);
-        self::$sql = "";
+        $this->setPropsDefaultValues();
+
+        if(self::$takeOne)return $result[0];
         return $result;
+    }
+
+    private function setPropsDefaultValues()
+    {
+
+        self::$where = []; // Условие
+
+        self::$sql = ""; //Запрос
+        self::$withTables = []; // Связанные таблицы
+
+        self::$operator = ""; // Оператор запроса
+
+        self::$tables = []; // таблицы
     }
 
 

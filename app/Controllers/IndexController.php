@@ -3,6 +3,7 @@
 namespace app\Controllers;
 
 use app\Models\Event;
+use app\Models\Theater;
 use vendor\Evd\DataBase\DB;
 use vendor\Evd\Main\Viewer;
 
@@ -34,6 +35,7 @@ class IndexController
             die();
         }
 
+
         $events = Event::where(["theater_id"=>$data["id"]])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
@@ -43,8 +45,11 @@ class IndexController
             header("location: /");
             die();
         }
+        $theater = Theater::one(["id" => $data["id"]], ["title"])->find();
 
-        Viewer::view("index", compact("events"));
+        $filterTitle = $theater->title;
+
+        Viewer::view("index", compact("events", "filterTitle"));
     }
 
     /**

@@ -3,6 +3,11 @@
     <section class="events">
         <div class="container">
             <div class="events__inner">
+
+                <?php if(isset($filterTitle)){ ?>
+                    <?= $filterTitle ?>
+                <?php }?>
+
                 <?php /** @var array $events */
                 foreach ($events as $event) { ?>
                     <div class="events__card">
