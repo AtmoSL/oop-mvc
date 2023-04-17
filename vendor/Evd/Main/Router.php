@@ -21,7 +21,12 @@ class Router
             $action = $this->routes[$route]['action'];
 
             $controllerObject = new $controllerName();
-            $controllerObject->$action();
+
+            if(isset($_GET)){
+                $controllerObject->$action($_GET);
+            }else{
+                $controllerObject->$action();
+            }
         }else{
             http_response_code(404);
             Viewer::view('404');

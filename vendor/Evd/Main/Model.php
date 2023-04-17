@@ -13,12 +13,12 @@ abstract class Model
 //    abstract static $table; //Название таблицы
     protected $fields; //поля таблицы
 
-    private $fieldsSql = "*"; // Поля для запроса
+    private $fieldsSql = ["*"]; // Поля для запроса
 
-    protected $where = "1"; // Условие
+    private static array $where = []; // Условие
 
-    protected static $sql; //Запрос
-    protected static $withTables = []; // Связанные таблицы
+    private static $sql; //Запрос
+    private static $withTables = []; // Связанные таблицы
 
     private static $operator; // Оператор запроса
 
@@ -35,6 +35,17 @@ abstract class Model
         self::$tables[] = [
             $table => $fields,
         ];
+        self::$operator = "SELECT";
+
+        return new static();
+    }
+
+    public static function where($where, $fields = ["*"]){
+        $table = static::$table;
+        self::$tables[] = [
+            $table => $fields,
+        ];
+        self::$where = $where;
         self::$operator = "SELECT";
 
         return new static();
@@ -76,7 +87,6 @@ abstract class Model
         $join = "";
 
         if (count(self::$withTables) > 0) {
-
             foreach (self::$withTables as $selfTable) {
                 $join .= " INNER JOIN ";
                 foreach ($selfTable as $tableName => $tableFields) {
@@ -86,10 +96,17 @@ abstract class Model
                     }
                 }
             }
-
         }
 
-        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join;
+        $whereStr = "1";
+        if(count(self::$where) > 0){
+            $whereStr = "";
+            foreach (self::$where as $whereField => $whereValue){
+                $whereStr.= "`".$whereField."`"."="."'".$whereValue."'";
+            }
+        }
+
+        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table  .  $join. " WHERE " . $whereStr;
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);

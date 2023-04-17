@@ -6,8 +6,13 @@ $router = new Router();
 
 $router->setRoutes([
     "/" => [
-        "controller" => "Index",
-        "action"     => "index",
+        "controller"  => "Index",
+        "action"      => "index",
+    ],
+    "/theater-filter" => [
+        "controller"  => "Index",
+        "action"      => "theaterFilter",
+        "method"      => "GET",
     ],
 ]);
 

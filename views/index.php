@@ -19,7 +19,7 @@
                                     </a>
                                 </div>
                                 <div class="event__card__theatre">
-                                    <a href="#">
+                                    <a href="/theater-filter?id=<?= $event->theater_id ?>">
                                         <?= $event->theater_title ?>
                                     </a>
                                 </div>

@@ -22,4 +22,28 @@ class IndexController
 
         Viewer::view("index", compact("events"));
     }
+
+    /**
+     * Главная страница с выводом всех мероприятий
+     * @return void
+     */
+    public function theaterFilter($data)
+    {
+        if(!isset($data["id"])){
+            header("location: /");
+            die();
+        }
+
+        $events = Event::where(["theater_id"=>$data["id"]])
+            ->with("genres", ["id as genre_id", "title as genre_title"])
+            ->with("theaters", ["id as theater_id", "title as theater_title"])
+            ->find();
+
+        if(!$events){
+            header("location: /");
+            die();
+        }
+
+        Viewer::view("index", compact("events"));
+    }
 }
