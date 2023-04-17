@@ -14,7 +14,7 @@
                                     </a>
                                 </div>
                                 <div class="event__card__genre">
-                                    <a href="#">
+                                    <a href="/genre-filter?id=<?= $event->genre_id ?>">
                                         <?= $event->genre_title ?>
                                     </a>
                                 </div>
