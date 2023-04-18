@@ -23,6 +23,10 @@ $router->setRoutes([
         "controller"  => "Theaters",
         "action"      => "index",
     ],
+    "/event" => [
+        "controller"  => "Event",
+        "action"      => "index",
+    ],
 ]);
 
 $router->start();

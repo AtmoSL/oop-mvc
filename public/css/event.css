@@ -1,0 +1,123 @@
+/*Блок информации*/
+.event__info{
+    color: #FAFF00;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.event__info__top{
+    display: flex;
+
+    font-size: 28px;
+    line-height: 33px;
+    text-transform: uppercase;
+}
+.event__info__separator{
+    height: 35px;
+    width: 3px;
+    background-color: #FAFF00;
+    margin: 0 8px;
+}
+.event__info__theater{
+    margin-top: 2px;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.event__info__text{
+    position: absolute;
+    background-color: #1E1E1E;
+    padding: 18px 11px 16px 26px;
+    border-radius: 0 0 44px 0;
+}
+
+.event__info__img img{
+    width: 100%;
+}
+
+/*Выбор мест*/
+.event__rows{
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.event__row{
+    width: 100%;
+    background-color: #FAFF00;
+    border-radius: 26px;
+    margin-bottom: 25px;
+}
+.event__row summary{
+    padding: 15px 40px;
+}
+
+.event__seats{
+    border-top: 1px solid #1E1E1E;
+    padding: 15px 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.event__seat{
+    padding: 3px 5px;
+}
+
+/*Чекбоксы мест*/
+
+.event__seat__check{
+    padding-left: 1.2em;
+}
+
+.event__seat__check__input{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.event__seat__check__box{
+    position: absolute;
+    margin-left: -1.2em;
+    width: 1.05em;
+    height: 1em;
+    background-image: url("../img/seat-check.svg");
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.event__seat__check__input:checked + .event__seat__check__box{
+    background-image: url("../img/seat-check-checked.svg");
+}
+
+.event__seat__check__input:disabled + .event__seat__check__box{
+    background-image: url("../img/seat-check-disabledsvg.svg");
+}
+
+
+/*Блок покупки*/
+
+.event__buy{
+    display: flex;
+    margin-bottom: 100px;
+    justify-content: right;
+}
+.event__buy__block{
+    max-width: 250px;
+}
+.event__buy__count{
+    text-align: left;
+    color: #FAFF00;
+    margin-bottom: 35px;
+}
+.event__buy__btn{
+    background-color: #FAFF00;
+    color: #1E1E1E;
+    text-decoration: none;
+    padding: 24px 40px;
+    text-align: center;
+    border-radius: 18px;
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
