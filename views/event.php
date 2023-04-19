@@ -17,8 +17,37 @@
                         Театр комедии им. Акимова
                     </div>
                 </div>
-                <div class="event__info__img">
-                    <img src="/img/events/event.png" alt="">
+                <!--                <div class="event__info__img">-->
+                <!--                    <img src="/img/events/event.png" alt="">-->
+                <!--                </div>-->
+
+                <div class="event__info__slider swiper">
+
+                    <div class="event__info__slider__track swiper-wrapper">
+
+                        <div class="event__info__slider__item swiper-slide">
+                            <div class="event__info__slider__img">
+                                <img src="/img/events/event.png" alt="">
+                            </div>
+                        </div>
+                        <div class="event__info__slider__item swiper-slide">
+                            <div class="event__info__slider__img">
+                                <img src="/img/events/event.png" alt="">
+                            </div>
+                        </div>
+                        <div class="event__info__slider__item swiper-slide">
+                            <div class="event__info__slider__img">
+                                <img src="/img/events/event.png" alt="">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
                 </div>
             </div>
 
@@ -35,7 +64,8 @@
                         </div>
                         <div class="event__seat">
                             <label class="event__seat__check">
-                                <input disabled class="event__seat__check__input" type="checkbox" name="seat-1-2" id="seat-1-1">
+                                <input disabled class="event__seat__check__input" type="checkbox" name="seat-1-2"
+                                       id="seat-1-1">
                                 <span class="event__seat__check__box"></span>
                                 Место 2
                             </label>
@@ -54,7 +84,8 @@
                         </div>
                         <div class="event__seat">
                             <label class="event__seat__check">
-                                <input disabled class="event__seat__check__input" type="checkbox" name="seat-1-2" id="seat-1-1">
+                                <input disabled class="event__seat__check__input" type="checkbox" name="seat-1-2"
+                                       id="seat-1-1">
                                 <span class="event__seat__check__box"></span>
                                 Место 2
                             </label>
@@ -73,7 +104,8 @@
                         </div>
                         <div class="event__seat">
                             <label class="event__seat__check">
-                                <input disabled class="event__seat__check__input" type="checkbox" name="seat-1-2" id="seat-1-1">
+                                <input disabled class="event__seat__check__input" type="checkbox" name="seat-1-2"
+                                       id="seat-1-1">
                                 <span class="event__seat__check__box"></span>
                                 Место 2
                             </label>
@@ -95,6 +127,5 @@
 
         </div>
     </section>
-
 
 <?php include_once "layouts/footer.php" ?>
