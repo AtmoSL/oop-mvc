@@ -9,6 +9,7 @@
         </div>
     </footer>
 <script src="/js/burger.js"></script>
+<script src="/js/swiper-bundle.esm.browser.min.js"></script>
 </div>
 </body>
 </html>
