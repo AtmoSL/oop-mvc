@@ -8,8 +8,10 @@
             </div>
         </div>
     </footer>
-<script src="/js/burger.js"></script>
-<script src="/js/swiper-bundle.esm.browser.min.js"></script>
 </div>
+
+<script src="/js/burger.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="/js/event.js"></script>
 </body>
 </html>
