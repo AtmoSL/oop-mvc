@@ -26,13 +26,16 @@
 
 .event__info__text{
     position: absolute;
+    z-index: 2;
     background-color: #1E1E1E;
     padding: 18px 11px 16px 26px;
     border-radius: 0 0 44px 0;
 }
 
 .event__info__img img{
+    object-fit: cover;
     width: 100%;
+    height: 552px;
 }
 
 /*Выбор мест*/
