@@ -3,7 +3,7 @@
     <section class="event">
         <div class="container">
             <div class="event__info">
-                <div class="event__info__text">
+                <div class="event__info__text <?=/** @var array $carousel */ ($carousel) ? "event__info__text__absolute" : ""?>">
                     <div class="event__info__top">
                         <div class="event__info__title">
                             <?= /** @var \app\Models\Event $event */
@@ -19,8 +19,7 @@
                     </div>
                 </div>
 
-                <?php /** @var array $carousel */
-                if ($carousel) { ?>
+                <?php if ($carousel) { ?>
                 <div class="event__info__slider swiper">
                     <div class="event__info__slider__track swiper-wrapper">
                         <?php foreach ($carousel as $carouselItem) { ?>
