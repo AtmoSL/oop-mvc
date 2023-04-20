@@ -142,6 +142,7 @@
 
 .swiper {
     width: 100%;
+    height: 600px;
 }
 
 .event__info__slider .swiper-button-prev:after,
