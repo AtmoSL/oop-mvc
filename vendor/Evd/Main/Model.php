@@ -119,11 +119,12 @@ abstract class Model
         if (count(self::$where) > 0) {
             $whereStr = "";
             foreach (self::$where as $whereField => $whereValue) {
-                $whereStr .=$whereField. "=" . "'" . $whereValue . "'";
+                $whereStr .= static::$table. "." .$whereField. "=" . "'" . $whereValue . "'";
+
             }
         }
 
-        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . static::$table.".".$whereStr;
+        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " .$whereStr;
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);
