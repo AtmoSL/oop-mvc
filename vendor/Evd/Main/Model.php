@@ -119,17 +119,20 @@ abstract class Model
         if (count(self::$where) > 0) {
             $whereStr = "";
             foreach (self::$where as $whereField => $whereValue) {
-                $whereStr .= "`" . $whereField . "`" . "=" . "'" . $whereValue . "'";
+                $whereStr .=$whereField. "=" . "'" . $whereValue . "'";
             }
         }
 
-        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . $whereStr;
+        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . static::$table.".".$whereStr;
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);
-        $this->setPropsDefaultValues();
 
-        if(self::$takeOne)return $result[0];
+        if(self::$takeOne && count($result)>0){
+            $this->setPropsDefaultValues();
+            return $result[0];
+        }
+        $this->setPropsDefaultValues();
         return $result;
     }
 
@@ -144,6 +147,7 @@ abstract class Model
         self::$operator = ""; // Оператор запроса
 
         self::$tables = []; // таблицы
+        self::$takeOne = false;
     }
 
 

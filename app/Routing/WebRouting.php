@@ -26,6 +26,7 @@ $router->setRoutes([
     "/event" => [
         "controller"  => "Event",
         "action"      => "index",
+        "method"      => "GET",
     ],
 ]);
 

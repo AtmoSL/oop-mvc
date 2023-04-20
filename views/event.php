@@ -6,49 +6,36 @@
                 <div class="event__info__text">
                     <div class="event__info__top">
                         <div class="event__info__title">
-                            Бешенные деньги
+                            <?= /** @var \app\Models\Event $event */
+                            $event->title ?>
                         </div>
                         <div class="event__info__separator"></div>
                         <div class="event__info__date">
-                            28.05
+                            <?= date("d.m", strtotime($event->date)) ?>
                         </div>
                     </div>
                     <div class="event__info__theater">
-                        Театр комедии им. Акимова
+                        <?= $event->theater_title ?>
                     </div>
                 </div>
-                <!--                <div class="event__info__img">-->
-                <!--                    <img src="/img/events/event.png" alt="">-->
-                <!--                </div>-->
 
+                <?php /** @var array $carousel */
+                if ($carousel) { ?>
                 <div class="event__info__slider swiper">
-
                     <div class="event__info__slider__track swiper-wrapper">
-
-                        <div class="event__info__slider__item swiper-slide">
-                            <div class="event__info__slider__img">
-                                <img src="/img/events/event.png" alt="">
+                        <?php foreach ($carousel as $carouselItem) { ?>
+                            <div class="event__info__slider__item swiper-slide">
+                                <div class="event__info__slider__img">
+                                    <img src="/img/events/<?= $carouselItem->photo ?>" alt="<?= $event->title ?>">
+                                </div>
                             </div>
-                        </div>
-                        <div class="event__info__slider__item swiper-slide">
-                            <div class="event__info__slider__img">
-                                <img src="/img/events/event.png" alt="">
-                            </div>
-                        </div>
-                        <div class="event__info__slider__item swiper-slide">
-                            <div class="event__info__slider__img">
-                                <img src="/img/events/event.png" alt="">
-                            </div>
-                        </div>
-
+                        <?php } ?>
 
                     </div>
-
-
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
-
                 </div>
+                <?php } ?>
             </div>
 
             <div class="event__rows">
