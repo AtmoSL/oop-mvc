@@ -14,7 +14,7 @@
                         <div class="event__card__top-section">
                             <div class="event__card__top-info">
                                 <div class="event__card__title">
-                                    <a href="#">
+                                    <a href="/event?id=<?= $event->id ?>">
                                         <?= $event->title ?>
                                     </a>
                                 </div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="event__card__btn__container">
-                                <a href="#" class="event__card__btn">
+                                <a href="/event?id=<?= $event->id ?>" class="event__card__btn">
                                     Купить
                                 </a>
                             </div>
