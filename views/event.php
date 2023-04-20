@@ -25,7 +25,7 @@
                         <?php foreach ($carousel as $carouselItem) { ?>
                             <div class="event__info__slider__item swiper-slide">
                                 <div class="event__info__slider__img">
-                                    <img src="/img/events/<?= $carouselItem->photo ?>" alt="<?= $event->title ?>">
+                                    <img src="/img/events/<?= $event->id ?>/<?= $carouselItem->photo ?>" alt="<?= $event->title ?>">
                                 </div>
                             </div>
                         <?php } ?>
