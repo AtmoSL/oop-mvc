@@ -1,6 +1,7 @@
 <?php
 
 require '../vendor/Evd/Main/Loader.php';
+require '../vendor/Evd/helpers.php';
 
 use vendor\Evd\Main\Loader;
 
