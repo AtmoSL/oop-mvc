@@ -4,6 +4,9 @@ namespace app\Controllers;
 
 use app\Models\Event;
 use app\Models\EventPhotos;
+use app\Models\EventRow;
+use app\Models\EventSeat;
+use Cassandra\Rows;
 use vendor\Evd\Main\Viewer;
 
 class EventController
@@ -16,6 +19,7 @@ class EventController
     public function index($data)
     {
         $id = $data["id"];
+
         $event = Event::one(["id"=>$id])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
@@ -29,6 +33,13 @@ class EventController
             Viewer::view('404');
         }
 
-        Viewer::view("event", compact("event", "carousel"));
+        $rows = EventRow::where(["event_id"=>$id])->find();
+
+        foreach ($rows as &$row) {
+            $row->seats = EventSeat::where(["event_row_id"=>$row->id],["id","num","is_occupied"])->find();
+        }
+
+
+        Viewer::view("event", compact("event", "carousel", "rows"));
     }
 }
