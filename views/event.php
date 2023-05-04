@@ -45,7 +45,7 @@
                 foreach ($rows as $row) {
                     /** @var \app\Models\EventRow $row */ ?>
                     <details class="event__row">
-                        <summary>Ряд №<span><?= $row->num ?></span></summary>
+                        <summary>Ряд №<span><?= $row->num ?></span> - <span><?= $row->price ?></span> руб.</summary>
                         <div class="event__seats">
                             <?php foreach ($row->seats as $seat) {
                                 /** @var \app\Models\EventSeat $seat */ ?>
