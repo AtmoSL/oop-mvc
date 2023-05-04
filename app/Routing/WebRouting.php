@@ -28,6 +28,10 @@ $router->setRoutes([
         "action"      => "index",
         "method"      => "GET",
     ],
+    "/login" => [
+        "controller"  => "Login",
+        "action"      => "index",
+    ],
 ]);
 
 $router->start();

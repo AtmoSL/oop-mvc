@@ -31,7 +31,7 @@
                 <ul class="header__nav__list">
                     <li><a href="/">Билеты</a></li>
                     <li><a href="/theaters">Театры</a></li>
-                    <li><a href="#">Вход</a></li>
+                    <li><a href="/login">Вход</a></li>
                     <li><a href="#">Регистрация</a></li>
                 </ul>
                 <div class="header__burger">

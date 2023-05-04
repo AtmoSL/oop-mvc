@@ -1,0 +1,5 @@
+@import "forms.css";
+.login__form{
+    margin: 0 auto;
+    max-width: 300px;
+}
