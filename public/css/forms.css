@@ -18,3 +18,19 @@
     outline: none;
     box-shadow:  1px 1px 3px 3px #E4E900;
 }
+.form__btn{
+    background-color: #E4E900;
+    color: #1E1E1E;
+    text-transform: uppercase;
+    padding: 10px 5px;
+    border-radius: 15px;
+}
+.form__btn{
+    cursor: pointer;
+    transition:0.4s;
+}
+.form__btn:hover{
+    background-color: #1E1E1E;
+    border-color: #E4E900;
+    color: #E4E900;
+}

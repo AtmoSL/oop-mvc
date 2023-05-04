@@ -3,3 +3,17 @@
     margin: 0 auto;
     max-width: 300px;
 }
+.login__form__registration,
+.login__form__registration a{
+    font-size: 12pt;
+    margin-top: 10px;
+    color: #E4E900;
+    font-weight: lighter;
+}
+.login__form__registration a{
+    font-weight: normal;
+    text-decoration: none;
+}
+.login__form__registration a:hover{
+    text-decoration: underline;
+}

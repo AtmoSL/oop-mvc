@@ -18,6 +18,12 @@
                     <input class="form__input" type="password" name="password" id="password"
                            placeholder="Введите пароль">
                 </div>
+                <div class="form__group">
+                    <button class="form__btn" type="submit">Войти</button>
+                </div>
+                <div class="login__form__registration">
+                    Нет аккаунта? <a href="/registration">Зарегистрируйтесь</a>!
+                </div>
             </form>
 
         </div>
