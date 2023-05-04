@@ -95,7 +95,7 @@ abstract class Model
         foreach (self::$tables as $selfTable) {
             foreach ($selfTable as $tableName => $tableFields) {
                 foreach ($tableFields as $tableField) {
-                    $tableSTR .= " " . $tableName . "." . $tableField . " ";
+                        $tableSTR .= " " . $tableName . "." . $tableField . (($tableField!="*" && $tableField!=end($tableFields)) ? "," : "");
                 }
             }
         }
