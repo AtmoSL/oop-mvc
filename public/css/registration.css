@@ -1,0 +1,19 @@
+@import "forms.css";
+.registration__form{
+    margin: 0 auto;
+    max-width: 300px;
+}
+.registration__form__login,
+.registration__form__login a{
+    font-size: 12pt;
+    margin-top: 10px;
+    color: #E4E900;
+    font-weight: lighter;
+}
+.registration__form__login a{
+    font-weight: normal;
+    text-decoration: none;
+}
+.registration__form__login a:hover{
+    text-decoration: underline;
+}
