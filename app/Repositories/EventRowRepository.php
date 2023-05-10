@@ -34,4 +34,19 @@ class EventRowRepository extends MainRepository
         return $price;
     }
 
+    /**
+     * Получить все ряды события
+     * @param $eventId
+     * @return mixed
+     */
+    public function getRowsForEvent($eventId)
+    {
+        $rows = $this
+            ->startRequest()
+            ->where(["event_id"=>$eventId])
+            ->find();
+
+        return $rows;
+    }
+
 }
