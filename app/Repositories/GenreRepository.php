@@ -1,0 +1,30 @@
+<?php
+
+namespace app\Repositories;
+
+use app\Models\Genre;
+
+class GenreRepository extends MainRepository
+{
+    /**
+     * Получить класс модели
+     * @return string
+     */
+    protected function getModelClass()
+    {
+        return Genre::class;
+    }
+
+    /**
+     * Получить название жанра по id
+     * @param $genreId
+     * @return mixed
+     */
+    public function getGenreTitle($genreId){
+        $genre = $this->startRequest()
+            ->one(["id" => $genreId], ["title"])
+            ->find();
+
+        return $genre->title;
+    }
+}
