@@ -7,15 +7,18 @@ use app\Models\EventRow;
 use app\Models\Genre;
 use app\Models\Theater;
 use app\Repositories\EventRepository;
+use app\Repositories\EventRowRepository;
 use vendor\Evd\DataBase\DB;
 use vendor\Evd\Main\Viewer;
 
 class IndexController
 {
-    protected $eventRepository;
+    protected EventRepository $eventRepository;
+    protected EventRowRepository $eventRowRepository;
     public function __construct()
     {
         $this->eventRepository = new EventRepository();
+        $this->eventRowRepository = new EventRowRepository();
     }
 
     /**
@@ -28,9 +31,7 @@ class IndexController
         $events = $this->eventRepository->getAllEvents();
 
         foreach ($events as &$event){
-            $event->price = 0;
-            $event_row = EventRow::one(["event_id" => $event->id, "price" => "min"], ["price"])->find();
-            if(isset($event_row->price)) $event->price = $event_row->price;
+            $event->price = $this->eventRowRepository->getMinPriceForEvent($event->id);
         }
 
         Viewer::view("index", compact("events"));
@@ -47,7 +48,6 @@ class IndexController
             die();
         }
 
-
         $events = $this->eventRepository->getAllEventsTheaterFilter($data["id"]);
 
         if(!$events){
@@ -56,9 +56,7 @@ class IndexController
         }
 
         foreach ($events as &$event){
-            $event->price = 0;
-            $event_row = EventRow::one(["event_id" => $event->id, "price" => "min"], ["price"])->find();
-            if(isset($event_row->price)) $event->price = $event_row->price;
+            $event->price = $this->eventRowRepository->getMinPriceForEvent($event->id);
         }
 
         $theater = Theater::one(["id" => $data["id"]], ["title"])->find();
@@ -87,9 +85,7 @@ class IndexController
         }
 
         foreach ($events as &$event){
-            $event->price = 0;
-            $event_row = EventRow::one(["event_id" => $event->id, "price" => "min"], ["price"])->find();
-            if(isset($event_row->price)) $event->price = $event_row->price;
+            $event->price = $this->eventRowRepository->getMinPriceForEvent($event->id);
         }
 
         $theater = Genre::one(["id" => $data["id"]], ["title"])->find();

@@ -20,13 +20,16 @@ class EventRowRepository extends MainRepository
      * @param $eventId
      * @return mixed
      */
-    public function getMinPriceForEvent($eventId){
+    public function getMinPriceForEvent($eventId)
+    {
+        $price = 0;
+
         $row = $this
             ->startRequest()
             ->one(["event_id" => $eventId, "price" => "min"], ["price"])
             ->find();
 
-        $price = $row->price;
+        if(isset($row->price)) $price = $row->price;
 
         return $price;
     }
