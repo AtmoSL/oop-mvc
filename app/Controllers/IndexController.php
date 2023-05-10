@@ -8,6 +8,7 @@ use app\Models\Genre;
 use app\Models\Theater;
 use app\Repositories\EventRepository;
 use app\Repositories\EventRowRepository;
+use app\Repositories\TheaterRepository;
 use vendor\Evd\DataBase\DB;
 use vendor\Evd\Main\Viewer;
 
@@ -15,10 +16,12 @@ class IndexController
 {
     protected EventRepository $eventRepository;
     protected EventRowRepository $eventRowRepository;
+    protected TheaterRepository $theaterRepository;
     public function __construct()
     {
         $this->eventRepository = new EventRepository();
         $this->eventRowRepository = new EventRowRepository();
+        $this->theaterRepository = new TheaterRepository();
     }
 
     /**
@@ -59,9 +62,7 @@ class IndexController
             $event->price = $this->eventRowRepository->getMinPriceForEvent($event->id);
         }
 
-        $theater = Theater::one(["id" => $data["id"]], ["title"])->find();
-
-        $filterTitle = $theater->title;
+        $filterTitle = $this->theaterRepository->getTheaterTitle($data["id"]);
 
         Viewer::view("index", compact("events", "filterTitle"));
     }
