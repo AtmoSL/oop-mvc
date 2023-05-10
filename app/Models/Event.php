@@ -18,7 +18,6 @@ class Event extends \vendor\Evd\Main\Model
     public $theater_id;
     public $date;
     public $count;
-    public $price;
     protected static string $table = "events";
 
 }
