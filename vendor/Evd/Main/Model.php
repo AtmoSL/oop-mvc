@@ -37,6 +37,7 @@ abstract class Model
 
         return new static();
     }
+
     /**
      * Создание запроса для вывода всех записей
      * @param $fields
@@ -95,7 +96,7 @@ abstract class Model
         foreach (self::$tables as $selfTable) {
             foreach ($selfTable as $tableName => $tableFields) {
                 foreach ($tableFields as $tableField) {
-                        $tableSTR .= " " . $tableName . "." . $tableField . (($tableField!="*" && $tableField!=end($tableFields)) ? "," : "");
+                    $tableSTR .= " " . $tableName . "." . $tableField . (($tableField != "*" && $tableField != end($tableFields)) ? "," : "");
                 }
             }
         }
@@ -119,17 +120,24 @@ abstract class Model
         if (count(self::$where) > 0) {
             $whereStr = "";
             foreach (self::$where as $whereField => $whereValue) {
-                $whereStr .= static::$table. "." .$whereField. "=" . "'" . $whereValue . "'";
+
+                $whereValueItem = match ($whereValue) {
+                    "min" => "(SELECT MIN($whereField) FROM " . static::$table . ")",
+                    "max" => "(SELECT MAX($whereField) FROM " . static::$table . ")",
+                    default => "'$whereValue'",
+                };
+
+                $whereStr .= static::$table . "." . $whereField . "=" . $whereValueItem . (($whereValue != end(self::$where)) ? " AND " : "");
 
             }
         }
 
-        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " .$whereStr;
+        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . $whereStr;
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);
 
-        if(self::$takeOne && count($result)>0){
+        if (self::$takeOne && count($result) > 0) {
             $this->setPropsDefaultValues();
             return $result[0];
         }
