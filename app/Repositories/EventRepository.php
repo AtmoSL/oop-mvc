@@ -15,10 +15,30 @@ class EventRepository extends MainRepository
             return Event::class;
     }
 
+    /**
+     * Запрос всех событий без фильтров
+     * @return mixed
+     */
     public function getAllEvents(){
         $events = $this
             ->startRequest()
             ->all()
+            ->with("genres", ["id as genre_id", "title as genre_title"])
+            ->with("theaters", ["id as theater_id", "title as theater_title"])
+            ->find();
+
+        return $events;
+    }
+
+    /**
+     * Вывод всех событий с фильтрацией по театру
+     * @param $theaterId
+     * @return mixed
+     */
+    public function getAllEventsTheaterFilter($theaterId){
+        $events = $this
+            ->startRequest()
+            ->where(["theater_id"=>$theaterId])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
             ->find();

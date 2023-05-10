@@ -48,10 +48,7 @@ class IndexController
         }
 
 
-        $events = Event::where(["theater_id"=>$data["id"]])
-            ->with("genres", ["id as genre_id", "title as genre_title"])
-            ->with("theaters", ["id as theater_id", "title as theater_title"])
-            ->find();
+        $events = $this->eventRepository->getAllEventsTheaterFilter($data["id"]);
 
         if(!$events){
             header("location: /");
