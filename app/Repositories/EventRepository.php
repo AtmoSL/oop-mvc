@@ -62,4 +62,21 @@ class EventRepository extends MainRepository
         return $events;
     }
 
+    /**
+     * Получение события по id
+     * @param $eventId
+     * @return mixed
+     */
+    public function getOneFullEvent($eventId)
+    {
+        $event = $this
+            ->startRequest()
+            ->one(["id"=>$eventId])
+            ->with("genres", ["id as genre_id", "title as genre_title"])
+            ->with("theaters", ["id as theater_id", "title as theater_title"])
+            ->find();
+
+        return $event;
+    }
+
 }

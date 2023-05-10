@@ -6,11 +6,17 @@ use app\Models\Event;
 use app\Models\EventPhotos;
 use app\Models\EventRow;
 use app\Models\EventSeat;
-use Cassandra\Rows;
+use app\Repositories\EventRepository;
 use vendor\Evd\Main\Viewer;
 
 class EventController
 {
+    protected EventRepository $eventRepository;
+
+    public function __construct()
+    {
+        $this->eventRepository = new EventRepository();
+    }
 
     /**
      * Страница мероприятия
@@ -20,18 +26,15 @@ class EventController
     {
         $id = $data["id"];
 
-        $event = Event::one(["id"=>$id])
-            ->with("genres", ["id as genre_id", "title as genre_title"])
-            ->with("theaters", ["id as theater_id", "title as theater_title"])
-            ->find();
-
-        $carousel = EventPhotos::where(["event_id"=>$id], ["photo"])->find();
-        if(!$carousel) $carousel = null;
-
+        $event = $this->eventRepository->getOneFullEvent($id);
+        
         if(!$event) {
             http_response_code(404);
             Viewer::view('404');
         }
+
+        $carousel = EventPhotos::where(["event_id"=>$id], ["photo"])->find();
+        if(!$carousel) $carousel = null;
 
         $rows = EventRow::where(["event_id"=>$id])->find();
 
