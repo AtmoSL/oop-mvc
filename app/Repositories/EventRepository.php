@@ -46,4 +46,20 @@ class EventRepository extends MainRepository
         return $events;
     }
 
+    /**
+     * Вывод всех событий с фильтрацией по жанру
+     * @param $genreId
+     * @return mixed
+     */
+    public function getAllEventsGenreFilter($genreId){
+        $events = $this
+            ->startRequest()
+            ->where(["theater_id"=>$genreId])
+            ->with("genres", ["id as genre_id", "title as genre_title"])
+            ->with("theaters", ["id as theater_id", "title as theater_title"])
+            ->find();
+
+        return $events;
+    }
+
 }
