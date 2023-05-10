@@ -6,11 +6,17 @@ use app\Models\Event;
 use app\Models\EventRow;
 use app\Models\Genre;
 use app\Models\Theater;
+use app\Repositories\EventRepository;
 use vendor\Evd\DataBase\DB;
 use vendor\Evd\Main\Viewer;
 
 class IndexController
 {
+    protected $eventRepository;
+    public function __construct()
+    {
+        $this->eventRepository = new EventRepository();
+    }
 
     /**
      * Главная страница с выводом всех мероприятий
@@ -18,10 +24,8 @@ class IndexController
      */
     public function index()
     {
-        $events = Event::all()
-            ->with("genres", ["id as genre_id", "title as genre_title"])
-            ->with("theaters", ["id as theater_id", "title as theater_title"])
-            ->find();
+
+        $events = $this->eventRepository->getAllEvents();
 
         foreach ($events as &$event){
             $event->price = 0;
