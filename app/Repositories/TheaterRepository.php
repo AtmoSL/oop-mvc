@@ -30,4 +30,18 @@ class TheaterRepository extends MainRepository
         return $theater->title;
     }
 
+    /**
+     * Получить список всех театров
+     * @return mixed
+     */
+    public function getAllTheaters()
+    {
+        $theaters = $this
+            ->startRequest()
+            ->all()
+            ->find();
+
+        return $theaters;
+    }
+
 }
