@@ -32,7 +32,7 @@
                     <li><a href="/">Билеты</a></li>
                     <li><a href="/theaters">Театры</a></li>
                     <li><a href="/login">Вход</a></li>
-                    <li><a href="#">Регистрация</a></li>
+                    <li><a href="/registration">Регистрация</a></li>
                 </ul>
                 <div class="header__burger">
                     <span></span>

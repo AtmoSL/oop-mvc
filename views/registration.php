@@ -5,6 +5,13 @@
 
             <form action="" class="form registration__form">
                 <div class="form__group">
+                    <label for="name" class="form__label">
+                        Имя
+                    </label>
+                    <input class="form__input" type="text" name="name" id="name"
+                           placeholder="Введите ваше имя">
+                </div>
+                <div class="form__group">
                     <label for="email" class="form__label">
                         Email
                     </label>
