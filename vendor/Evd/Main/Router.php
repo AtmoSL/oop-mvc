@@ -4,7 +4,7 @@ namespace vendor\Evd\Main;
 
 class Router
 {
-    protected $routes =[];
+    protected $routes = [];
 
     /**
      * Определение маршрута
@@ -19,15 +19,21 @@ class Router
             $controllerName = "app\\Controllers\\" . $this->routes[$route]["controller"] . "Controller";
 
             $action = $this->routes[$route]['action'];
+            $method = (isset($this->routes[$route]['method'])) ? $this->routes[$route]['method'] : "";
 
             $controllerObject = new $controllerName();
 
-            if(isset($_GET)){
-                $controllerObject->$action($_GET);
-            }else{
-                $controllerObject->$action();
+            switch ($method) {
+                case "GET":
+                    $controllerObject->$action($_GET);
+                    break;
+                case "POST":
+                    $controllerObject->$action($_POST);
+                    break;
+                default:
+                    $controllerObject->$action();
             }
-        }else{
+        } else {
             http_response_code(404);
             Viewer::view('404');
         }
@@ -39,7 +45,8 @@ class Router
      * @param $routes
      * @return void
      */
-    public function setRoutes($routes = []){
+    public function setRoutes($routes = [])
+    {
         $this->routes = $routes;
     }
 }
