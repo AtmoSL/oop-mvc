@@ -5,6 +5,7 @@ namespace app\Controllers;
 use app\Models\EventPhotos;
 use app\Models\EventRow;
 use app\Models\EventSeat;
+use app\Repositories\EventPhotoRepository;
 use app\Repositories\EventRepository;
 use app\Repositories\EventRowRepository;
 use vendor\Evd\Main\Viewer;
@@ -13,11 +14,13 @@ class EventController
 {
     protected EventRepository $eventRepository;
     protected EventRowRepository $eventRowRepository;
+    protected EventPhotoRepository $eventPhotoRepository;
 
     public function __construct()
     {
         $this->eventRepository = new EventRepository();
         $this->eventRowRepository = new EventRowRepository();
+        $this->eventPhotoRepository = new EventPhotoRepository();
     }
 
     /**
@@ -35,7 +38,8 @@ class EventController
             Viewer::view('404');
         }
 
-        $carousel = EventPhotos::where(["event_id"=>$id], ["photo"])->find();
+        $carousel = $this->eventPhotoRepository->getPhotosForEventCarousel($id);
+
         if(!$carousel) $carousel = null;
 
         $rows = $this->eventRowRepository->getRowsForEvent($id);
