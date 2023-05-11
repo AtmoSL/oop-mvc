@@ -36,6 +36,11 @@ $router->setRoutes([
         "controller"  => "Registration",
         "action"      => "index",
     ],
+    "/registration/register" => [
+        "controller"  => "Registration",
+        "action"      => "register",
+        "method"      => "POST",
+    ],
 ]);
 
 $router->start();
