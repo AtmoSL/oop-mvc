@@ -3,34 +3,34 @@
     <section class="registration">
         <div class="container">
 
-            <form action="" class="form registration__form">
+            <form action="/registration/register" method="post" class="form registration__form">
                 <div class="form__group">
                     <label for="name" class="form__label">
                         Имя
                     </label>
                     <input class="form__input" type="text" name="name" id="name"
-                           placeholder="Введите ваше имя">
+                           placeholder="Введите ваше имя" required>
                 </div>
                 <div class="form__group">
                     <label for="email" class="form__label">
                         Email
                     </label>
                     <input class="form__input" type="email" name="email" id="email"
-                           placeholder="Введите адрес электронной почты">
+                           placeholder="Введите адрес электронной почты" required>
                 </div>
                 <div class="form__group">
                     <label for="password" class="form__label">
                         Пароль
                     </label>
                     <input class="form__input" type="password" name="password" id="password"
-                           placeholder="Введите пароль">
+                           placeholder="Введите пароль" required>
                 </div>
                 <div class="form__group">
-                    <label for="password" class="form__label">
+                    <label for="password_repeat" class="form__label">
                         Проверка пароля
                     </label>
-                    <input class="form__input" type="password" name="password" id="password"
-                           placeholder="Введите пароль ещё раз">
+                    <input class="form__input" type="password" name="password_repeat" id="password_repeat"
+                           placeholder="Введите пароль ещё раз" required>
                 </div>
                 <div class="form__group">
                     <button class="form__btn" type="submit">Зарегистрироваться</button>
