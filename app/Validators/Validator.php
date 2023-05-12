@@ -4,8 +4,17 @@ namespace app\Validators;
 
 abstract class Validator
 {
-    abstract public function rules();
+    /**
+     * Правила валидации
+     * @return string[]
+     */
+    abstract public function rules():array;
 
+    /**
+     * Валидация всех полей
+     * @param $fields
+     * @return true[]
+     */
     public function validateAll($fields): array
     {
         $validateResult = [
@@ -24,6 +33,11 @@ abstract class Validator
         return $validateResult;
     }
 
+    /**
+     * Расшифровка правил в массив
+     * @param $allRules
+     * @return array
+     */
     private function decodeRules($allRules): array
     {
         $rules = [];
@@ -41,6 +55,12 @@ abstract class Validator
         return $rules;
     }
 
+    /**
+     * Валидация отдельного поля
+     * @param $fieldValue
+     * @param $fieldRules
+     * @return array
+     */
     private function validateField($fieldValue, $fieldRules): array
     {
         $validateResult = [];

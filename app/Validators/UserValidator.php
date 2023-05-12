@@ -14,7 +14,7 @@ class UserValidator extends Validator
      * Правила валидации
      * @return string[]
      */
-    public function rules()
+    public function rules():array
     {
         return [
             "name"      => "required|min:2|max:32|onlyText",
