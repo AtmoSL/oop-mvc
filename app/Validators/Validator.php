@@ -25,8 +25,8 @@ abstract class Validator
 
         foreach ($fields as $field => $fieldValue) {
             $fieldRules = $allRules[$field];
-            $validateResult[$field] = $this->validateField($fieldValue, $fieldRules);
-            if (isset($validateResult[$field]["isValidated"]) && !$validateResult[$field]["isValidated"])
+            $validateResult["fields"][$field] = $this->validateField($fieldValue, $fieldRules);
+            if (isset($validateResult["fields"][$field]["isValidated"]) && !$validateResult["fields"][$field]["isValidated"])
                 $validateResult["isFullValidated"] = false;
         }
 
