@@ -10,6 +10,19 @@
                     </label>
                     <input class="form__input" type="text" name="name" id="name"
                            placeholder="Введите ваше имя" required>
+                    <div class="form__error__messages">
+                        <ul>
+                            <li>
+                                Поле обязательно должно быть заполнено
+                            </li>
+                            <li>
+                                Поле должно быть формата email
+                            </li>
+                            <li>
+                                Поле должно быть длиннее 3 символов
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="form__group">
                     <label for="email" class="form__label">
@@ -17,6 +30,19 @@
                     </label>
                     <input class="form__input" type="email" name="email" id="email"
                            placeholder="Введите адрес электронной почты" required>
+                    <div class="form__error__messages">
+                        <ul>
+                            <li>
+                                Поле обязательно должно быть заполнено
+                            </li>
+                            <li>
+                                Поле должно быть формата email
+                            </li>
+                            <li>
+                                Поле должно быть длиннее 3 символов
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="form__group">
                     <label for="password" class="form__label">
@@ -24,6 +50,19 @@
                     </label>
                     <input class="form__input" type="password" name="password" id="password"
                            placeholder="Введите пароль" required>
+                    <div class="form__error__messages">
+                        <ul>
+                            <li>
+                                Поле обязательно должно быть заполнено
+                            </li>
+                            <li>
+                                Поле должно быть формата email
+                            </li>
+                            <li>
+                                Поле должно быть длиннее 3 символов
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="form__group">
                     <label for="password_repeat" class="form__label">
@@ -31,6 +70,19 @@
                     </label>
                     <input class="form__input" type="password" name="password_repeat" id="password_repeat"
                            placeholder="Введите пароль ещё раз" required>
+                    <div class="form__error__messages">
+                        <ul>
+                            <li>
+                                Поле обязательно должно быть заполнено
+                            </li>
+                            <li>
+                                Поле должно быть формата email
+                            </li>
+                            <li>
+                                Поле должно быть длиннее 3 символов
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="form__group">
                     <button class="form__btn" type="submit">Зарегистрироваться</button>

@@ -34,3 +34,10 @@
     border-color: #E4E900;
     color: #E4E900;
 }
+.form__error__messages{
+    color: #982500;
+}
+.form__error__messages li{
+    margin-top: 10px;
+    margin-left: 10px;
+}
