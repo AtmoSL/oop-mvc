@@ -8,7 +8,7 @@ abstract class Validator
      * Правила валидации
      * @return string[]
      */
-    abstract public function rules():array;
+    abstract public function rules(): array;
 
     /**
      * Валидация всех полей
@@ -22,6 +22,13 @@ abstract class Validator
         ];
 
         $allRules = $this->decodeRules($this->rules());
+
+        //Проверка обязательных полей
+        $validationRequired = $this->checkRequiredFields($fields, $allRules);
+        if(!$validationRequired["isValidated"]){
+            $validateResult["fields"] = $validationRequired["fields"];
+            $validateResult["isFullValidated"] = false;
+        }
 
         foreach ($fields as $field => $fieldValue) {
             $fieldRules = $allRules[$field];
@@ -105,6 +112,30 @@ abstract class Validator
                         $validateResult["errorMessages"][] = "Поле должно быть длиннее " . $fieldRule["min"] . " символов";
                     }
                     break;
+            }
+        }
+
+        return $validateResult;
+    }
+
+    /**
+     * Валидация обязательных полей
+     * @param $fields
+     * @param $allRules
+     * @return array|true[]
+     */
+    private function checkRequiredFields($fields, $allRules): array
+    {
+        $validateResult = [
+            "isValidated" => true
+        ];
+
+        foreach ($allRules as $field => $fieldsRules) {
+            if(in_array("required", $fieldsRules)
+                && empty($fields[$field])){
+                $validateResult["isValidated"] = false;
+                $validateResult["fields"][$field]["isValidated"] = false;
+                $validateResult["fields"][$field]["errorMessages"] = "Поле обязательно должно быть заполнено";
             }
         }
 
