@@ -87,7 +87,7 @@ abstract class Validator
                     }
                     break;
                 case "onlyText":
-                    if (preg_match('/[^а-яА-Я\s]+/msiu', $fieldValue)) {
+                    if (!preg_match("/^[\p{L&} -]+$/u", $fieldValue)) {
                         $validateResult["isValidated"] = false;
                         $validateResult["errorMessages"][] = "Поле может содержать только буквы и пробелы";
                     }
