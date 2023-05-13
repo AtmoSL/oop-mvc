@@ -10,19 +10,15 @@
                     </label>
                     <input class="form__input" type="text" name="name" id="name"
                            placeholder="Введите ваше имя" required>
+                    <?php if(isset($_SESSION["registrationMessages"]["name"]["errorMessages"])){ ?>
                     <div class="form__error__messages">
                         <ul>
-                            <li>
-                                Поле обязательно должно быть заполнено
-                            </li>
-                            <li>
-                                Поле должно быть формата email
-                            </li>
-                            <li>
-                                Поле должно быть длиннее 3 символов
-                            </li>
+                            <?php foreach ($_SESSION["registrationMessages"]["name"]["errorMessages"] as $message){ ?>
+                            <li><?=$message?></li>
+                            <?php } ?>
                         </ul>
                     </div>
+                    <?php }?>
                 </div>
                 <div class="form__group">
                     <label for="email" class="form__label">
@@ -30,19 +26,15 @@
                     </label>
                     <input class="form__input" type="email" name="email" id="email"
                            placeholder="Введите адрес электронной почты" required>
-                    <div class="form__error__messages">
-                        <ul>
-                            <li>
-                                Поле обязательно должно быть заполнено
-                            </li>
-                            <li>
-                                Поле должно быть формата email
-                            </li>
-                            <li>
-                                Поле должно быть длиннее 3 символов
-                            </li>
-                        </ul>
-                    </div>
+                    <?php if(isset($_SESSION["registrationMessages"]["email"]["errorMessages"])){ ?>
+                        <div class="form__error__messages">
+                            <ul>
+                                <?php foreach ($_SESSION["registrationMessages"]["email"]["errorMessages"] as $message){ ?>
+                                    <li><?=$message?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php }?>
                 </div>
                 <div class="form__group">
                     <label for="password" class="form__label">
@@ -50,19 +42,15 @@
                     </label>
                     <input class="form__input" type="password" name="password" id="password"
                            placeholder="Введите пароль" required>
-                    <div class="form__error__messages">
-                        <ul>
-                            <li>
-                                Поле обязательно должно быть заполнено
-                            </li>
-                            <li>
-                                Поле должно быть формата email
-                            </li>
-                            <li>
-                                Поле должно быть длиннее 3 символов
-                            </li>
-                        </ul>
-                    </div>
+                    <?php if(isset($_SESSION["registrationMessages"]["password"]["errorMessages"])){ ?>
+                        <div class="form__error__messages">
+                            <ul>
+                                <?php foreach ($_SESSION["registrationMessages"]["password"]["errorMessages"] as $message){ ?>
+                                    <li><?=$message?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php }?>
                 </div>
                 <div class="form__group">
                     <label for="password_repeat" class="form__label">
@@ -70,19 +58,15 @@
                     </label>
                     <input class="form__input" type="password" name="password_repeat" id="password_repeat"
                            placeholder="Введите пароль ещё раз" required>
-                    <div class="form__error__messages">
-                        <ul>
-                            <li>
-                                Поле обязательно должно быть заполнено
-                            </li>
-                            <li>
-                                Поле должно быть формата email
-                            </li>
-                            <li>
-                                Поле должно быть длиннее 3 символов
-                            </li>
-                        </ul>
-                    </div>
+                    <?php if(isset($_SESSION["registrationMessages"]["password_repeat"]["errorMessages"])){ ?>
+                        <div class="form__error__messages">
+                            <ul>
+                                <?php foreach ($_SESSION["registrationMessages"]["password_repeat"]["errorMessages"] as $message){ ?>
+                                    <li><?=$message?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php }?>
                 </div>
                 <div class="form__group">
                     <button class="form__btn" type="submit">Зарегистрироваться</button>
@@ -95,4 +79,6 @@
         </div>
     </section>
 
-<?php include_once "layouts/footer.php" ?>
+<?php
+unset($_SESSION["registrationMessages"]);
+include_once "layouts/footer.php" ?>
