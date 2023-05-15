@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 use app\Repositories\UserRepository;
 use app\Validators\UserValidator;
+use vendor\Evd\Main\Auth;
 use vendor\Evd\Main\Viewer;
 
 class RegistrationController
@@ -40,6 +41,8 @@ class RegistrationController
             header("Location: /registration");
         } else {
             $user = $this->userRepository->registrationAndGetUser($data);
+
+            Auth::auth($user);
 
             header("Location: /");
         }
