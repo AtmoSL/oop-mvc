@@ -9,13 +9,13 @@ class Auth
      * @param $user
      * @return bool
      */
-    public static function auth($user):bool
+    public static function auth($user): bool
     {
-        if(!empty($_SESSION["auth"])) return false;
+        if (!empty($_SESSION["auth"])) return false;
 
         $_SESSION["auth"] = [
-            "id"    => $user->id,
-            "name"  => $user->name
+            "id" => $user->id,
+            "name" => $user->name
         ];
 
         return true;
@@ -27,9 +27,9 @@ class Auth
      */
     public static function guest()
     {
-        if(!empty($_SESSION["auth"])) {
+        if (!empty($_SESSION["auth"])) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -41,5 +41,18 @@ class Auth
     public static function logout()
     {
         unset($_SESSION["auth"]);
+    }
+
+    /**
+     * Получение id пользователя из сессии
+     * @return false|mixed
+     */
+    public static function userId()
+    {
+        if (empty($_SESSION["auth"])) {
+            return false;
+        }
+
+        return $_SESSION["auth"]["id"];
     }
 }
