@@ -15,7 +15,7 @@ final class DB
      * Подключение к БД.
      * @return PDO
      */
-    private static function getLink()
+    private static function getLink():PDO
     {
         // Проверка соединения. Если соединение уже было - возвращает link
         if (self:: $link) {

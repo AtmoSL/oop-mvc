@@ -10,8 +10,6 @@ use vendor\Evd\DataBase\DB;
  */
 abstract class Model
 {
-
-
     private static array $where = []; // Условие
 
     private static $sql; //Запрос
@@ -159,5 +157,31 @@ abstract class Model
         self::$takeOne = false;
     }
 
+    /**
+     * Создание записи в БД
+     * @param $data
+     * @return bool
+     */
+    public static function create($data)
+    {
+        $table = static::$table;
+
+        $fields = "";
+        $values = "";
+
+        $countElements = count($data);
+        $counter = 0;
+
+        foreach ($data as $field => $value) {
+            $counter++;
+            $fields .= "`". $field . "`" . (($counter != $countElements) ? ", " : "");
+            $values .= "'". $value . "'" . (($counter != $countElements) ? ", " : "");
+        }
+
+        self::$sql = "INSERT INTO `$table` ($fields) VALUES ($values)";
+        $stmt = DB::query(self::$sql);
+
+        return true;
+    }
 
 }

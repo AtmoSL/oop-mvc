@@ -2,11 +2,18 @@
 
 namespace app\Controllers;
 
+use app\Repositories\UserRepository;
 use app\Validators\UserValidator;
 use vendor\Evd\Main\Viewer;
 
 class RegistrationController
 {
+    protected UserRepository $userRepository;
+
+    public function __construct()
+    {
+        $this->userRepository = new UserRepository();
+    }
     public function index()
     {
         Viewer::view("registration");
@@ -22,11 +29,19 @@ class RegistrationController
         $validator = new UserValidator();
         $validation = $validator->validateAll($data);
 
+        $isUserExist = $this->userRepository->checkUserByEmail($data["email"]);
+        if($isUserExist){
+            $_SESSION["registrationMessages"]["email"]["errorMessages"][] = "Почта занята";
+            header("Location: /registration");
+        }
+
         if (!$validation['isFullValidated']) {
             $_SESSION["registrationMessages"] = $validation["fields"];
-            debug($_SESSION["registrationMessages"]);
+            header("Location: /registration");
         } else {
-            debug("Валидация пройдена");
+            $user = $this->userRepository->registrationAndGetUser($data);
+
+            header("Location: /");
         }
     }
 }

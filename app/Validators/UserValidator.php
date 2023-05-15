@@ -18,7 +18,7 @@ class UserValidator extends Validator
     {
         return [
             "name"      => "required|min:2|max:32|onlyText",
-            "email"     => "required|email|min:3|max:32",
+            "email"     => "required|email|min:3|max:64",
             "password"  => "required|min:8:max:64|noSpace",
         ];
 
