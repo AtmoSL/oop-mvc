@@ -50,6 +50,11 @@ $router->setRoutes([
         "action"      => "register",
         "method"      => "POST",
     ],
+    "/order/create" => [
+        "controller"  => "Order",
+        "action"      => "create",
+        "method"      => "POST",
+    ],
 ]);
 
 $router->start();

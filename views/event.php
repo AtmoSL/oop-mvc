@@ -39,40 +39,44 @@
                 <?php } ?>
             </div>
 
-            <div class="event__rows">
+            <form action="/order/create" method="post">
+                <div class="event__rows">
+                    <input type="hidden" name="event_id" value="<?= $event->id?>">
+                    <?php /** @var array $rows */
+                    foreach ($rows as $row) {
+                        /** @var \app\Models\EventRow $row */ ?>
+                        <details class="event__row">
+                            <summary>Ряд №<span><?= $row->num ?></span> - <span><?= $row->price ?></span> руб.</summary>
+                            <div class="event__seats">
+                                <?php foreach ($row->seats as $seat) {
+                                    /** @var \app\Models\EventSeat $seat */ ?>
+                                    <div class="event__seat">
+                                        <label class="event__seat__check">
+                                            <input class="event__seat__check__input" type="checkbox" name="<?= $seat->id ?>"
+                                                <?= (!$seat->is_occupied) ? "" : "disabled" ?> id="seat-1-1">
+                                            <span class="event__seat__check__box"></span>
+                                            Место <?= $seat->num ?>
+                                        </label>
+                                    </div>
+                                <?php } ?>
+                        </details>
+                    <?php } ?>
 
-                <?php /** @var array $rows */
-                foreach ($rows as $row) {
-                    /** @var \app\Models\EventRow $row */ ?>
-                    <details class="event__row">
-                        <summary>Ряд №<span><?= $row->num ?></span> - <span><?= $row->price ?></span> руб.</summary>
-                        <div class="event__seats">
-                            <?php foreach ($row->seats as $seat) {
-                                /** @var \app\Models\EventSeat $seat */ ?>
-                                <div class="event__seat">
-                                    <label class="event__seat__check">
-                                        <input class="event__seat__check__input" type="checkbox" name="seat-1-2"
-                                            <?= (!$seat->is_occupied) ? "" : "disabled" ?> id="seat-1-1">
-                                        <span class="event__seat__check__box"></span>
-                                        Место <?= $seat->num ?>
-                                    </label>
-                                </div>
-                            <?php } ?>
-                    </details>
-                <?php } ?>
-
-            </div>
-
-            <div class="event__buy">
-                <div class="event__buy__block">
-                    <div class="event__buy__count">
-                        Выбрано мест: <span>3</span>
-                    </div>
-                    <a href class="event__buy__btn">
-                        Оформить заказ
-                    </a>
                 </div>
-            </div>
+
+                <div class="event__buy">
+                    <div class="event__buy__block">
+                        <div class="event__buy__count">
+                            Выбрано мест: <span>3</span>
+                        </div>
+                        <button type="submit" class="event__buy__btn">
+                            Оформить заказ
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
 
         </div>
     </section>

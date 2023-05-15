@@ -49,4 +49,38 @@ class EventRowRepository extends MainRepository
         return $rows;
     }
 
+    /**
+     * Получение id мероприятия по id ряда
+     * @param $seatRowId
+     * @return mixed
+     */
+    public function getEventIdByRowId($seatRowId)
+    {
+        $row = $this
+            ->startRequest()
+            ->one(["id" => $seatRowId], ["event_id"])
+            ->find();
+
+        $eventId = $row->event_id;
+
+        return $eventId;
+    }
+
+    /**
+     * Получить стоимость ряда по id
+     * @param $id
+     * @return int
+     */
+    public function getPriceById($id) : int
+    {
+        $row = $this
+            ->startRequest()
+            ->one(["id" => $id], ["price"])
+            ->find();
+
+        $price = $row->price;
+
+        return $price;
+    }
+
 }
