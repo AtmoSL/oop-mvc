@@ -13,7 +13,10 @@ class Auth
     {
         if(!empty($_SESSION["auth"])) return false;
 
-        $_SESSION["auth"] = $user;
+        $_SESSION["auth"] = [
+            "id"    => $user->id,
+            "name"  => $user->name
+        ];
 
         return true;
     }

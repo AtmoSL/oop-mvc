@@ -32,6 +32,11 @@ $router->setRoutes([
         "controller"  => "Login",
         "action"      => "index",
     ],
+    "/login/login" => [
+        "controller"  => "Login",
+        "action"      => "login",
+        "method"      => "POST",
+    ],
     "/logout" => [
         "controller"  => "Login",
         "action"      => "logout",

@@ -17,6 +17,11 @@ class RegistrationController
     }
     public function index()
     {
+        if(!Auth::guest()){
+            header("Location: /");
+            die();
+        }
+
         Viewer::view("registration");
     }
 
@@ -27,6 +32,11 @@ class RegistrationController
      */
     public function register($data)
     {
+        if(!Auth::guest()){
+            header("Location: /");
+            die();
+        }
+
         $validator = new UserValidator();
         $validation = $validator->validateAll($data);
 

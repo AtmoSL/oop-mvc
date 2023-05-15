@@ -46,9 +46,19 @@ class UserRepository extends MainRepository
     {
         $user = $this
             ->startRequest()
-            ->one(["email" => $email])
+            ->one(["email" => $email], ["id"])
             ->find();
 
         return !empty($user);
+    }
+
+    public function getUserForAuth($email)
+    {
+        $user = $this
+            ->startRequest()
+            ->one(["email" => $email])
+            ->find();
+
+        return $user;
     }
 }
