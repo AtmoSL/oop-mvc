@@ -18,6 +18,10 @@ class Auth
         return true;
     }
 
+    /**
+     * Проверка авторизации пользователя
+     * @return bool
+     */
     public static function guest()
     {
         if(!empty($_SESSION["auth"])) {
@@ -25,5 +29,14 @@ class Auth
         }else{
             return true;
         }
+    }
+
+    /**
+     * Выход из аккаунта, удаление пользователя из сессии
+     * @return void
+     */
+    public static function logout()
+    {
+        unset($_SESSION["auth"]);
     }
 }

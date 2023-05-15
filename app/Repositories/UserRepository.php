@@ -27,7 +27,11 @@ class UserRepository extends MainRepository
 
         $user = $this
             ->startRequest()
-            ->one(["email" => $data["email"]])
+            ->one(["email" => $data["email"]],
+            [
+                "id",
+                "name",
+            ])
             ->find();
 
         return $user;

@@ -31,8 +31,12 @@
                 <ul class="header__nav__list">
                     <li><a href="/">Билеты</a></li>
                     <li><a href="/theaters">Театры</a></li>
+                    <?php if(\vendor\Evd\Main\Auth::guest()) {?>
                     <li><a href="/login">Вход</a></li>
                     <li><a href="/registration">Регистрация</a></li>
+                    <?php }else { ?>
+                        <li><a href="/logout">Выход</a></li>
+                    <?php } ?>
                 </ul>
                 <div class="header__burger">
                     <span></span>
