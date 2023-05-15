@@ -16,6 +16,8 @@ abstract class Model
     private static $withTables = []; // Связанные таблицы
 
     private static $takeOne = false;
+    private static $order = ""; // Сортировка
+    private static $limit = ""; // Лимитирование
     private static $operator; // Оператор запроса
 
     private static $tables = []; // таблицы
@@ -65,6 +67,39 @@ abstract class Model
         self::$operator = "SELECT";
 
         return new static();
+    }
+
+    /**
+     * Сортировка по убыванию
+     * @param $field
+     * @return $this
+     */
+    public function orderDesc($field)
+    {
+        self::$order = "ORDER BY $field DESC";
+        return $this;
+    }
+
+    /**
+     * Сортировка по возрастанию
+     * @param $field
+     * @return $this
+     */
+    public function orderAsc($field)
+    {
+        self::$order = "ORDER BY $field ASC";
+        return $this;
+    }
+
+    /**
+     * Лимит
+     * @param $limit
+     * @return $this
+     */
+    public function limit($limit)
+    {
+        self::$limit = "LIMIT $limit";
+        return $this;
     }
 
     /**
@@ -130,7 +165,7 @@ abstract class Model
             }
         }
 
-        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . $whereStr;
+        self::$sql = self::$operator . $tableSTR . $withTablesSTR . " FROM " . static::$table . $join . " WHERE " . $whereStr . " " . self::$order . " " . self::$limit;
 
         $stmt = DB:: query(self::$sql);
         $result = $stmt->fetchAll(\PDO::FETCH_CLASS);
@@ -143,6 +178,10 @@ abstract class Model
         return $result;
     }
 
+    /**
+     * Сбррос запроса
+     * @return void
+     */
     private function setPropsDefaultValues()
     {
 
@@ -154,6 +193,8 @@ abstract class Model
         self::$operator = ""; // Оператор запроса
 
         self::$tables = []; // таблицы
+        self::$order = ""; // Сортировка
+        self::$limit = ""; // Лимитирование
         self::$takeOne = false;
     }
 
@@ -179,6 +220,7 @@ abstract class Model
         }
 
         self::$sql = "INSERT INTO `$table` ($fields) VALUES ($values)";
+
         $stmt = DB::query(self::$sql);
 
         return true;
