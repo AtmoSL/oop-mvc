@@ -33,5 +33,20 @@ class OrderRepository extends MainRepository
         return $orderId;
     }
 
+    /**
+     * Получить список заказов для страницы заказов пользователя
+     * @param $userId
+     * @return mixed
+     */
+    public function getOrderForUsersOrders($userId)
+    {
+        $orders = $this
+            ->startRequest()
+            ->where(["user_id"=>$userId], ["id", "event_id", "total_price"])
+            ->with("events", ["id as event_id", "title as event_title", "date as event_date"])
+            ->find();
+
+        return $orders;
+    }
 
 }

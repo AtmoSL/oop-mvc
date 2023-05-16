@@ -27,4 +27,20 @@ class OrderSeatRepository extends MainRepository
         );
     }
 
+    /**
+     * Получение количества мест в заказе
+     * @param $orderid
+     * @return int
+     */
+    public function getCountOfSeatsInOrder($orderId)
+    {
+        $seats = $this->startRequest()
+            ->where(["order_id" => $orderId], ["id"])
+            ->find();
+
+        $countOfSeats = count($seats);
+
+        return $countOfSeats;
+    }
+
 }

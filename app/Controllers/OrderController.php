@@ -17,6 +17,7 @@ class OrderController
     private EventRowRepository $eventRowRepository;
     private OrderRepository $orderRepository;
     private OrderSeatRepository $orderSeatRepository;
+    private EventRepository $eventRepository;
 
     public function __construct()
     {
@@ -24,6 +25,7 @@ class OrderController
         $this->eventRowRepository = new EventRowRepository();
         $this->orderRepository = new OrderRepository();
         $this->orderSeatRepository = new OrderSeatRepository();
+        $this->eventRepository = new EventRepository();
     }
 
     public function create($data)
@@ -79,6 +81,19 @@ class OrderController
 
     public function userOrders()
     {
-        Viewer::view("userOrders");
+        if(Auth::guest()){
+            header("Location:/");
+            die();
+        }
+        
+        $userId = Auth::userId();
+
+        $orders = $this->orderRepository->getOrderForUsersOrders($userId);
+
+        foreach ($orders as &$order){
+            $order->seats = $this->orderSeatRepository->getCountOfSeatsInOrder($order->id);
+        }
+
+        Viewer::view("userOrders", compact("orders"));
     }
 }

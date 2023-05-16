@@ -33,6 +33,9 @@
 .user__order__btn{
     padding: 3px 10px;
     border: 1px solid #FAFF00;
+    color: #FAFF00;
+    text-decoration: none;
+    display: block;
 }
 .user__order__btn:hover{
     cursor: pointer;
