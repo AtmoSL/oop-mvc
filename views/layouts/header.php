@@ -35,6 +35,7 @@
                     <li><a href="/login">Вход</a></li>
                     <li><a href="/registration">Регистрация</a></li>
                     <?php }else { ?>
+                        <li><a href="/orders">Заказы</a></li>
                         <li><a href="/logout">Выход</a></li>
                     <?php } ?>
                 </ul>

@@ -1,0 +1,45 @@
+.user__orders__title{
+    margin: 49px 60px 40px;
+
+    text-transform: uppercase;
+    color: #FAFF00;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+}
+
+.user__orders__table{
+    width: 100%;
+    margin: 30px;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+.user__order td{
+    color: #FAFF00;
+
+    font-size: 23px;
+    vertical-align: middle;
+    line-height: 28px;
+}
+
+.user__order__separator{
+    background-color: #FAFF00;
+    height: 40px;
+    width: 2px;
+}
+
+
+.user__order__btn{
+    padding: 3px 10px;
+    border: 1px solid #FAFF00;
+}
+.user__order__btn:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1120px) {
+    .user__orders__table__wrapper {
+        overflow-y: scroll;
+    }
+}

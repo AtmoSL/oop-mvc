@@ -8,6 +8,7 @@ use app\Repositories\EventSeatRepository;
 use app\Repositories\OrderRepository;
 use app\Repositories\OrderSeatRepository;
 use vendor\Evd\Main\Auth;
+use vendor\Evd\Main\Viewer;
 
 class OrderController
 {
@@ -74,6 +75,10 @@ class OrderController
         }
 
         debug($orderId);
+    }
 
+    public function userOrders()
+    {
+        Viewer::view("userOrders");
     }
 }
