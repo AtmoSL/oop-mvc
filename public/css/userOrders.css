@@ -29,6 +29,14 @@
     width: 2px;
 }
 
+.user__order__title a{
+    text-decoration: none;
+    color: #FAFF00;
+}
+
+.user__order__title a:hover{
+    text-decoration: underline;
+}
 
 .user__order__btn{
     padding: 3px 10px;

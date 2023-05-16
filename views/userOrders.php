@@ -18,7 +18,9 @@
                     <div class="user__order__separator"></div>
                 </td>
                 <td class="user__order__title">
-                    <?=$order->event_title?>
+                    <a href="/event?id=<?= $order->event_id ?>">
+                        <?=$order->event_title?>
+                    </a>
                 </td>
                 <td>
                     <div class="user__order__separator"></div>
