@@ -59,6 +59,11 @@ $router->setRoutes([
         "controller"  => "Order",
         "action"      => "userOrders",
     ],
+    "/order" => [
+        "controller"  => "Order",
+        "action"      => "userOrder",
+        "method"      => "GET",
+    ],
 ]);
 
 $router->start();

@@ -17,7 +17,6 @@ class OrderController
     private EventRowRepository $eventRowRepository;
     private OrderRepository $orderRepository;
     private OrderSeatRepository $orderSeatRepository;
-    private EventRepository $eventRepository;
 
     public function __construct()
     {
@@ -25,9 +24,13 @@ class OrderController
         $this->eventRowRepository = new EventRowRepository();
         $this->orderRepository = new OrderRepository();
         $this->orderSeatRepository = new OrderSeatRepository();
-        $this->eventRepository = new EventRepository();
     }
 
+    /**
+     * Создание заказа
+     * @param $data
+     * @return void
+     */
     public function create($data)
     {
         if(empty($data)){
@@ -79,13 +82,17 @@ class OrderController
         debug($orderId);
     }
 
+    /**
+     * Страница всех заказов
+     * @return void
+     */
     public function userOrders()
     {
         if(Auth::guest()){
             header("Location:/");
             die();
         }
-        
+
         $userId = Auth::userId();
 
         $orders = $this->orderRepository->getOrderForUsersOrders($userId);
@@ -95,5 +102,16 @@ class OrderController
         }
 
         Viewer::view("userOrders", compact("orders"));
+    }
+
+
+    /**
+     * Страница заказа
+     * @param $data
+     * @return void
+     */
+    public function userOrder($data)
+    {
+        Viewer::view("userOrder");
     }
 }

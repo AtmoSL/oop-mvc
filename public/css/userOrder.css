@@ -1,0 +1,126 @@
+.user__order{
+    margin-bottom: 30px;
+}
+
+.user__order__title{
+    margin: 49px 60px 40px;
+
+    text-transform: uppercase;
+    color: #FAFF00;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+}
+
+.user__order__top-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user__order__info{
+    background-color: #FAFF00;
+    padding: 22px 33px 19px;
+    color: black;
+    max-width: 650px;
+    border-radius: 20px;
+
+    margin-left: 31px;
+    margin-right: 31px;
+}
+
+.user__order__info__top-line{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+    text-transform: uppercase;
+
+    display: flex;
+}
+
+.user__order__info__title{
+    color: black;
+    text-decoration: none;
+}
+
+.user__order__info__title:hover{
+    text-decoration: underline;
+}
+
+.user__order__info__theater{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.user__order__info__separator{
+    background-color: #1E1E1E;
+    margin: 0 8px;
+    height: 35px;
+    width: 2px;
+}
+
+.user__order__info__separator-line{
+    margin: 15px 30px 0;
+    background-color: #1E1E1E;
+    height: 2px;
+    width: 46px;
+}
+
+.user__order__btn__wrapper{
+    padding: 36px 53px;
+}
+.user__order__btn{
+    text-decoration: none;
+    color: #FAFF00;
+    font-size: 23px;
+
+    padding: 20px 30px;
+
+    border: 2px solid #FAFF00;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.user__order__btn:hover{
+    background-color: #FAFF00;
+    color: black;
+}
+
+.user__order__tickets{
+    margin-top: 78px;
+    margin-left: 63px;
+}
+.user__order__tickets__title{
+    font-family: 'Roboto',sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+
+    text-transform: capitalize;
+
+    color: #FAFF00;
+}
+
+.user__order__tickets__row{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FAFF00;
+
+    margin-left: 103px;
+    margin-top: 20px;
+}
+.user__order__tickets__row + .user__order__tickets__row{
+    margin-top: 10px;
+}
+
+@media (max-width: 1085px) {
+    .user__order__info{
+        margin-left: 53px;
+        margin-bottom: 30px;
+    }
+}
