@@ -61,4 +61,19 @@ class UserRepository extends MainRepository
 
         return $user;
     }
+
+    /**
+     * Получить имя и email пользователя для страницы заказа
+     * @param $id
+     * @return mixed
+     */
+    public function getUserForOrderPage($id)
+    {
+        $user = $this
+            ->startRequest()
+            ->one(["id" => $id], ["name","email"])
+            ->find();
+
+        return $user;
+    }
 }

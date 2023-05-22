@@ -66,6 +66,10 @@ class OrderRepository extends MainRepository
         return $order;
     }
 
+    /**
+     * Получение списка заказов для админки
+     * @return mixed
+     */
     public function getAllOrdersForAdmin()
     {
         $orders = $this
@@ -76,6 +80,24 @@ class OrderRepository extends MainRepository
             ->find();
 
         return $orders;
+    }
+
+    /**
+     * Получение информации о заказе для админа
+     * @param $id
+     * @return mixed
+     */
+    public function getAllOrderForAdmin($id)
+    {
+        $order = $this
+            ->startRequest()
+            ->one(["id"=>$id])
+            ->with("order_statuses", ["id as status_id", "title as status_title"])
+            ->with("events", ["id as event_id", "title as event_title", "date as event_date", "theater_id as theater_id"])
+            ->with("users", ["id as user_id", "name as user_name"])
+            ->find();
+
+        return $order;
     }
 
 }

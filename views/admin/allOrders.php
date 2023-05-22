@@ -50,7 +50,7 @@
                             <td>
                                 <div class="all__order__separator"></div>
                             </td>
-                            <td><a href="/order?id=<?= $order->id ?>" class="all__order__btn">
+                            <td><a href="/admin/order?id=<?= $order->id ?>" class="all__order__btn">
                                     Перейти к заказу
                                 </a></td>
                         </tr>
