@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/css/<?= /** @var string $view */ $view ?>.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="/css/<?= /** @var string $view */
+    $view ?>.css">
 </head>
 <body>
 <div class="wrapper">
@@ -31,11 +32,15 @@
                 <ul class="header__nav__list">
                     <li><a href="/">Билеты</a></li>
                     <li><a href="/theaters">Театры</a></li>
-                    <?php if(\vendor\Evd\Main\Auth::guest()) {?>
-                    <li><a href="/login">Вход</a></li>
-                    <li><a href="/registration">Регистрация</a></li>
-                    <?php }else { ?>
-                        <li><a href="/orders">Заказы</a></li>
+                    <?php if (\vendor\Evd\Main\Auth::guest()) { ?>
+                        <li><a href="/login">Вход</a></li>
+                        <li><a href="/registration">Регистрация</a></li>
+                    <?php } else { ?>
+                        <?php if (\vendor\Evd\Main\Auth::isAdmin()) { ?>
+                            <li><a href="/admin/orders">Все заказы</a></li>
+                        <?php } else { ?>
+                            <li><a href="/orders">Заказы</a></li>
+                        <?php } ?>
                         <li><a href="/logout">Выход</a></li>
                     <?php } ?>
                 </ul>
