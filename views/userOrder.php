@@ -4,49 +4,53 @@
         <div class="container">
 
             <div class="user__order__title">
-                Заказ #<span>1</span>
+                Заказ #<span><?= /** @var \app\Models\Order $order */
+                    $order->id ?></span>
             </div>
 
             <div class="user__order__top-wrapper">
                 <div class="user__order__info">
                     <div class="user__order__info__top-line">
                         <a href="#" class="user__order__info__title">
-                            Бешенные деньги
+                            <?= $order->event_title ?>
                         </a>
                         <div class="user__order__info__separator"></div>
                         <div class="user__order__info__date">
-                            28.05
+                            <?= date("d.m", strtotime($order->event_date)) ?>
                         </div>
                         <div class="user__order__info__separator-line"></div>
                         <div class="user__order__info__status">
-                            Принят
+                            <?= $order->status_title ?>
                         </div>
                     </div>
 
                     <div class="user__order__info__bot-line">
                         <div class="user__order__info__theater">
-                            Театр комедии им. Акимова
+                            <?= $order->theater_title ?>
                         </div>
                     </div>
                 </div>
 
-                <div class="user__order__btn__wrapper">
-                    <a href="#" class="user__order__btn">
-                        Отменить заказ
-                    </a>
-                </div>
+                <?php if ($order->status_id != 3) { ?>
+                    <div class="user__order__btn__wrapper">
+                        <a href="#" class="user__order__btn">
+                            Отменить заказ
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
 
             <div class="user__order__tickets">
                 <div class="user__order__tickets__title">
                     Билеты:
                 </div>
-                    <div class="user__order__tickets__row">
-                        Ряд <span>1</span>: 1,2,3,4,5
-                    </div>
-                    <div class="user__order__tickets__row">
-                        Ряд <span>1</span>: 1,2,3,4,5
-                    </div>
+
+                <?php /** @var array $seatsAndRows */
+                foreach ($seatsAndRows as $row => $seats){?>
+                <div class="user__order__tickets__row">
+                    Ряд <span><?= $row ?></span>: <?php foreach ($seats as $seat){?> <?= $seat ?>, <?php }?>
+                </div>
+                <?php }?>
             </div>
 
         </div>

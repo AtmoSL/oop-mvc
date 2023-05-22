@@ -49,4 +49,21 @@ class OrderRepository extends MainRepository
         return $orders;
     }
 
+    /**
+     * Получение информации о заказе по id
+     * @param $id
+     * @return mixed
+     */
+    public function getOrderForOrderPage($id)
+    {
+        $order = $this
+            ->startRequest()
+            ->one(["id"=>$id])
+            ->with("order_statuses", ["id as status_id", "title as status_title"])
+            ->with("events", ["id as event_id", "title as event_title", "date as event_date", "theater_id as theater_id"])
+            ->find();
+
+        return $order;
+    }
+
 }

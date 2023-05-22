@@ -7,6 +7,7 @@ use app\Repositories\EventRowRepository;
 use app\Repositories\EventSeatRepository;
 use app\Repositories\OrderRepository;
 use app\Repositories\OrderSeatRepository;
+use app\Repositories\TheaterRepository;
 use vendor\Evd\Main\Auth;
 use vendor\Evd\Main\Viewer;
 
@@ -14,6 +15,7 @@ class OrderController
 {
 
     private EventSeatRepository $eventSeatRepository;
+    private TheaterRepository $theaterRepository;
     private EventRowRepository $eventRowRepository;
     private OrderRepository $orderRepository;
     private OrderSeatRepository $orderSeatRepository;
@@ -24,6 +26,7 @@ class OrderController
         $this->eventRowRepository = new EventRowRepository();
         $this->orderRepository = new OrderRepository();
         $this->orderSeatRepository = new OrderSeatRepository();
+        $this->theaterRepository = new TheaterRepository();
     }
 
     /**
@@ -112,6 +115,37 @@ class OrderController
      */
     public function userOrder($data)
     {
-        Viewer::view("userOrder");
+        if(empty($data["id"])){
+            header("Location: /orders");
+            die();
+        }
+        if(Auth::guest()){
+            header("Location:/");
+            die();
+        }
+
+        $orderId = $data["id"];
+        $userId = Auth::userId();
+
+        $order = $this->orderRepository->getOrderForOrderPage($orderId);
+
+        if($userId != $order->user_id){
+            header("Location:/");
+            die();
+        }
+
+        $orderSeats = $this->orderSeatRepository->getSeatsForOrderPage($orderId);
+
+        $seatsAndRows = [];
+
+        //Формирование массива с местами в формате "Номер ряда" => "Номера мест"
+        foreach ($orderSeats as $orderSeat){
+            $newSeat = $this->eventSeatRepository->getSeatWithOrderById($orderSeat->seat_id);
+            $seatsAndRows[$newSeat->row_num][] = $newSeat->num;
+        }
+
+        $order->theater_title = $this->theaterRepository->getTheaterTitle($order->theater_id);
+
+        Viewer::view("userOrder", compact("order", "seatsAndRows"));
     }
 }

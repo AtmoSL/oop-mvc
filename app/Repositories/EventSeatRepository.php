@@ -63,4 +63,20 @@ class EventSeatRepository extends MainRepository
 
         return $rowId;
     }
+
+    /**
+     * Получение ряд по id места
+     * @param $seatId
+     * @return mixed
+     */
+    public function getSeatWithOrderById($seatId)
+    {
+        $seat = $this
+            ->startRequest()
+            ->one(["id" => $seatId], ["id", "num"])
+            ->with("event_rows", ["num as row_num"])
+            ->find();
+
+        return $seat;
+    }
 }

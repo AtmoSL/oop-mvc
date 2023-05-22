@@ -43,4 +43,19 @@ class OrderSeatRepository extends MainRepository
         return $countOfSeats;
     }
 
+    /**
+     * Получить список мест для страницы заказа
+     * @param $orderId
+     * @return mixed
+     */
+    public function getSeatsForOrderPage($orderId)
+    {
+        $seats = $this->startRequest()
+            ->where(["order_id" => $orderId], ["id"])
+            ->with("event_seats", ["id as seat_id"])
+            ->find();
+
+        return $seats;
+    }
+
 }
