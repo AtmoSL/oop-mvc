@@ -32,7 +32,7 @@ class OrderController
     /**
      * Создание заказа
      * @param $data
-     * @return void
+     * @return true|void
      */
     public function create($data)
     {
@@ -72,20 +72,21 @@ class OrderController
                 die();
             }
 
-            //Делаем место занятым
-            $this->eventSeatRepository->setOccupied($seatId);
-
             $totalPrice += $this->eventRowRepository->getPriceById($seatRowId);
         }
 
+
         //Создание заказа
         $orderId = $this->orderRepository->createOrderAndGetId($event_id, $userId ,$totalPrice);
-
+        //отмечаем, что места заняты после всех проверок
         foreach ($seatsId as $seatId){
+            //Делаем место занятым
+            $this->eventSeatRepository->setOccupied($seatId);
             $this->orderSeatRepository->createSeatOrder($seatId, $orderId);
         }
 
-        debug($orderId);
+        header("Location: /order?id=$orderId");
+        return true;
     }
 
     /**
