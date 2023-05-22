@@ -79,4 +79,14 @@ class EventRepository extends MainRepository
         return $event;
     }
 
+
+    public function getEventDateById($id)
+    {
+        $event = $this->startRequest()
+        ->one(["id" => $id], ["date"])
+        ->find();
+
+        return $event->date;
+    }
+
 }

@@ -17,6 +17,7 @@ class OrderController
     private EventSeatRepository $eventSeatRepository;
     private TheaterRepository $theaterRepository;
     private EventRowRepository $eventRowRepository;
+    private EventRepository $eventRepository;
     private OrderRepository $orderRepository;
     private OrderSeatRepository $orderSeatRepository;
 
@@ -24,6 +25,7 @@ class OrderController
     {
         $this->eventSeatRepository = new EventSeatRepository();
         $this->eventRowRepository = new EventRowRepository();
+        $this->eventRepository = new EventRepository();
         $this->orderRepository = new OrderRepository();
         $this->orderSeatRepository = new OrderSeatRepository();
         $this->theaterRepository = new TheaterRepository();
@@ -75,6 +77,14 @@ class OrderController
             $totalPrice += $this->eventRowRepository->getPriceById($seatRowId);
         }
 
+        $eventDate = $this->eventRepository->getEventDateById($event_id);
+        $actualDate = date("Y-m-d");
+
+        if($actualDate > $eventDate){
+            $_SESSION["orderMessages"][] = "Мероприятие уже прошло";
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
 
         //Создание заказа
         $orderId = $this->orderRepository->createOrderAndGetId($event_id, $userId ,$totalPrice);

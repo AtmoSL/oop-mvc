@@ -33,7 +33,6 @@ class IndexController
      */
     public function index()
     {
-
         $events = $this->eventRepository->getAllEvents();
 
         foreach ($events as &$event){
