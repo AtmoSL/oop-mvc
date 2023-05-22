@@ -66,4 +66,15 @@ class OrderRepository extends MainRepository
         return $order;
     }
 
+    public function getAllOrdersForAdmin()
+    {
+        $orders = $this
+            ->startRequest()
+            ->all(["id", "event_id", "total_price"])
+            ->with("events", ["id as event_id", "title as event_title", "date as event_date"])
+            ->find();
+
+        return $orders;
+    }
+
 }

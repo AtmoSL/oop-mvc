@@ -64,6 +64,12 @@ $router->setRoutes([
         "action"      => "userOrder",
         "method"      => "GET",
     ],
+
+    //Админка
+    "/admin/orders" =>  [
+        "controller"  => "Admin\OrderAdmin",
+        "action"      => "allOrders"
+    ],
 ]);
 
 $router->start();

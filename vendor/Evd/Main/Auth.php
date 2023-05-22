@@ -61,7 +61,7 @@ class Auth
      * Проверка, является ли пользователь администратором
      * @return bool
      */
-    public function isAdmin()
+    public static function isAdmin()
     {
         if($_SESSION["auth"]["role_id"] == 2){
             return true;
