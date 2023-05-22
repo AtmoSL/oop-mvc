@@ -72,6 +72,7 @@ class OrderRepository extends MainRepository
             ->startRequest()
             ->all(["id", "event_id", "total_price"])
             ->with("events", ["id as event_id", "title as event_title", "date as event_date"])
+            ->with("users", ["id as user_id", "name as user_name"])
             ->find();
 
         return $orders;

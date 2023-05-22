@@ -18,6 +18,12 @@
                             <td>
                                 <div class="all__order__separator"></div>
                             </td>
+                            <td class="all__order__id">
+                                <?= $order->user_name ?>
+                            </td>
+                            <td>
+                                <div class="all__order__separator"></div>
+                            </td>
                             <td class="all__order__title">
                                 <a href="/event?id=<?= $order->event_id ?>">
                                     <?= $order->event_title ?>
