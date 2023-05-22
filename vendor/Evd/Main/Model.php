@@ -142,7 +142,7 @@ abstract class Model
                 $join .= " INNER JOIN ";
                 foreach ($selfTable as $tableName => $tableFields) {
 
-                    $joinTableName = (str_ends_with($tableName, "es")) ? substr($tableName, 0, -2) : substr($tableName, 0, -1);
+                    $joinTableName = (str_ends_with($tableName, "es") && substr($tableName, -3, 1) == "s") ? substr($tableName, 0, -2) : substr($tableName, 0, -1);
 
                     $join .= $tableName . " ON " . $joinTableName . "_id=" . $tableName . ".id";
                     foreach ($tableFields as $tableField) {
