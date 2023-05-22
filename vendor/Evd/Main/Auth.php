@@ -15,7 +15,8 @@ class Auth
 
         $_SESSION["auth"] = [
             "id" => $user->id,
-            "name" => $user->name
+            "name" => $user->name,
+            "role_id" => $user->role_id
         ];
 
         return true;
@@ -54,5 +55,19 @@ class Auth
         }
 
         return $_SESSION["auth"]["id"];
+    }
+
+    /**
+     * Проверка, является ли пользователь администратором
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        if($_SESSION["auth"]["role_id"] == 2){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
