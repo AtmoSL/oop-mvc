@@ -229,4 +229,37 @@ abstract class Model
         return true;
     }
 
+    public function set($fields)
+    {
+        $table = static::$table;
+        $setStr = "";
+
+        foreach ($fields as $field=>$value){
+
+            $setStr .= "`$field` = '$value' ";
+        }
+
+        $whereStr = "1";
+        if (count(self::$where) > 0) {
+            $whereStr = "";
+            foreach (self::$where as $whereField => $whereValue) {
+
+                $whereValueItem = match ($whereValue) {
+                    "min" => "(SELECT MIN($whereField) FROM " . static::$table . ")",
+                    "max" => "(SELECT MAX($whereField) FROM " . static::$table . ")",
+                    default => "'$whereValue'",
+                };
+
+                $whereStr .= static::$table . "." . $whereField . "=" . $whereValueItem . (($whereValue != end(self::$where)) ? " AND " : "");
+
+            }
+        }
+
+        self::$sql = "UPDATE $table SET `is_occupied` = '1' WHERE $whereStr";
+
+        $stmt = DB::query(self::$sql);
+        $this->setPropsDefaultValues();
+        return true;
+    }
+
 }

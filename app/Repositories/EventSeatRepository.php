@@ -79,4 +79,18 @@ class EventSeatRepository extends MainRepository
 
         return $seat;
     }
+
+    /**
+     * Отметить, что место занято
+     * @param $id
+     * @return mixed
+     */
+    public function setOccupied($id)
+    {
+        $result = $this->startRequest()
+            ->where(["id" => "$id"])
+            ->set(["is_occupied"=>"1"]);
+
+        return $result;
+    }
 }

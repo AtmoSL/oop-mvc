@@ -72,6 +72,9 @@ class OrderController
                 die();
             }
 
+            //Делаем место занятым
+            $this->eventSeatRepository->setOccupied($seatId);
+
             $totalPrice += $this->eventRowRepository->getPriceById($seatRowId);
         }
 
