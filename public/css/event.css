@@ -154,28 +154,14 @@
     color: #FAFF00;
 }
 
+.event__order__messages{
+    color: red;
+    margin-bottom: 10px;
+}
+
 @media (max-width: 923px) {
     .event__info__text{
         position: relative;
     }
 }
 
-/*.event__info__slider {*/
-/*    overflow: hidden;*/
-/*}*/
-
-/*.event__info__slider__track {*/
-/*    display: flex;*/
-/*    transition: .2s;*/
-/*}*/
-
-/*.event__info__slider__item {*/
-/*    margin-left: 100px;*/
-/*}*/
-
-/*.event__info__slider__item img {*/
-/*}*/
-
-/*.event__info__slider__buttons {*/
-/*    text-align: center;*/
-/*}*/

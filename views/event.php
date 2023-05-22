@@ -41,7 +41,7 @@
 
             <form action="/order/create" method="post">
                 <div class="event__rows">
-                    <input type="hidden" name="event_id" value="<?= $event->id?>">
+                    <input type="hidden" name="event_id" value="<?= $event->id ?>">
                     <?php /** @var array $rows */
                     foreach ($rows as $row) {
                         /** @var \app\Models\EventRow $row */ ?>
@@ -52,7 +52,8 @@
                                     /** @var \app\Models\EventSeat $seat */ ?>
                                     <div class="event__seat">
                                         <label class="event__seat__check">
-                                            <input class="event__seat__check__input" type="checkbox" name="<?= $seat->id ?>"
+                                            <input class="event__seat__check__input" type="checkbox"
+                                                   name="<?= $seat->id ?>"
                                                 <?= (!$seat->is_occupied) ? "" : "disabled" ?> id="seat-1-1">
                                             <span class="event__seat__check__box"></span>
                                             Место <?= $seat->num ?>
@@ -69,6 +70,17 @@
                         <div class="event__buy__count">
                             Выбрано мест: <span>3</span>
                         </div>
+
+                        <?php if (isset($_SESSION["orderMessages"])) { ?>
+                            <div class="event__order__messages">
+                                <ul>
+                                    <?php foreach ($_SESSION["orderMessages"] as $msg) { ?>
+                                        <li><?=$msg?></li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        <?php } ?>
+
                         <button type="submit" class="event__buy__btn">
                             Оформить заказ
                         </button>
@@ -81,4 +93,6 @@
         </div>
     </section>
 
-<?php include_once "layouts/footer.php" ?>
+<?php
+unset($_SESSION["orderMessages"]);
+include_once "layouts/footer.php" ?>
