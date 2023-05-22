@@ -141,7 +141,10 @@ abstract class Model
             foreach (self::$withTables as $selfTable) {
                 $join .= " INNER JOIN ";
                 foreach ($selfTable as $tableName => $tableFields) {
-                    $join .= $tableName . " ON " . substr($tableName, 0, -1) . "_id=" . $tableName . ".id";
+
+                    $joinTableName = (str_ends_with($tableName, "es")) ? substr($tableName, 0, -2) : substr($tableName, 0, -1);
+
+                    $join .= $tableName . " ON " . $joinTableName . "_id=" . $tableName . ".id";
                     foreach ($tableFields as $tableField) {
                         $withTablesSTR .= ", " . $tableName . "." . $tableField . " ";
                     }
@@ -215,8 +218,8 @@ abstract class Model
 
         foreach ($data as $field => $value) {
             $counter++;
-            $fields .= "`". $field . "`" . (($counter != $countElements) ? ", " : "");
-            $values .= "'". $value . "'" . (($counter != $countElements) ? ", " : "");
+            $fields .= "`" . $field . "`" . (($counter != $countElements) ? ", " : "");
+            $values .= "'" . $value . "'" . (($counter != $countElements) ? ", " : "");
         }
 
         self::$sql = "INSERT INTO `$table` ($fields) VALUES ($values)";
