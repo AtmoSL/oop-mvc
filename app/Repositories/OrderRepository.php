@@ -100,4 +100,18 @@ class OrderRepository extends MainRepository
         return $order;
     }
 
+    /**
+     * Смена статуса заказа
+     * @param $orderId
+     * @param $statusId
+     * @return bool
+     */
+    public function changeOrderStatus($orderId, $statusId)
+    {
+        $result = $this->startRequest()
+            ->where(["id" => "$orderId"])
+            ->set(["order_status_id"=>$statusId]);
+
+        return true;
+    }
 }

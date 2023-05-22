@@ -37,7 +37,7 @@ class OrderAdminController extends MainAdminController
 
         $orders = $this->orderRepository->getAllOrdersForAdmin();
 
-        foreach ($orders as &$order){
+        foreach ($orders as &$order) {
             $order->seats = $this->orderSeatRepository->getCountOfSeatsInOrder($order->id);
         }
 
@@ -46,7 +46,7 @@ class OrderAdminController extends MainAdminController
 
     public function oneOrder($data)
     {
-        if(empty($data["id"])){
+        if (empty($data["id"])) {
             header("Location /admin/orders");
             die();
         }
@@ -59,7 +59,7 @@ class OrderAdminController extends MainAdminController
         $seatsAndRows = [];
 
         //Формирование массива с местами в формате "Номер ряда" => "Номера мест"
-        foreach ($orderSeats as $orderSeat){
+        foreach ($orderSeats as $orderSeat) {
             $newSeat = $this->eventSeatRepository->getSeatWithOrderById($orderSeat->seat_id);
             $seatsAndRows[$newSeat->row_num][] = $newSeat->num;
         }
@@ -71,5 +71,28 @@ class OrderAdminController extends MainAdminController
         $userInfo = $this->userRepository->getUserForOrderPage($order->user_id);
 
         Viewer::view("admin/order", compact("order", "seatsAndRows", "statuses", "userInfo"));
+    }
+
+    public function changeStatus($data)
+    {
+        if (empty($data)) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $orderId = $data["order_id"];
+        $statusId = $data["status_id"];
+
+        if($statusId == 3){
+            $orderSeats = $this->orderSeatRepository->getAllOrderSeats($orderId);
+            foreach ($orderSeats as $orderSeat){
+                $this->eventSeatRepository->unsetOccupied($orderSeat->event_seat_id);
+            }
+        }
+
+        $this->orderRepository->changeOrderStatus($orderId,$statusId);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        return true;
     }
 }

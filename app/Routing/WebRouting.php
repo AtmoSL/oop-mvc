@@ -75,6 +75,11 @@ $router->setRoutes([
         "action"      => "oneOrder",
         "method"      => "GET",
     ],
+    "/order/changestatus" => [
+        "controller"  => "Admin\OrderAdmin",
+        "action"      => "changeStatus",
+        "method"      => "POST",
+    ]
 ]);
 
 $router->start();

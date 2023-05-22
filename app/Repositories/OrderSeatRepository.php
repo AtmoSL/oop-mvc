@@ -58,4 +58,18 @@ class OrderSeatRepository extends MainRepository
         return $seats;
     }
 
+    /**
+     * Получить все места из заказа
+     * @param $orderId
+     * @return mixed
+     */
+    public function getAllOrderSeats($orderId)
+    {
+        $seats = $this
+            ->startRequest()
+            ->where(["order_id" => $orderId])
+            ->find();
+
+        return $seats;
+    }
 }

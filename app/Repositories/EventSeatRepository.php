@@ -91,6 +91,20 @@ class EventSeatRepository extends MainRepository
             ->where(["id" => "$id"])
             ->set(["is_occupied"=>"1"]);
 
-        return $result;
+        return true;
+    }
+
+    /**
+     * Отметить, что место не занято
+     * @param $id
+     * @return mixed
+     */
+    public function unsetOccupied($id)
+    {
+        $result = $this->startRequest()
+            ->where(["id" => "$id"])
+            ->set(["is_occupied"=>"0"]);
+
+        return true;
     }
 }

@@ -18,7 +18,8 @@
                     <?= $userInfo->email ?>
                 </div>
             </div>
-            <form action="#" method="post">
+            <form action="/order/changestatus" method="post">
+                <input type="hidden" name="order_id" value="<?= $order->id ?>">
                 <div class="order__top-wrapper">
                     <div class="order__info">
                         <div class="order__info__top-line">

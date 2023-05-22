@@ -255,7 +255,7 @@ abstract class Model
             }
         }
 
-        self::$sql = "UPDATE $table SET `is_occupied` = '1' WHERE $whereStr";
+        self::$sql = "UPDATE $table SET $setStr WHERE $whereStr";
 
         $stmt = DB::query(self::$sql);
         $this->setPropsDefaultValues();
