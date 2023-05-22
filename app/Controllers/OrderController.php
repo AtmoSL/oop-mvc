@@ -23,6 +23,10 @@ class OrderController
 
     public function __construct()
     {
+        if(Auth::isAdmin()){
+            header("location: /");
+        }
+
         $this->eventSeatRepository = new EventSeatRepository();
         $this->eventRowRepository = new EventRowRepository();
         $this->eventRepository = new EventRepository();
@@ -38,11 +42,11 @@ class OrderController
      */
     public function create($data)
     {
-        if(empty($data)){
+        if (empty($data)) {
             header("Location: /");
             die();
         }
-        if(Auth::guest()){
+        if (Auth::guest()) {
             header("Location: /");
             die();
         }
@@ -55,10 +59,10 @@ class OrderController
 
         $userId = Auth::userId();
 
-        foreach ($seatsId as $seatId){
+        foreach ($seatsId as $seatId) {
             //Проверка занятых мест
             $isOccupied = $this->eventSeatRepository->isOccupied($seatId);
-            if($isOccupied){
+            if ($isOccupied) {
                 $_SESSION["orderMessages"][] = "Выбраны занятые места.";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
                 die();
@@ -68,7 +72,7 @@ class OrderController
             $seatRowId = $this->eventSeatRepository->getRowtIdBySeatId($seatId);
             $seatEventId = $this->eventRowRepository->getEventIdByRowId($seatRowId);
 
-            if($event_id != $seatEventId){
+            if ($event_id != $seatEventId) {
                 $_SESSION["orderMessages"][] = "Несоответствие места мероприятию.";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
                 die();
@@ -80,16 +84,16 @@ class OrderController
         $eventDate = $this->eventRepository->getEventDateById($event_id);
         $actualDate = date("Y-m-d");
 
-        if($actualDate > $eventDate){
+        if ($actualDate > $eventDate) {
             $_SESSION["orderMessages"][] = "Мероприятие уже прошло";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
             die();
         }
 
         //Создание заказа
-        $orderId = $this->orderRepository->createOrderAndGetId($event_id, $userId ,$totalPrice);
+        $orderId = $this->orderRepository->createOrderAndGetId($event_id, $userId, $totalPrice);
         //отмечаем, что места заняты после всех проверок
-        foreach ($seatsId as $seatId){
+        foreach ($seatsId as $seatId) {
             //Делаем место занятым
             $this->eventSeatRepository->setOccupied($seatId);
             $this->orderSeatRepository->createSeatOrder($seatId, $orderId);
@@ -105,7 +109,7 @@ class OrderController
      */
     public function userOrders()
     {
-        if(Auth::guest()){
+        if (Auth::guest()) {
             header("Location:/");
             die();
         }
@@ -114,7 +118,7 @@ class OrderController
 
         $orders = $this->orderRepository->getOrderForUsersOrders($userId);
 
-        foreach ($orders as &$order){
+        foreach ($orders as &$order) {
             $order->seats = $this->orderSeatRepository->getCountOfSeatsInOrder($order->id);
         }
 
@@ -129,11 +133,11 @@ class OrderController
      */
     public function userOrder($data)
     {
-        if(empty($data["id"])){
+        if (empty($data["id"])) {
             header("Location: /orders");
             die();
         }
-        if(Auth::guest()){
+        if (Auth::guest()) {
             header("Location:/");
             die();
         }
@@ -143,7 +147,7 @@ class OrderController
 
         $order = $this->orderRepository->getOrderForOrderPage($orderId);
 
-        if($userId != $order->user_id){
+        if ($userId != $order->user_id) {
             header("Location:/");
             die();
         }
@@ -153,7 +157,7 @@ class OrderController
         $seatsAndRows = [];
 
         //Формирование массива с местами в формате "Номер ряда" => "Номера мест"
-        foreach ($orderSeats as $orderSeat){
+        foreach ($orderSeats as $orderSeat) {
             $newSeat = $this->eventSeatRepository->getSeatWithOrderById($orderSeat->seat_id);
             $seatsAndRows[$newSeat->row_num][] = $newSeat->num;
         }
@@ -161,5 +165,38 @@ class OrderController
         $order->theater_title = $this->theaterRepository->getTheaterTitle($order->theater_id);
 
         Viewer::view("userOrder", compact("order", "seatsAndRows"));
+    }
+
+    public function canselOrder($data)
+    {
+        if (empty($data["id"])) {
+            header("Location: /orders");
+            die();
+        }
+        if (Auth::guest()) {
+            header("Location:/");
+            die();
+        }
+
+        $orderId = $data["id"];
+
+        $orderUserId = $this->orderRepository->getOrderUserId($orderId);
+
+        if (Auth::userId() != $orderUserId) {
+            header("Location:/");
+            die();
+        }
+
+
+        $orderSeats = $this->orderSeatRepository->getAllOrderSeats($orderId);
+
+        foreach ($orderSeats as $orderSeat) {
+            $this->eventSeatRepository->unsetOccupied($orderSeat->event_seat_id);
+        }
+
+        $this->orderRepository->changeOrderStatus($orderId, 3);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        return true;
     }
 }

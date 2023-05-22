@@ -114,4 +114,14 @@ class OrderRepository extends MainRepository
 
         return true;
     }
+
+    public function getOrderUserId($orderId)
+    {
+        $order = $this
+            ->startRequest()
+            ->one(["id" => $orderId], ["user_id"])
+            ->find();
+
+        return $order->user_id;
+    }
 }

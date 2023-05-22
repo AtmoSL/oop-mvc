@@ -33,7 +33,7 @@
 
                 <?php if ($order->status_id != 3) { ?>
                     <div class="user__order__btn__wrapper">
-                        <a href="#" class="user__order__btn">
+                        <a href="/order/cancel?id=<?= $order->id ?>" class="user__order__btn">
                             Отменить заказ
                         </a>
                     </div>

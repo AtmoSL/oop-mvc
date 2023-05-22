@@ -64,6 +64,11 @@ $router->setRoutes([
         "action"      => "userOrder",
         "method"      => "GET",
     ],
+    "/order/cancel" => [
+        "controller"  => "Order",
+        "action"      => "canselOrder",
+        "method"      => "GET",
+    ],
 
     //Админка
     "/admin/orders" =>  [
