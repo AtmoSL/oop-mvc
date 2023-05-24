@@ -104,6 +104,28 @@ body {
     text-decoration: none;
 }
 
+/* Админка */
+.admin__menu{
+    text-align: center;
+}
+.admin__menu ul{
+    text-transform: uppercase;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.admin__menu__link{
+    text-decoration: none;
+    font-family: 'Russo One', sans-serif;
+    text-transform: lowercase;
+    color: #FAFF00;
+    margin-right: 25px;
+}
+.admin__menu__link:hover{
+    text-decoration: underline;
+}
+
+
 /*Адаптив*/
 
 /*Панель навигации*/

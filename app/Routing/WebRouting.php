@@ -71,6 +71,10 @@ $router->setRoutes([
     ],
 
     //Админка
+    "/admin" =>  [
+        "controller"  => "Admin\OrderAdmin",
+        "action"      => "allOrders"
+    ],
     "/admin/orders" =>  [
         "controller"  => "Admin\OrderAdmin",
         "action"      => "allOrders"

@@ -37,7 +37,7 @@
                         <li><a href="/registration">Регистрация</a></li>
                     <?php } else { ?>
                         <?php if (\vendor\Evd\Main\Auth::isAdmin()) { ?>
-                            <li><a href="/admin/orders">Все заказы</a></li>
+                            <li><a href="/admin">Админка</a></li>
                         <?php } else { ?>
                             <li><a href="/orders">Заказы</a></li>
                         <?php } ?>
