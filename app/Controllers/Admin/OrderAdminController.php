@@ -32,7 +32,7 @@ class OrderAdminController extends MainAdminController
         $this->userRepository = new UserRepository();
     }
 
-    public function allOrders()
+    public function index()
     {
 
         $orders = $this->orderRepository->getAllOrdersForAdmin();
@@ -44,7 +44,7 @@ class OrderAdminController extends MainAdminController
         Viewer::view("admin/allOrders", compact("orders"));
     }
 
-    public function oneOrder($data)
+    public function showOne($data)
     {
         if (empty($data["id"])) {
             header("Location /admin/orders");

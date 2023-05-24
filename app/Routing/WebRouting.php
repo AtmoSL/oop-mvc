@@ -73,15 +73,15 @@ $router->setRoutes([
     //Админка
     "/admin" =>  [
         "controller"  => "Admin\OrderAdmin",
-        "action"      => "allOrders"
+        "action"      => "index"
     ],
     "/admin/orders" =>  [
         "controller"  => "Admin\OrderAdmin",
-        "action"      => "allOrders"
+        "action"      => "index"
     ],
     "/admin/order" =>  [
         "controller"  => "Admin\OrderAdmin",
-        "action"      => "oneOrder",
+        "action"      => "showOne",
         "method"      => "GET",
     ],
     "/order/changestatus" => [
