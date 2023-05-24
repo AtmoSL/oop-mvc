@@ -88,6 +88,11 @@ $router->setRoutes([
         "controller"  => "Admin\OrderAdmin",
         "action"      => "changeStatus",
         "method"      => "POST",
+    ],
+
+    "/admin/genres" => [
+        "controller"  => "Admin\GenreAdmin",
+        "action"      => "index",
     ]
 ]);
 
