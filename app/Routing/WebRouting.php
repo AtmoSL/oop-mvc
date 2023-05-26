@@ -93,6 +93,10 @@ $router->setRoutes([
     "/admin/genres" => [
         "controller"  => "Admin\GenreAdmin",
         "action"      => "index",
+    ],
+    "/admin/genre/create" => [
+        "controller"  => "Admin\GenreAdmin",
+        "action"      => "createPage",
     ]
 ]);
 

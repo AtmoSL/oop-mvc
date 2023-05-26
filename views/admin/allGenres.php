@@ -11,7 +11,7 @@
                 <table class="all__genres__table">
                     <tr>
                         <td colspan="5" >
-                            <a href="#" class="all__genre__add-btn">
+                            <a href="/admin/genre/create" class="all__genre__add-btn">
                                 добавить
                             </a>
                         </td>

@@ -21,4 +21,9 @@ class GenreAdminController extends MainAdminController
 
         Viewer::view("admin/allGenres",compact("genres"));
     }
+
+    public function createPage()
+    {
+        Viewer::view("admin/createGenre");
+    }
 }
