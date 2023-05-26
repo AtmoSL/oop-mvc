@@ -29,4 +29,6 @@
         </div>
     </section>
 
-<?php include_once dirname(__FILE__) . "/../layouts/footer.php" ?>
+<?php
+unset($_SESSION["genresMessages"]);
+include_once dirname(__FILE__) . "/../layouts/footer.php" ?>
