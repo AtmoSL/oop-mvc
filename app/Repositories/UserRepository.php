@@ -15,23 +15,25 @@ class UserRepository extends MainRepository
         return User::class;
     }
 
-    public function registrationAndGetUser($data): Object
+    public function registrationAndGetUser($data): object
     {
-        User::create(
-            [
-                "name" => $data["name"],
-                "email" => $data["email"],
-                "password" => md5($data["password"]),
-            ]
-        );
+        $this
+            ->startRequest()
+            ->create(
+                [
+                    "name" => $data["name"],
+                    "email" => $data["email"],
+                    "password" => md5($data["password"]),
+                ]
+            );
 
         $user = $this
             ->startRequest()
             ->one(["email" => $data["email"]],
-            [
-                "id",
-                "name",
-            ])
+                [
+                    "id",
+                    "name",
+                ])
             ->find();
 
         return $user;
@@ -42,7 +44,7 @@ class UserRepository extends MainRepository
      * @param $email
      * @return bool
      */
-    public function checkUserByEmail($email):bool
+    public function checkUserByEmail($email): bool
     {
         $user = $this
             ->startRequest()
@@ -71,7 +73,7 @@ class UserRepository extends MainRepository
     {
         $user = $this
             ->startRequest()
-            ->one(["id" => $id], ["name","email"])
+            ->one(["id" => $id], ["name", "email"])
             ->find();
 
         return $user;
