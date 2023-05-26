@@ -42,4 +42,19 @@ class GenreRepository extends MainRepository
 
         return $genres;
     }
+
+
+    /**
+     * Создание жанра
+     * @param $title
+     * @return void
+     */
+    public function createGenre($title)
+    {
+        $this->startRequest()
+            ->create([
+                    "title" => $title
+                ]
+            );
+    }
 }

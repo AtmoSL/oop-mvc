@@ -4,12 +4,12 @@
     <section class="create__genre">
         <div class="container">
 
-            <form action="" method="post" class="form create__genre__form">
+            <form action="/admin/genre/creategenre" method="post" class="form create__genre__form">
                 <div class="form__group">
-                    <label for="name" class="form__label">
+                    <label for="title" class="form__label">
                         Название жанра
                     </label>
-                    <input class="form__input" type="text" name="name" id="name"
+                    <input class="form__input" type="text" name="title" id="title"
                            placeholder="Введите название жанра" required>
                     <?php if(isset($_SESSION["genresMessages"]["title"]["errorMessages"])){ ?>
                         <div class="form__error__messages">

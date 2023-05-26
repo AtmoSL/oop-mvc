@@ -3,6 +3,7 @@
 namespace app\Controllers\Admin;
 
 use app\Repositories\GenreRepository;
+use app\Validators\GenreValidator;
 use vendor\Evd\Main\Viewer;
 
 class GenreAdminController extends MainAdminController
@@ -25,5 +26,26 @@ class GenreAdminController extends MainAdminController
     public function createPage()
     {
         Viewer::view("admin/createGenre");
+    }
+
+    public function create($data)
+    {
+        if (empty($data["title"])) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $validator = new GenreValidator();
+        $validation = $validator->validateAll($data);
+
+        if (!$validation['isFullValidated']) {
+            $_SESSION["genresMessages"] = $validation["fields"];
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $this->genreRepository->createGenre($data["title"]);
+        header('Location: /admin/genres');
+        return true;
     }
 }

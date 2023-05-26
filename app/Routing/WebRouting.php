@@ -97,6 +97,11 @@ $router->setRoutes([
     "/admin/genre/create" => [
         "controller"  => "Admin\GenreAdmin",
         "action"      => "createPage",
+    ],
+    "/admin/genre/creategenre" => [
+        "controller"  => "Admin\GenreAdmin",
+        "action"      => "create",
+        "method"      => "POST",
     ]
 ]);
 
