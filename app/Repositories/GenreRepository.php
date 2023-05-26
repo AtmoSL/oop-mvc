@@ -20,11 +20,26 @@ class GenreRepository extends MainRepository
      * @param $genreId
      * @return mixed
      */
-    public function getGenreTitle($genreId){
+    public function getGenreTitle($genreId)
+    {
         $genre = $this->startRequest()
             ->one(["id" => $genreId], ["title"])
             ->find();
 
         return $genre->title;
+    }
+
+    /**
+     * Получить все жанры для админки
+     * @return mixed
+     */
+    public function getAllForAdmin()
+    {
+        $genres = $this
+            ->startRequest()
+            ->all()
+            ->find();
+
+        return $genres;
     }
 }
