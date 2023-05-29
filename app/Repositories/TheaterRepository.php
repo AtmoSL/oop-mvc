@@ -57,4 +57,19 @@ class TheaterRepository extends MainRepository
                 ]
             );
     }
+
+    /**
+     * Получить театр по id
+     * @param $id
+     * @return mixed
+     */
+    public function getTheaterById($id)
+    {
+        $theater = $this
+            ->startRequest()
+            ->one(["id" => $id])
+            ->find();
+
+        return $theater;
+    }
 }

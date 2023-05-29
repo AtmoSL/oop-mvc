@@ -49,4 +49,58 @@ class TheaterAdminController extends MainAdminController
         header('Location: /admin/theaters');
         return true;
     }
+
+
+    public function editPage($data)
+    {
+        if(empty($data["id"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $theaterId = $data["id"];
+
+        $theater = $this->theaterRepository->getTheaterById($theaterId);
+
+        if(empty($theater->title)){
+            header('Location: /admin/theaters');
+            die();
+        }
+
+        $theaterTitle = $theater->title;
+
+        Viewer::view("admin/theaters/editTheater", compact("theaterTitle", "theaterId"));
+    }
+
+//    public function edit($data)
+//    {
+//        if(empty($data["id"])){
+//            header('Location: ' . $_SERVER['HTTP_REFERER']);
+//            die();
+//        }
+//
+//        $genreId = $data["id"];
+//
+//        $genre = $this->genreRepository->getGenreByID($genreId);
+//
+//        if(empty($genre->title)){
+//            header('Location: ' . $_SERVER['HTTP_REFERER']);
+//            die();
+//        }
+//
+//        $validator = new GenreValidator();
+//        $validation = $validator->validateAll($data);
+//
+//        if (!$validation['isFullValidated']) {
+//            $_SESSION["genresMessages"] = $validation["fields"];
+//            header('Location: ' . $_SERVER['HTTP_REFERER']);
+//            die();
+//        }
+//
+//        $this->genreRepository->changeGenreTitle($genreId, $data["title"]);
+//
+//
+//        header('Location: /admin/genres');
+//        return true;
+//    }
 }

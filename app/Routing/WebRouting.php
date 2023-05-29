@@ -127,6 +127,16 @@ $router->setRoutes([
         "action" => "create",
         "method" => "POST",
     ],
+    "/admin/theater/edit" => [
+        "controller" => "Admin\TheaterAdmin",
+        "action" => "editPage",
+        "method" => "GET",
+    ],
+    "/admin/theater/edittheater" => [
+        "controller" => "Admin\TheaterAdmin",
+        "action" => "edit",
+        "method" => "POST",
+    ],
 ]);
 
 $router->start();
