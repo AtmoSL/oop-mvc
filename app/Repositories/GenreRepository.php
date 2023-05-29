@@ -57,4 +57,14 @@ class GenreRepository extends MainRepository
                 ]
             );
     }
+
+    public function getGenreById($id)
+    {
+        $genre = $this
+            ->startRequest()
+            ->one(["id" => $id])
+            ->find();
+
+        return $genre;
+    }
 }

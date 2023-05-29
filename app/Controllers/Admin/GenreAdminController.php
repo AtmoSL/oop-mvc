@@ -58,7 +58,14 @@ class GenreAdminController extends MainAdminController
 
         $genreId = $data["id"];
 
-        $genreTitle = $this->genreRepository->getGenreTitle($genreId);
+        $genre = $this->genreRepository->getGenreByID($genreId);
+
+        if(empty($genre->title)){
+            header('Location: /admin/genres');
+            die();
+        }
+
+        $genreTitle = $genre->title;
 
         Viewer::view("admin/genres/editGenre", compact("genreTitle"));
     }
