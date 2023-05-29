@@ -87,4 +87,13 @@ class GenreRepository extends MainRepository
 
         return true;
     }
+
+    public function deleteGenre($genreId)
+    {
+        $this->startRequest()
+            ->where(["id" => $genreId])
+            ->delete();
+
+        return true;
+    }
 }

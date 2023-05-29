@@ -28,6 +28,10 @@
                     <button class="form__btn" type="submit">Изменить</button>
                 </div>
             </form>
+            <a href="/admin/genre/delete?id=<?= $genreId ?>" class="edit__genre__delete">
+                Удалить
+            </a>
+
 
         </div>
     </section>

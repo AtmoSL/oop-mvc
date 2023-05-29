@@ -262,4 +262,31 @@ abstract class Model
         return true;
     }
 
+    public function delete()
+    {
+        $table = static::$table;
+
+        $whereStr = "1";
+        if (count(self::$where) > 0) {
+            $whereStr = "";
+            foreach (self::$where as $whereField => $whereValue) {
+
+                $whereValueItem = match ($whereValue) {
+                    "min" => "(SELECT MIN($whereField) FROM " . static::$table . ")",
+                    "max" => "(SELECT MAX($whereField) FROM " . static::$table . ")",
+                    default => "'$whereValue'",
+                };
+
+                $whereStr .= static::$table . "." . $whereField . "=" . $whereValueItem . (($whereValue != end(self::$where)) ? " AND " : "");
+
+            }
+        }
+
+        self::$sql = "DELETE FROM $table WHERE $whereStr";
+
+        $stmt = DB::query(self::$sql);
+        $this->setPropsDefaultValues();
+        return true;
+    }
+
 }

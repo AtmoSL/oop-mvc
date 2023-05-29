@@ -2,6 +2,7 @@
 
 namespace app\Controllers\Admin;
 
+use app\Repositories\EventRepository;
 use app\Repositories\GenreRepository;
 use app\Validators\GenreValidator;
 use vendor\Evd\Main\Viewer;
@@ -9,11 +10,13 @@ use vendor\Evd\Main\Viewer;
 class GenreAdminController extends MainAdminController
 {
     private GenreRepository $genreRepository;
+    private EventRepository $eventRepository;
 
     public function __construct()
     {
         parent::__construct();
         $this->genreRepository = new GenreRepository();
+        $this->eventRepository = new EventRepository();
     }
 
     public function index()
@@ -97,6 +100,36 @@ class GenreAdminController extends MainAdminController
 
         $this->genreRepository->changeGenreTitle($genreId, $data["title"]);
 
+
+        header('Location: /admin/genres');
+        return true;
+    }
+
+    public function deletePage($data)
+    {
+        if(empty($data["id"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $genreId = $data["id"];
+
+        $genre = $this->genreRepository->getGenreById($genreId);
+
+        Viewer::view("admin/genres/deleteGenre", compact("genre"));
+    }
+
+    public function delete($data)
+    {
+        if(empty($data["id"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $genreId = $data["id"];
+
+        $this->eventRepository->allEventsDeleteGenre($genreId);
+        $this->genreRepository->deleteGenre($genreId);
 
         header('Location: /admin/genres');
         return true;

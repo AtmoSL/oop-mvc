@@ -89,4 +89,13 @@ class EventRepository extends MainRepository
         return $event->date;
     }
 
+    public function allEventsDeleteGenre($genreId)
+    {
+        $this->startRequest()
+            ->where(["genre_id" => $genreId])
+            ->set(["genre_id" => 0]);
+
+        return true;
+    }
+
 }

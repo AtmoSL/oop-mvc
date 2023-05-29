@@ -3,5 +3,27 @@
 .edit__genre__form{
     max-width: 300px;
     text-align: center;
-    margin: 100px auto;
+    margin: 100px auto 30px;
+}
+
+.edit__genre__delete{
+    background-color: red;
+    color: black;
+    padding: 10px 30px;
+    border: 1px solid red;
+    border-radius: 20px;
+    text-decoration: none;
+
+    transition: 0.4s;
+
+    display: block;
+
+    max-width: 200px;
+    margin: 0 auto 100px;
+    text-align: center;
+}
+
+.edit__genre__delete:hover{
+    color: red;
+    background-color: #1E1E1E;
 }

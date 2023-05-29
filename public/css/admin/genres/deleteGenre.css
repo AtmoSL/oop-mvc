@@ -1,0 +1,48 @@
+@import "../../forms.css";
+
+.delete__genre__title{
+    text-transform: uppercase;
+    color: #E4E900;
+    text-align: center;
+    margin-top: 50px;
+
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.delete__genre__form{
+    max-width: 500px;
+    text-align: center;
+    margin: 10px auto 30px;
+
+    display: flex;
+
+    justify-content: space-around;
+}
+.delete__genre__btn{
+    width: 100%;
+}
+.delete__genre__btn + .delete__genre__btn{
+    margin-left: 30px;
+}
+
+.delete__genre__btn-cancel:hover{
+    border: 1px solid #E4E900;
+}
+
+.delete__genre__btn-delete{
+    background-color: red;
+    color: black;
+    padding: 10px 30px;
+    border: 1px solid red;
+    border-radius: 20px;
+    text-decoration: none;
+
+    transition: 0.4s;
+}
+
+.delete__genre__btn-delete:hover{
+    color: red;
+    border: 1px solid red;
+    background-color: #1E1E1E;
+}

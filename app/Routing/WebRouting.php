@@ -113,6 +113,17 @@ $router->setRoutes([
         "action" => "edit",
         "method" => "POST",
     ],
+    "/admin/genre/delete" => [
+        "controller" => "Admin\GenreAdmin",
+        "action" => "deletePage",
+        "method" => "GET",
+    ],
+    "/admin/genre/deletegenre" => [
+        "controller" => "Admin\GenreAdmin",
+        "action" => "delete",
+        "method" => "POST",
+    ],
+
 
     "/admin/theaters" => [
         "controller" => "Admin\TheaterAdmin",
