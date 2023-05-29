@@ -117,4 +117,20 @@ class EventRepository extends MainRepository
         return true;
     }
 
+    /**
+     * Получить все мероприятия для вывода в адмиинке
+     * @return array
+     */
+    public function getAllForAdmin()
+    {
+        $events = $this
+            ->startRequest()
+            ->all(["id","title", "date"])
+            ->with("genres", ["id as genre_id", "title as genre_title"])
+            ->with("theaters", ["id as theater_id", "title as theater_title"])
+            ->find();
+
+        return $events;
+    }
+
 }

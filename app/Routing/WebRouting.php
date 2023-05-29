@@ -158,6 +158,12 @@ $router->setRoutes([
         "action" => "delete",
         "method" => "POST",
     ],
+
+
+    "/admin/events" => [
+        "controller" => "Admin\EventAdmin",
+        "action" => "index",
+    ],
 ]);
 
 $router->start();
