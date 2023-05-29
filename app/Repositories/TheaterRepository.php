@@ -87,4 +87,18 @@ class TheaterRepository extends MainRepository
 
         return true;
     }
+
+    /**
+     * Удаление театра
+     * @param $theaterId
+     * @return true
+     */
+    public function deleteTheater($theaterId)
+    {
+        $this->startRequest()
+            ->where(["id" => $theaterId])
+            ->delete();
+
+        return true;
+    }
 }

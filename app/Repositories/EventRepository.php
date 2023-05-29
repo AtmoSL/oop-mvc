@@ -89,11 +89,30 @@ class EventRepository extends MainRepository
         return $event->date;
     }
 
+    /**
+     * Удаление жанра у мероприятий
+     * @param $genreId
+     * @return true
+     */
     public function allEventsDeleteGenre($genreId)
     {
         $this->startRequest()
             ->where(["genre_id" => $genreId])
             ->set(["genre_id" => 0]);
+
+        return true;
+    }
+
+    /**
+     * Удаление театра у мероприятий
+     * @param $theaterId
+     * @return true
+     */
+    public function allEventsDeleteTheater($theaterId)
+    {
+        $this->startRequest()
+            ->where(["theater_id" => $theaterId])
+            ->set(["theater_id" => 0]);
 
         return true;
     }
