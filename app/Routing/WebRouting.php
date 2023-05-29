@@ -112,7 +112,12 @@ $router->setRoutes([
         "controller"  => "Admin\GenreAdmin",
         "action"      => "edit",
         "method"      => "POST",
-    ]
+    ],
+
+    "/admin/theaters" => [
+    "controller"  => "Admin\TheaterAdmin",
+    "action"      => "index",
+],
 ]);
 
 $router->start();

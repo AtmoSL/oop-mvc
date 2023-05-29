@@ -1,4 +1,4 @@
-.all__genres__title{
+.all__theaters__title{
     margin: 49px 60px 40px;
 
     text-transform: uppercase;
@@ -8,14 +8,14 @@
     line-height: 33px;
 }
 
-.all__genres__table{
-    max-width: 200px;
+.all__theaters__table{
+    max-width: 600px;
     margin: 0 auto 100px;
     text-align: center;
     border-collapse: separate;
     border-spacing: 20px;
 }
-.all__genres td{
+.all__theaters td{
     color: #FAFF00;
 
     font-size: 23px;
@@ -23,38 +23,36 @@
     line-height: 28px;
 }
 
-.all__genre__separator{
+.all__theater__separator{
     background-color: #FAFF00;
     height: 40px;
     width: 2px;
 }
 
-.all__genresr__title a{
+.all__theaters__title a{
     text-decoration: none;
     color: #FAFF00;
 }
 
-.all__genres__title a:hover{
+.all__theaters__title a:hover{
     text-decoration: underline;
 }
 
-.all__genre__btn,
-.all__genre__add-btn{
+.all__theater__btn,
+.all__theaters__add-btn{
     padding: 3px 10px;
     border: 1px solid #FAFF00;
     color: #FAFF00;
     text-decoration: none;
     display: block;
 }
-.all__genre__btn:hover,
-.all__genre__add-btn:hover{
+.all__theater__btn:hover,
+.all__theaters__add-btn:hover{
     cursor: pointer;
 }
-.all__genre__add-btn{
 
-}
 @media screen and (max-width: 1120px) {
-    .all__genres__table__wrapper {
+    .all__theaters__table__wrapper {
         overflow-y: scroll;
     }
 }
