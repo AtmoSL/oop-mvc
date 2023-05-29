@@ -5,7 +5,7 @@
         <div class="container">
 
             <div class="all__theaters__title">
-                Все жанры
+                Все театры
             </div>
             <div class="all__theaters__table__wrapper">
                 <table class="all__theaters__table">
