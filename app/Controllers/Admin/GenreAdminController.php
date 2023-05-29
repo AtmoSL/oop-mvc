@@ -20,12 +20,12 @@ class GenreAdminController extends MainAdminController
     {
         $genres = $this->genreRepository->getAllForAdmin();
 
-        Viewer::view("admin/allGenres",compact("genres"));
+        Viewer::view("admin/genres/allGenres",compact("genres"));
     }
 
     public function createPage()
     {
-        Viewer::view("admin/createGenre");
+        Viewer::view("admin/genres/createGenre");
     }
 
     public function create($data)

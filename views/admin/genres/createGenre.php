@@ -1,5 +1,5 @@
-<?php include_once dirname(__FILE__) . "/../layouts/header.php" ?>
-<?php include_once dirname(__FILE__) . "/layouts/admin-before.php" ?>
+<?php include_once dirname(__FILE__) . "/../../layouts/header.php" ?>
+<?php include_once dirname(__FILE__) . "/../layouts/admin-before.php" ?>
 
     <section class="create__genre">
         <div class="container">
@@ -31,4 +31,4 @@
 
 <?php
 unset($_SESSION["genresMessages"]);
-include_once dirname(__FILE__) . "/../layouts/footer.php" ?>
+include_once dirname(__FILE__) . "/../../layouts/footer.php" ?>

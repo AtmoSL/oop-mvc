@@ -41,7 +41,7 @@ class OrderAdminController extends MainAdminController
             $order->seats = $this->orderSeatRepository->getCountOfSeatsInOrder($order->id);
         }
 
-        Viewer::view("admin/allOrders", compact("orders"));
+        Viewer::view("admin/orders/allOrders", compact("orders"));
     }
 
     public function showOne($data)
@@ -70,7 +70,7 @@ class OrderAdminController extends MainAdminController
 
         $userInfo = $this->userRepository->getUserForOrderPage($order->user_id);
 
-        Viewer::view("admin/order", compact("order", "seatsAndRows", "statuses", "userInfo"));
+        Viewer::view("admin/orders/order", compact("order", "seatsAndRows", "statuses", "userInfo"));
     }
 
     public function changeStatus($data)
