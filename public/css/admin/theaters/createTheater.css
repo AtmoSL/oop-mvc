@@ -1,0 +1,7 @@
+@import "../../forms.css";
+
+.create__theater__form{
+    max-width: 300px;
+    text-align: center;
+    margin: 100px auto;
+}

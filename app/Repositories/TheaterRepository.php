@@ -44,4 +44,17 @@ class TheaterRepository extends MainRepository
         return $theaters;
     }
 
+    /**
+     * Создание театра
+     * @param $title
+     * @return void
+     */
+    public function createTheater($title)
+    {
+        $this->startRequest()
+            ->create([
+                    "title" => $title
+                ]
+            );
+    }
 }
