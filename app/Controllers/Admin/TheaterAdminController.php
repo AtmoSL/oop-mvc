@@ -72,35 +72,35 @@ class TheaterAdminController extends MainAdminController
         Viewer::view("admin/theaters/editTheater", compact("theaterTitle", "theaterId"));
     }
 
-//    public function edit($data)
-//    {
-//        if(empty($data["id"])){
-//            header('Location: ' . $_SERVER['HTTP_REFERER']);
-//            die();
-//        }
-//
-//        $genreId = $data["id"];
-//
-//        $genre = $this->genreRepository->getGenreByID($genreId);
-//
-//        if(empty($genre->title)){
-//            header('Location: ' . $_SERVER['HTTP_REFERER']);
-//            die();
-//        }
-//
-//        $validator = new GenreValidator();
-//        $validation = $validator->validateAll($data);
-//
-//        if (!$validation['isFullValidated']) {
-//            $_SESSION["genresMessages"] = $validation["fields"];
-//            header('Location: ' . $_SERVER['HTTP_REFERER']);
-//            die();
-//        }
-//
-//        $this->genreRepository->changeGenreTitle($genreId, $data["title"]);
-//
-//
-//        header('Location: /admin/genres');
-//        return true;
-//    }
+    public function edit($data)
+    {
+        if(empty($data["id"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $theaterId = $data["id"];
+
+        $theater = $this->theaterRepository->getTheaterById($theaterId);
+
+        if(empty($theater->title)){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $validator = new TheaterValidator();
+        $validation = $validator->validateAll($data);
+
+        if (!$validation['isFullValidated']) {
+            $_SESSION["theatersMessages"] = $validation["fields"];
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $this->theaterRepository->changeTheaterTitle($theaterId, $data["title"]);
+
+
+        header('Location: /admin/theaters');
+        return true;
+    }
 }

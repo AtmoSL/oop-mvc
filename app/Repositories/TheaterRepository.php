@@ -72,4 +72,19 @@ class TheaterRepository extends MainRepository
 
         return $theater;
     }
+
+    /**
+     * Изменить название театра
+     * @param $id
+     * @param $title
+     * @return true
+     */
+    public function changeTheaterTitle($id, $title)
+    {
+        $this->startRequest()
+            ->where(["id" => $id])
+            ->set(["title"=>$title]);
+
+        return true;
+    }
 }
