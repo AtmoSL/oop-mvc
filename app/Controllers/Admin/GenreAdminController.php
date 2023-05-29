@@ -48,4 +48,18 @@ class GenreAdminController extends MainAdminController
         header('Location: /admin/genres');
         return true;
     }
+
+    public function editPage($data)
+    {
+        if(empty($data["id"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $genreId = $data["id"];
+
+        $genreTitle = $this->genreRepository->getGenreTitle($genreId);
+
+        Viewer::view("admin/genres/editGenre", compact("genreTitle"));
+    }
 }

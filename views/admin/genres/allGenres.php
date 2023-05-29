@@ -33,7 +33,7 @@
                             <td>
                                 <div class="all__genre__separator"></div>
                             </td>
-                            <td><a href="/admin/genre?id=<?= $genre->id ?>" class="all__genre__btn">
+                            <td><a href="/admin/genre/edit?id=<?= $genre->id ?>" class="all__genre__btn">
                                     Редактировать
                                 </a></td>
                         </tr>
