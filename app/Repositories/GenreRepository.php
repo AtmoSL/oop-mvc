@@ -58,6 +58,11 @@ class GenreRepository extends MainRepository
             );
     }
 
+    /**
+     * Получить жанр по id
+     * @param $id
+     * @return mixed
+     */
     public function getGenreById($id)
     {
         $genre = $this
@@ -66,5 +71,20 @@ class GenreRepository extends MainRepository
             ->find();
 
         return $genre;
+    }
+
+    /**
+     * Изменить название жанра
+     * @param $id
+     * @param $title
+     * @return true
+     */
+    public function changeGenreTitle($id, $title)
+    {
+        $this->startRequest()
+        ->where(["id" => $id])
+        ->set(["title"=>$title]);
+
+        return true;
     }
 }

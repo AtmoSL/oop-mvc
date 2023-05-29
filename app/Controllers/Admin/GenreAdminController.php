@@ -67,6 +67,38 @@ class GenreAdminController extends MainAdminController
 
         $genreTitle = $genre->title;
 
-        Viewer::view("admin/genres/editGenre", compact("genreTitle"));
+        Viewer::view("admin/genres/editGenre", compact("genreTitle", "genreId"));
+    }
+
+    public function edit($data)
+    {
+        if(empty($data["id"])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $genreId = $data["id"];
+
+        $genre = $this->genreRepository->getGenreByID($genreId);
+
+        if(empty($genre->title)){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $validator = new GenreValidator();
+        $validation = $validator->validateAll($data);
+
+        if (!$validation['isFullValidated']) {
+            $_SESSION["genresMessages"] = $validation["fields"];
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $this->genreRepository->changeGenreTitle($genreId, $data["title"]);
+
+
+        header('Location: /admin/genres');
+        return true;
     }
 }
