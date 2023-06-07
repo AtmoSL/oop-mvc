@@ -25,6 +25,7 @@ class EventSeatRepository extends MainRepository
         $seats = $this
             ->startRequest()
             ->where(["event_row_id" => $rowId], ["id", "num", "is_occupied"])
+            ->orderDesc("id")
             ->find();
 
         return $seats;
