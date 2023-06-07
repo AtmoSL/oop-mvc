@@ -63,7 +63,7 @@ class Auth
      */
     public static function isAdmin()
     {
-        if($_SESSION["auth"]["role_id"] == 2){
+        if((!empty($_SESSION["auth"])) && ($_SESSION["auth"]["role_id"] == 2)){
             return true;
         }
         else{
