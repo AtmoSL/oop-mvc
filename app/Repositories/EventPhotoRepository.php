@@ -29,4 +29,14 @@ class EventPhotoRepository extends MainRepository
 
         return $photos;
     }
+
+    public function getPhotosForAdmin($eventId)
+    {
+        $photos = $this
+            ->startRequest()
+            ->where(["event_id"=>$eventId], ["photo", "id"])
+            ->find();
+
+        return $photos;
+    }
 }

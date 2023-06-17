@@ -1,0 +1,52 @@
+@import "../../forms.css";
+
+.edit__event__form{
+    max-width: 300px;
+    text-align: center;
+    margin: 100px auto 30px;
+}
+
+.edit__event__photo{
+    width: 150px;
+}
+
+td{
+    padding: 20px 0;
+    vertical-align: middle;
+}
+
+.edit__event__photo__delete{
+    color: red;
+    text-decoration: none;
+    border: 1px solid red;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.edit__event__photo__delete:hover{
+    color: #1E1E1E;
+    background-color: red;
+}
+
+.rows__edit{
+    max-width: 300px;
+    margin: 0 auto 30px;
+}
+.rows__edit__btn{
+    background-color: #E4E900;
+    border: 1px solid #E4E900;
+    color: #1E1E1E;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition:0.4s;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+.rows__edit__btn:hover{
+    background-color: #1E1E1E;
+    color: #E4E900;
+}
