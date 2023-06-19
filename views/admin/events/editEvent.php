@@ -13,10 +13,10 @@
                     $event->id ?>">
                     <input class="form__input" type="text" name="title" id="title"
                            placeholder="Введите название мероприятия" required value="<?= $event->title ?>">
-                    <?php if (isset($_SESSION["eventsMessages"]["title"]["errorMessages"])) { ?>
+                    <?php if (isset($_SESSION["editEventMessages"]["title"]["errorMessages"])) { ?>
                         <div class="form__error__messages">
                             <ul>
-                                <?php foreach ($_SESSION["genresMessages"]["title"]["errorMessages"] as $message) { ?>
+                                <?php foreach ($_SESSION["editEventMessages"]["title"]["errorMessages"] as $message) { ?>
                                     <li><?= $message ?></li>
                                 <?php } ?>
                             </ul>
@@ -34,6 +34,15 @@
                             </option>
                         <?php } ?>
                     </select>
+                    <?php if (isset($_SESSION["editEventMessages"]["genre_id"]["errorMessages"])) { ?>
+                        <div class="form__error__messages">
+                            <ul>
+                                <?php foreach ($_SESSION["editEventMessages"]["genre_id"]["errorMessages"] as $message) { ?>
+                                    <li><?= $message ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <div class="form__group">
@@ -47,6 +56,15 @@
                         <?php } ?>
                     </select>
                 </div>
+                <?php if (isset($_SESSION["editEventMessages"]["theater_id"]["errorMessages"])) { ?>
+                    <div class="form__error__messages">
+                        <ul>
+                            <?php foreach ($_SESSION["editEventMessages"]["theater_id"]["errorMessages"] as $message) { ?>
+                                <li><?= $message ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
 
                 <div class="form__group">
                     <label for="is_published" class="form__label">Режим публикации</label>
@@ -58,44 +76,67 @@
                             Не публикуется
                         </option>
                     </select>
+                    <?php if (isset($_SESSION["editEventMessages"]["is_published"]["errorMessages"])) { ?>
+                        <div class="form__error__messages">
+                            <ul>
+                                <?php foreach ($_SESSION["editEventMessages"]["is_published"]["errorMessages"] as $message) { ?>
+                                    <li><?= $message ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <div class="form__group">
                     <label for="date" class="form__label">Дата</label>
                     <input class="form__input" type="date" name="date" id="date" value="<?= $event->date ?>">
+                    <?php if (isset($_SESSION["editEventMessages"]["date"]["errorMessages"])) { ?>
+                        <div class="form__error__messages">
+                            <ul>
+                                <?php foreach ($_SESSION["editEventMessages"]["date"]["errorMessages"] as $message) { ?>
+                                    <li><?= $message ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <div class="form__group">
                     <button class="form__btn" type="submit">Изменить</button>
                 </div>
 
-                <div class="form__group">
-                    <details class="form__input">
-                        <summary>Карусель фото</summary>
-                        <input type="file" name="photo" id="photo">
-                        <table>
-                            <?php /** @var array $photos */
-                            foreach ($photos as $photo) { ?>
-                                <tr>
-                                    <td>
-                                        <img class="edit__event__photo" src="/img/events/<?= $event->id ?>/<?= $photo->photo ?>"
-                                             alt="<?= $event->title ?>">
-                                    </td>
-                                    <td><a class="edit__event__photo__delete" href="#">Удалить</a></td>
-                                </tr>
-                            <? } ?>
-                        </table>
-                    </details>
-                </div>
+
 
             </form>
 
             <div class="rows__edit">
                 <a class="rows__edit__btn" href="#">Редактировать ряды</a>
+            </div><div class="rows__edit">
+                <a class="rows__edit__btn" href="#">Редактировать фото</a>
             </div>
+<!--            <form action="">-->
+<!--                <div class="form__group">-->
+<!--                    <details class="form__input">-->
+<!--                        <summary>Карусель фото</summary>-->
+<!--                        <input type="file" name="photo" id="photo">-->
+<!--                        <table>-->
+<!--                            --><?php ///** @var array $photos */
+//                            foreach ($photos as $photo) { ?>
+<!--                                <tr>-->
+<!--                                    <td>-->
+<!--                                        <img class="edit__event__photo" src="/img/events/--><?php //= $event->id ?><!--/--><?php //= $photo->photo ?><!--"-->
+<!--                                             alt="--><?php //= $event->title ?><!--">-->
+<!--                                    </td>-->
+<!--                                    <td><a class="edit__event__photo__delete" href="#">Удалить</a></td>-->
+<!--                                </tr>-->
+<!--                            --><?// } ?>
+<!--                        </table>-->
+<!--                    </details>-->
+<!--                </div>-->
+<!--            </form>-->
         </div>
     </section>
 
 <?php
-unset($_SESSION["eventsMessages"]);
+unset($_SESSION["editEventMessages"]);
 include_once dirname(__FILE__) . "/../../layouts/footer.php" ?>

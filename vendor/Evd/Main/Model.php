@@ -233,10 +233,10 @@ abstract class Model
     {
         $table = static::$table;
         $setStr = "";
-
+        $iFields = 1;
         foreach ($fields as $field=>$value){
-
-            $setStr .= "`$field` = '$value' ";
+            $setStr .= "`$field` = '$value'" . (($iFields == count($fields)) ? " ": ", ");
+            $iFields++;
         }
 
         $whereStr = "1";
@@ -256,7 +256,6 @@ abstract class Model
         }
 
         self::$sql = "UPDATE $table SET $setStr WHERE $whereStr";
-
         $stmt = DB::query(self::$sql);
         $this->setPropsDefaultValues();
         return true;

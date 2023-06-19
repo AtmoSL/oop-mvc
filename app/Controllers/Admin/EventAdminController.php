@@ -8,6 +8,7 @@ use app\Repositories\EventRowRepository;
 use app\Repositories\EventSeatRepository;
 use app\Repositories\GenreRepository;
 use app\Repositories\TheaterRepository;
+use app\Validators\EventValidator;
 use vendor\Evd\Main\Viewer;
 
 class EventAdminController extends MainAdminController
@@ -41,7 +42,7 @@ class EventAdminController extends MainAdminController
 
     public function editPage($data)
     {
-        if(empty($data["id"])){
+        if (empty($data["id"])) {
             header('Location: ' . $_SERVER['HTTP_REFERER']);
             die();
         }
@@ -59,5 +60,34 @@ class EventAdminController extends MainAdminController
         }
 
         Viewer::view("admin/events/editEvent", compact("event", "genres", "theaters", "photos"));
+    }
+
+    public function edit($data)
+    {
+        if (empty($data)) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $id = $data["id"];
+        unset($data["id"]);
+
+        if($data["is_published"] == null) $data["is_published"] = 0;
+
+        $validator = new EventValidator();
+        $validation = $validator->validateAll($data);
+
+        if (!$validation['isFullValidated']) {
+            $_SESSION["editEventMessages"] = $validation["fields"];
+        } else {
+            $this->eventRepository->editEventAdmin($id,
+                $data["title"],
+                $data["genre_id"],
+                $data["theater_id"],
+                $data["date"],
+                $data["is_published"]);
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }

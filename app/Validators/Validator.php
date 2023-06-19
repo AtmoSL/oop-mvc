@@ -112,6 +112,19 @@ abstract class Validator
                         $validateResult["errorMessages"][] = "Поле должно быть длиннее " . $fieldRule["min"] . " символов";
                     }
                     break;
+                case (is_array($fieldRule) && array_key_first($fieldRule) == "int"):
+                    if (!is_int($fieldValue)) {
+                        $validateResult["isValidated"] = false;
+                        $validateResult["errorMessages"][] = "Поле должно быть числом";
+                    }
+                    break;
+                case (is_array($fieldRule) && array_key_first($fieldRule) == "date"):
+                    $date = explode("-", $fieldValue);
+                    if (!checkdate($date[1], $date[2], $date[0])) {
+                        $validateResult["isValidated"] = false;
+                        $validateResult["errorMessages"][] = "Поле должно быть корректной датой";
+                    }
+                    break;
             }
         }
 

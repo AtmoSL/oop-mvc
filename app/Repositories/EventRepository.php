@@ -12,14 +12,15 @@ class EventRepository extends MainRepository
      */
     protected function getModelClass()
     {
-            return Event::class;
+        return Event::class;
     }
 
     /**
      * Запрос всех событий без фильтров
      * @return mixed
      */
-    public function getAllEvents(){
+    public function getAllEvents()
+    {
         $events = $this
             ->startRequest()
             ->all()
@@ -35,10 +36,11 @@ class EventRepository extends MainRepository
      * @param $theaterId
      * @return mixed
      */
-    public function getAllEventsTheaterFilter($theaterId){
+    public function getAllEventsTheaterFilter($theaterId)
+    {
         $events = $this
             ->startRequest()
-            ->where(["theater_id"=>$theaterId])
+            ->where(["theater_id" => $theaterId])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
             ->find();
@@ -51,10 +53,11 @@ class EventRepository extends MainRepository
      * @param $genreId
      * @return mixed
      */
-    public function getAllEventsGenreFilter($genreId){
+    public function getAllEventsGenreFilter($genreId)
+    {
         $events = $this
             ->startRequest()
-            ->where(["theater_id"=>$genreId])
+            ->where(["theater_id" => $genreId])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
             ->find();
@@ -71,7 +74,7 @@ class EventRepository extends MainRepository
     {
         $event = $this
             ->startRequest()
-            ->one(["id"=>$eventId])
+            ->one(["id" => $eventId])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
             ->find();
@@ -83,8 +86,8 @@ class EventRepository extends MainRepository
     public function getEventDateById($id)
     {
         $event = $this->startRequest()
-        ->one(["id" => $id], ["date"])
-        ->find();
+            ->one(["id" => $id], ["date"])
+            ->find();
 
         return $event->date;
     }
@@ -125,7 +128,7 @@ class EventRepository extends MainRepository
     {
         $events = $this
             ->startRequest()
-            ->all(["id","title", "date"])
+            ->all(["id", "title", "date"])
             ->with("genres", ["id as genre_id", "title as genre_title"])
             ->with("theaters", ["id as theater_id", "title as theater_title"])
             ->find();
@@ -133,4 +136,29 @@ class EventRepository extends MainRepository
         return $events;
     }
 
+    /**
+     * Изменение данных о мероприятии адмиистратором
+     *
+     * @param $id
+     * @param $title
+     * @param $genre_id
+     * @param $theater_id
+     * @param $date
+     * @param $is_published
+     * @return true
+     */
+    public function editEventAdmin($id, $title, $genre_id, $theater_id, $date, $is_published)
+    {
+        $this->startRequest()
+            ->where(["id" => $id])
+            ->set([
+                "title" => $title,
+                "genre_id" => $genre_id,
+                "theater_id" => $theater_id,
+                "date" => $date,
+                "is_published" => $is_published,
+            ]);
+
+        return true;
+    }
 }

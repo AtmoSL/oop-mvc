@@ -169,6 +169,11 @@ $router->setRoutes([
         "action" => "editPage",
         "method" => "GET",
     ],
+    "/admin/event/editevent" => [
+        "controller" => "Admin\EventAdmin",
+        "action" => "edit",
+        "method" => "POST",
+    ],
 ]);
 
 $router->start();
