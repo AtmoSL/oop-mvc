@@ -1,0 +1,59 @@
+.event__rows__edit__rows__wrapper{
+    max-width: 300px;
+    margin: 60px auto;
+}
+
+.event__rows__edit__row {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #E4E900;
+    padding: 20px 0;
+}
+
+.event__rows__edit__row__title {
+    background-color: #1E1E1E;
+    color: #E4E900;
+    text-transform: uppercase;
+    padding: 10px 5px;
+    border-radius: 15px;
+    border: 1px solid #E4E900;
+}
+
+.event__rows__edit__row__edit-btn,
+.event__rows__edit__row__create-btn{
+    margin: 20px 0;
+    background-color: #E4E900;
+    color: #1E1E1E;
+    text-transform: uppercase;
+    padding: 10px 5px;
+    border-radius: 15px;
+    transition: 0.3s;
+    border: 1px solid #E4E900;
+    text-decoration: none;
+}
+
+.event__rows__edit__row__edit-btn:hover,
+.event__rows__edit__row__create-btn:hover{
+    background-color: #1E1E1E;
+    color: #E4E900;
+}
+
+.event__rows__edit__row__delete-btn{
+    color: #1E1E1E;
+    text-decoration: none;
+    background-color: red;
+    border: 1px solid red;
+    padding: 10px 5px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+.event__rows__edit__row__delete-btn:hover{
+    color: red;
+    background-color: #1E1E1E;
+}
+
+.event__rows__edit__row__create-btn{
+    display: block;
+    text-align: center;
+}

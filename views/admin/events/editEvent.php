@@ -110,7 +110,7 @@
             </form>
 
             <div class="rows__edit">
-                <a class="rows__edit__btn" href="#">Редактировать ряды</a>
+                <a class="rows__edit__btn" href="/admin/event/rows/edit?id=<?= $event->id ?>">Редактировать ряды</a>
             </div><div class="rows__edit">
                 <a class="rows__edit__btn" href="/admin/event/photos/edit?id=<?= $event->id ?>">Редактировать фото</a>
             </div>
