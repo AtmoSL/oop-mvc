@@ -174,6 +174,11 @@ $router->setRoutes([
         "action" => "edit",
         "method" => "POST",
     ],
+    "/admin/event/photos/edit" => [
+        "controller" => "Admin\EventPhotoAdmin",
+        "action" => "editPage",
+        "method" => "GET",
+    ],
 ]);
 
 $router->start();

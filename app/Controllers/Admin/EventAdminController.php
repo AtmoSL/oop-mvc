@@ -16,7 +16,6 @@ class EventAdminController extends MainAdminController
     private EventRepository $eventRepository;
     private GenreRepository $genreRepository;
     private TheaterRepository $theaterRepository;
-    private EventPhotoRepository $eventPhotoRepository;
     protected EventRowRepository $eventRowRepository;
 
     protected EventSeatRepository $eventSeatRepository;
@@ -28,7 +27,6 @@ class EventAdminController extends MainAdminController
         $this->eventRepository = new EventRepository();
         $this->genreRepository = new GenreRepository();
         $this->theaterRepository = new TheaterRepository();
-        $this->eventPhotoRepository = new EventPhotoRepository();
         $this->eventRowRepository = new EventRowRepository();
         $this->eventSeatRepository = new EventSeatRepository();
     }
@@ -52,14 +50,13 @@ class EventAdminController extends MainAdminController
         $event = $this->eventRepository->getOneFullEvent($data["id"]);
         $genres = $this->genreRepository->getAllForAdmin();
         $theaters = $this->theaterRepository->getAllTheaters();
-        $photos = $this->eventPhotoRepository->getPhotosForAdmin($eventId);
         $rows = $this->eventRowRepository->getRowsForEvent($eventId);
 
         foreach ($rows as &$row) {
             $row->seats = $this->eventSeatRepository->getSeatsForRow($row->id);
         }
 
-        Viewer::view("admin/events/editEvent", compact("event", "genres", "theaters", "photos"));
+        Viewer::view("admin/events/editEvent", compact("event", "genres", "theaters"));
     }
 
     public function edit($data)
