@@ -8,8 +8,8 @@
             <?php /** @var array $rows */
             foreach ($rows as $row) { ?>
                 <div class="event__rows__edit__row">
-                    <div class="event__rows__edit__row__title">Ряд №<?= $row->num ?></div>
-                    <a href="/" class="event__rows__edit__row__edit-btn">Места</a>
+                    <div class="event__rows__edit__row__title">Ряд №<?= $row->num ?> — <?= $row->price ?>  руб.</div>
+                    <a href="/" class="event__rows__edit__row__edit-btn">Редактировать</a>
                     <a href="/" class="event__rows__edit__row__delete-btn">Удалить</a>
                 </div>
             <?php } ?>
