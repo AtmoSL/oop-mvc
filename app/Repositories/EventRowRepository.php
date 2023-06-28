@@ -83,4 +83,18 @@ class EventRowRepository extends MainRepository
         return $price;
     }
 
+    public function createNewRow($eventId)
+    {
+        $maxRow = $this->startRequest()
+            ->one(["event_id"=>$eventId, "num" => "max"])
+            ->find();
+
+        $this->startRequest()
+            ->create([
+                "num" => $maxRow->num+1,
+                "event_id"=>$eventId,
+                "price" => 0
+            ]);
+    }
+
 }

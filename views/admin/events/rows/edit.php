@@ -6,15 +6,16 @@
 
         <div class="event__rows__edit__rows__wrapper">
             <?php /** @var array $rows */
-            foreach($rows as $row){ ?>
+            foreach ($rows as $row) { ?>
                 <div class="event__rows__edit__row">
-                    <div class="event__rows__edit__row__title">Ряд №<?=$row->num ?></div>
+                    <div class="event__rows__edit__row__title">Ряд №<?= $row->num ?></div>
                     <a href="/" class="event__rows__edit__row__edit-btn">Места</a>
                     <a href="/" class="event__rows__edit__row__delete-btn">Удалить</a>
                 </div>
-            <?php }?>
+            <?php } ?>
 
-            <a class="event__rows__edit__row__create-btn" href="/">Добавить ряд</a>
+            <a class="event__rows__edit__row__create-btn" href="/admin/event/rows/create?id=<?= /** @var int $eventId */
+            $eventId ?>">Добавить ряд</a>
         </div>
 
 

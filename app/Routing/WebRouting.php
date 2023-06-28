@@ -184,6 +184,11 @@ $router->setRoutes([
         "action" => "editPage",
         "method" => "GET",
     ],
+    "/admin/event/rows/create" => [
+        "controller" => "Admin\EventRowAdmin",
+        "action" => "create",
+        "method" => "GET",
+    ],
 ]);
 
 $router->start();

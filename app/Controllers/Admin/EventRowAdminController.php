@@ -25,4 +25,19 @@ class EventRowAdminController extends MainAdminController
 
         Viewer::view("admin/events/rows/edit", compact("rows", "eventId"));
     }
+
+    public function create($data)
+    {
+        if (empty($data["id"])) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $eventId = $data["id"];
+
+        $this->eventRowRepository->createNewRow($eventId);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        return true;
+    }
 }
