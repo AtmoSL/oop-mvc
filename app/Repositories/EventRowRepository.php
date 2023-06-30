@@ -29,7 +29,7 @@ class EventRowRepository extends MainRepository
             ->one(["event_id" => $eventId, "price" => "min"], ["price"])
             ->find();
 
-        if(isset($row->price)) $price = $row->price;
+        if (isset($row->price)) $price = $row->price;
 
         return $price;
     }
@@ -43,7 +43,7 @@ class EventRowRepository extends MainRepository
     {
         $rows = $this
             ->startRequest()
-            ->where(["event_id"=>$eventId])
+            ->where(["event_id" => $eventId])
             ->find();
 
         return $rows;
@@ -71,7 +71,7 @@ class EventRowRepository extends MainRepository
      * @param $id
      * @return int
      */
-    public function getPriceById($id) : int
+    public function getPriceById($id): int
     {
         $row = $this
             ->startRequest()
@@ -86,15 +86,24 @@ class EventRowRepository extends MainRepository
     public function createNewRow($eventId)
     {
         $maxRow = $this->startRequest()
-            ->one(["event_id"=>$eventId, "num" => "max"])
+            ->one(["event_id" => $eventId, "num" => "max"])
             ->find();
 
         $this->startRequest()
             ->create([
-                "num" => $maxRow->num+1,
-                "event_id"=>$eventId,
+                "num" => $maxRow->num + 1,
+                "event_id" => $eventId,
                 "price" => 0
             ]);
+    }
+
+    public function getRowById($rowId)
+    {
+        $row = $this->startRequest()
+            ->one(["id" => $rowId])
+            ->find();
+
+        return $row;
     }
 
 }

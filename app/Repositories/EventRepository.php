@@ -161,4 +161,18 @@ class EventRepository extends MainRepository
 
         return true;
     }
+
+    /**
+     * Получить название мероприятия по Id
+     * @param $eventId
+     * @return mixed
+     */
+    public function getEventTitleById($eventId)
+    {
+        $event = $this->startRequest()
+            ->one(["id" => $eventId], ["title"])
+            ->find();
+
+        return $event->title;
+    }
 }

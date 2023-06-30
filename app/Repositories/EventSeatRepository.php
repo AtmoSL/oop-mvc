@@ -108,4 +108,15 @@ class EventSeatRepository extends MainRepository
 
         return true;
     }
+
+    public function getSeatsCountForRow($rowId)
+    {
+        $seats = $this
+            ->startRequest()
+            ->where(["event_row_id" => $rowId], ["id", "num", "is_occupied"])
+            ->orderDesc("id")
+            ->find();
+
+        return count($seats);
+    }
 }

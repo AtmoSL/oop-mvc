@@ -1,0 +1,26 @@
+@import "../../../forms.css";
+
+
+.event__row__edit__title{
+    text-align: center;
+    margin: 60px auto 30px;
+    color: #FAFF00;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.event__row__edit__form{
+    max-width: 400px;
+    margin: 30px auto 60px;
+}
+
+.event__row__edit__seats-delete-btn{
+    border: 1px solid red;
+    background-color: red;
+    color: #1E1E1E;
+}
+.event__row__edit__seats-delete-btn:hover{
+    background-color: #1E1E1E;
+    color: red;
+    border: 1px solid red;
+}
