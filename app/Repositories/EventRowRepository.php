@@ -106,4 +106,11 @@ class EventRowRepository extends MainRepository
         return $row;
     }
 
+    public function changePrice($rowId, $rowPrice)
+    {
+        $this->startRequest()
+            ->where(["id" => $rowId])
+            ->set(["price" => $rowPrice]);
+    }
+
 }

@@ -194,6 +194,11 @@ $router->setRoutes([
         "action" => "editOnePage",
         "method" => "GET",
     ],
+    "/admin/event/rows/edit/one/changeprice" => [
+        "controller" => "Admin\EventRowAdmin",
+        "action" => "changePrice",
+        "method" => "POST",
+    ],
 ]);
 
 $router->start();

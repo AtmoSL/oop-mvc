@@ -112,8 +112,8 @@ abstract class Validator
                         $validateResult["errorMessages"][] = "Поле должно быть длиннее " . $fieldRule["min"] . " символов";
                     }
                     break;
-                case (is_array($fieldRule) && array_key_first($fieldRule) == "int"):
-                    if (!is_int($fieldValue)) {
+                case ($fieldRule == "int"):
+                    if (!is_numeric($fieldValue)) {
                         $validateResult["isValidated"] = false;
                         $validateResult["errorMessages"][] = "Поле должно быть числом";
                     }
@@ -148,7 +148,7 @@ abstract class Validator
                 && empty($fields[$field])){
                 $validateResult["isValidated"] = false;
                 $validateResult["fields"][$field]["isValidated"] = false;
-                $validateResult["fields"][$field]["errorMessages"] = "Поле обязательно должно быть заполнено";
+                $validateResult["fields"][$field]["errorMessages"][] = "Поле обязательно должно быть заполнено";
             }
         }
 

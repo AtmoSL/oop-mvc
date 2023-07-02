@@ -5,6 +5,7 @@ namespace app\Controllers\Admin;
 use app\Repositories\EventRepository;
 use app\Repositories\EventRowRepository;
 use app\Repositories\EventSeatRepository;
+use app\Validators\EventRowValidator;
 use vendor\Evd\Main\Viewer;
 
 class EventRowAdminController extends MainAdminController
@@ -62,5 +63,30 @@ class EventRowAdminController extends MainAdminController
         $eventTitle = $this->eventRepository->getEventTitleById($row->event_id);
 
         Viewer::view("admin/events/rows/editOne", compact("row", "seatsCount", "eventTitle"));
+    }
+
+    public function changePrice($data)
+    {
+        if (empty($data["id"]) || empty($data["price"])) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $rowId = $data["id"];
+        $rowPrice = $data["price"];
+
+        $validator = new EventRowValidator();
+
+        $validation = $validator->validateAll(["price" => $rowPrice]);
+
+        if (!$validation['isFullValidated']) {
+            $_SESSION["eventRowMessages"] = $validation["fields"];
+        } else {
+            $this->eventRowRepository->changePrice($rowId, $rowPrice);
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        return true;
     }
 }
