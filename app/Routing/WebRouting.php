@@ -199,6 +199,11 @@ $router->setRoutes([
         "action" => "changePrice",
         "method" => "POST",
     ],
+    "/admin/event/rows/edit/one/changeseats" => [
+        "controller" => "Admin\EventRowAdmin",
+        "action" => "changeSeats",
+        "method" => "POST",
+    ],
 ]);
 
 $router->start();

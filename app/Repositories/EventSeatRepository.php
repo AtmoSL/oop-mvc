@@ -109,6 +109,11 @@ class EventSeatRepository extends MainRepository
         return true;
     }
 
+    /**
+     * Получить количество мест в ряду
+     * @param $rowId
+     * @return int
+     */
     public function getSeatsCountForRow($rowId)
     {
         $seats = $this
@@ -118,5 +123,21 @@ class EventSeatRepository extends MainRepository
             ->find();
 
         return count($seats);
+    }
+
+    /**
+     * Добавить место
+     * @param $rowId
+     * @param $seatNum
+     * @return void
+     */
+    public function addSeat($rowId, $seatNum)
+    {
+        $this->startRequest()
+            ->create([
+                "event_row_id" => $rowId,
+                "num" => $seatNum,
+                "is_occupied" => 0,
+            ]);
     }
 }

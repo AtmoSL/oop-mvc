@@ -13,6 +13,7 @@ class EventRowAdminController extends MainAdminController
     private EventRowRepository $eventRowRepository;
     private EventSeatRepository $eventSeatRepository;
     private EventRepository $eventRepository;
+
     public function __construct()
     {
         parent::__construct();
@@ -20,6 +21,7 @@ class EventRowAdminController extends MainAdminController
         $this->eventSeatRepository = new EventSeatRepository();
         $this->eventRepository = new EventRepository();
     }
+
     public function editPage($data)
     {
         if (empty($data["id"])) {
@@ -88,5 +90,31 @@ class EventRowAdminController extends MainAdminController
         header('Location: ' . $_SERVER['HTTP_REFERER']);
 
         return true;
+    }
+
+    public function changeSeats($data)
+    {
+        if (empty($data["id"]) || empty($data["count"])) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $rowId = $data["id"];
+        $seatsCount = $data["count"];
+
+        if ($data["action"] == "addSeats") {
+
+            $maxSeat = 5;
+
+//            $newSeats = [];
+
+            for ($i = 1; $i <= $seatsCount; $i++) {
+                $this->eventSeatRepository->addSeat($rowId, $maxSeat + $i);
+            }
+        } elseif ($data["action"] == "deleteSeats") {
+            debug("Удаление мест");
+        }
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
