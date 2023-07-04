@@ -104,13 +104,12 @@ class EventRowAdminController extends MainAdminController
 
         if ($data["action"] == "addSeats") {
 
-            $maxSeat = 5;
-
-//            $newSeats = [];
+            $maxSeat = $this->eventSeatRepository->getMaxSeatNum($rowId);
 
             for ($i = 1; $i <= $seatsCount; $i++) {
                 $this->eventSeatRepository->addSeat($rowId, $maxSeat + $i);
             }
+
         } elseif ($data["action"] == "deleteSeats") {
             debug("Удаление мест");
         }

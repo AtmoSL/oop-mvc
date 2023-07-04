@@ -140,4 +140,13 @@ class EventSeatRepository extends MainRepository
                 "is_occupied" => 0,
             ]);
     }
+
+    public function getMaxSeatNum($rowId)
+    {
+        $seat = $this->startRequest()
+            ->one(["event_row_id" => $rowId,"num" => "max"])
+            ->find();
+
+        return (isset($seat->num)) ? $seat->num : 0;
+    }
 }
