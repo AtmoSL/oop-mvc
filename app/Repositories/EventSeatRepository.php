@@ -144,9 +144,25 @@ class EventSeatRepository extends MainRepository
     public function getMaxSeatNum($rowId)
     {
         $seat = $this->startRequest()
-            ->one(["event_row_id" => $rowId,"num" => "max"])
+            ->one(["event_row_id" => $rowId], ["num"])
+            ->orderDesc("id")
+            ->limit(1)
             ->find();
 
         return (isset($seat->num)) ? $seat->num : 0;
+    }
+
+    public function deleteLastInRow($rowId)
+    {
+        $seat = $this->startRequest()
+            ->one(["event_row_id" => $rowId], ["id"])
+            ->orderDesc("id")
+            ->limit(1)
+            ->find();
+
+
+        $this->startRequest()
+            ->where(["id"=>$seat->id])
+            ->delete();
     }
 }

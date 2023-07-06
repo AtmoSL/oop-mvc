@@ -111,7 +111,9 @@ class EventRowAdminController extends MainAdminController
             }
 
         } elseif ($data["action"] == "deleteSeats") {
-            debug("Удаление мест");
+            for ($i = 1; $i <= $seatsCount; $i++) {
+                $this->eventSeatRepository->deleteLastInRow($rowId);
+            }
         }
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
