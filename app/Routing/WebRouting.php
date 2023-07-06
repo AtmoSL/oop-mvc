@@ -204,6 +204,11 @@ $router->setRoutes([
         "action" => "changeSeats",
         "method" => "POST",
     ],
+    "/admin/event/rows/edit/one/delete" => [
+        "controller" => "Admin\EventRowAdmin",
+        "action" => "deleteRow",
+        "method" => "GET",
+    ],
 ]);
 
 $router->start();

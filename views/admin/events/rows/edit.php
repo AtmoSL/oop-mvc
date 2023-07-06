@@ -10,7 +10,7 @@
                 <div class="event__rows__edit__row">
                     <div class="event__rows__edit__row__title">Ряд №<?= $row->num ?> — <?= $row->price ?>  руб.</div>
                     <a href="/admin/event/rows/edit/one?id=<?= $row->id ?>" class="event__rows__edit__row__edit-btn">Редактировать</a>
-                    <a href="/admin/event/rows/delete?id=<?= $row->id ?>" class="event__rows__edit__row__delete-btn">Удалить</a>
+                    <a href="/admin/event/rows/edit/one/delete?id=<?= $row->id ?>" class="event__rows__edit__row__delete-btn">Удалить</a>
                 </div>
             <?php } ?>
 

@@ -118,4 +118,18 @@ class EventRowAdminController extends MainAdminController
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+
+    public function deleteRow($data)
+    {
+        if (empty($data["id"])) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $rowId = $data["id"];
+
+        $this->eventRowRepository->deleteRow($rowId);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }

@@ -113,4 +113,11 @@ class EventRowRepository extends MainRepository
             ->set(["price" => $rowPrice]);
     }
 
+    public function deleteRow($rowId)
+    {
+        $this->startRequest()
+            ->where(["id"=>$rowId])
+            ->delete();
+    }
+
 }
