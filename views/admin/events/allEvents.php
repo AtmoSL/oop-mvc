@@ -4,8 +4,11 @@
     <section class="all__events">
         <div class="container">
 
-            <div class="all__events__title">
-                Все мероприятия
+            <div class="all__events__top__wrapper">
+                <div class="all__events__title">
+                    Все мероприятия —
+                </div>
+                <a href="/admin/events/new" class="all__events__add-event__btn">Создать новое</a>
             </div>
             <div class="all__events__table__wrapper">
                 <table class="all__events__table">
@@ -44,7 +47,7 @@
                                 <div class="all__event__separator"></div>
                             </td>
                             <td><a href="/admin/event/edit?id=<?= $event->id ?>" class="all__event__btn">
-                                    Редактирровать
+                                    Редактировать
                                 </a></td>
                         </tr>
                     <?php } ?>

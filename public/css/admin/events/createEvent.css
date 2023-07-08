@@ -1,0 +1,12 @@
+@import "../../forms.css";
+
+.create__event__form{
+    max-width: 300px;
+    margin: 100px auto 30px;
+}
+
+
+td{
+    padding: 20px 0;
+    vertical-align: middle;
+}

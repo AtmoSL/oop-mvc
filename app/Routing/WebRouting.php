@@ -71,6 +71,7 @@ $router->setRoutes([
     ],
 
     //Админка
+    //Заказы
     "/admin" => [
         "controller" => "Admin\OrderAdmin",
         "action" => "index"
@@ -90,6 +91,7 @@ $router->setRoutes([
         "method" => "POST",
     ],
 
+    //Жанры
     "/admin/genres" => [
         "controller" => "Admin\GenreAdmin",
         "action" => "index",
@@ -124,7 +126,7 @@ $router->setRoutes([
         "method" => "POST",
     ],
 
-
+    //Театры
     "/admin/theaters" => [
         "controller" => "Admin\TheaterAdmin",
         "action" => "index",
@@ -159,10 +161,14 @@ $router->setRoutes([
         "method" => "POST",
     ],
 
-
+    //Мероприятия
     "/admin/events" => [
         "controller" => "Admin\EventAdmin",
         "action" => "index",
+    ],
+    "/admin/events/new" => [
+        "controller" => "Admin\EventAdmin",
+        "action" => "createPage",
     ],
     "/admin/event/edit" => [
         "controller" => "Admin\EventAdmin",
@@ -174,11 +180,15 @@ $router->setRoutes([
         "action" => "edit",
         "method" => "POST",
     ],
+
+    //Карусель фото мероприятия
     "/admin/event/photos/edit" => [
         "controller" => "Admin\EventPhotoAdmin",
         "action" => "editPage",
         "method" => "GET",
     ],
+
+    //Ряды
     "/admin/event/rows/edit" => [
         "controller" => "Admin\EventRowAdmin",
         "action" => "editPage",

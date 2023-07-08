@@ -1,11 +1,32 @@
-.all__events__title{
+.all__events__top__wrapper{
+    display: flex;
     margin: 49px 60px 40px;
-
+    font-weight: 700;
+    line-height: 33px;
+    align-items: center;
+}
+.all__events__title{
     text-transform: uppercase;
     color: #FAFF00;
-    font-weight: 700;
     font-size: 28px;
-    line-height: 33px;
+}
+
+.all__events__add-event__btn{
+    text-decoration: none;
+    color: #1E1E1E;
+    display: block;
+    font-size: 23px;
+    background-color: #E4E900;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-left: 5px;
+    border: 1px solid #E4E900;
+    transition: 0.3s;
+}
+
+.all__events__add-event__btn:hover{
+    color: #E4E900;
+    background-color: #1E1E1E;
 }
 
 .all__events__table{

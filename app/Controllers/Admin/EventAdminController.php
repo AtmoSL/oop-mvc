@@ -87,4 +87,13 @@ class EventAdminController extends MainAdminController
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+
+    public function createPage()
+    {
+
+        $genres = $this->genreRepository->getAllForAdmin();
+        $theaters = $this->theaterRepository->getAllTheaters();
+
+        Viewer::view("admin/events/createEvent", compact("genres", "theaters"));
+    }
 }
