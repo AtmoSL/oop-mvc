@@ -4,12 +4,11 @@
     <section class="create__event">
         <div class="container">
 
-            <form action="/admin/event/create" method="post" class="form create__event__form">
+            <form action="/admin/events/create" method="post" class="form create__event__form">
                 <div class="form__group">
                     <label for="title" class="form__label">
                         Название мероприятия
                     </label>
-                    <input type="hidden" name="id" value="">
                     <input class="form__input" type="text" name="title" id="title"
                            placeholder="Введите название мероприятия" required value="">
                     <?php if (isset($_SESSION["createEventMessages"]["title"]["errorMessages"])) { ?>

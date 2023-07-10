@@ -36,7 +36,7 @@
                         <div class="event__card__bot-section">
                             <div class="event__card__bot-info">
                                 <div class="event__card__count">
-                                    Осталось: <span><?= $event->count ?></span>
+                                    Осталось: <span>3000</span>
                                 </div>
                                 <div class="event__card_price">
                                     <span><?= $event->price ?></span>руб.

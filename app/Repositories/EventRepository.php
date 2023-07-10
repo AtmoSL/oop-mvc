@@ -175,4 +175,33 @@ class EventRepository extends MainRepository
 
         return $event->title;
     }
+
+    /**
+     * Создагние репозитория
+     * @param $title
+     * @param $genre_id
+     * @param $theater_id
+     * @param $date
+     * @param $is_published
+     * @return integer
+     */
+    public function createEventAndGetId($title, $genre_id, $theater_id, $date, $is_published)
+    {
+        $this->startRequest()
+            ->create([
+                "title" => $title,
+                "genre_id" => $genre_id,
+                "theater_id" => $theater_id,
+                "date" => $date,
+                "is_published" => $is_published
+            ]);
+
+        $eventId = $this->startRequest()
+        ->where(["title" => $title, "theater_id"=>$theater_id, "date" => $date], ["id"])
+        ->orderDesc("id")
+        ->limit("1")
+        ->find();
+
+        return $eventId[0]->id;
+    }
 }

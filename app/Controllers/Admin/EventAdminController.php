@@ -96,4 +96,32 @@ class EventAdminController extends MainAdminController
 
         Viewer::view("admin/events/createEvent", compact("genres", "theaters"));
     }
+
+    public function create($data)
+    {
+        if (empty($data)) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $validator = new EventValidator();
+        $validation = $validator->validateAll($data);
+
+        if (!$validation['isFullValidated']) {
+            $_SESSION["createEventMessages"] = $validation["fields"];
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+
+        } else {
+            $eventId = $this->eventRepository->createEventAndGetId(
+                $data["title"],
+                $data["genre_id"],
+                $data["theater_id"],
+                $data["date"],
+                $data["is_published"]
+            );
+        }
+
+        header("Location:/admin/event/edit?id=$eventId");
+        return true;
+    }
 }

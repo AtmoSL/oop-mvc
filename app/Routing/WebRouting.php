@@ -170,6 +170,11 @@ $router->setRoutes([
         "controller" => "Admin\EventAdmin",
         "action" => "createPage",
     ],
+    "/admin/events/create" => [
+        "controller" => "Admin\EventAdmin",
+        "action" => "create",
+        "method" => "POST"
+    ],
     "/admin/event/edit" => [
         "controller" => "Admin\EventAdmin",
         "action" => "editPage",
