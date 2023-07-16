@@ -39,4 +39,13 @@ class EventPhotoRepository extends MainRepository
 
         return $photos;
     }
+
+    public function addPhotoForEvent($photoName, $eventId)
+    {
+        $this->startRequest()
+            ->create([
+                "event_id" => $eventId,
+                "photo" => $photoName
+            ]);
+    }
 }

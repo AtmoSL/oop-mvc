@@ -119,9 +119,14 @@ class EventAdminController extends MainAdminController
                 $data["date"],
                 $data["is_published"]
             );
+
+            $eventDir = "img/events/'.$eventId";
+
+            mkdir($uploadDir, 0777, true);
+
+            header("Location:/admin/event/edit?id=$eventId");
         }
 
-        header("Location:/admin/event/edit?id=$eventId");
         return true;
     }
 }

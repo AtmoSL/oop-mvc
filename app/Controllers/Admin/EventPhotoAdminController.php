@@ -25,6 +25,33 @@ class EventPhotoAdminController extends MainAdminController
         $photos = $this->eventPhotoRepository->getPhotosForAdmin($eventId);
 
         Viewer::view("admin/events/photos/edit", compact("photos", "eventId"));
+    }
 
+    public function addPhoto($data)
+    {
+        if (empty($data) || empty($_FILES)) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $eventId = $data["eventId"];
+
+        $fileTmpPath = $_FILES['photo']['tmp_name'];
+        $fileFullName = explode('.', basename($_FILES['photo']['name']));
+//        $fileName = $fileFullName[0];
+        $fileExtension = $fileFullName[1];
+//        $fileSize = $_FILES['photo']['size'];
+//        $fileType = $_FILES['photo']['type'];
+
+        $uploadDir = 'img/events/'.$eventId;
+        $newName = uniqid().".".$fileExtension;
+
+        $uploadFile = $uploadDir . '/'. $newName;
+
+        move_uploaded_file($fileTmpPath, $uploadFile);
+
+        $this->eventPhotoRepository->addPhotoForEvent($newName, $eventId);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
