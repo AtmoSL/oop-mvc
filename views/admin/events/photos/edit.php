@@ -21,7 +21,7 @@
                     <img class="edit__event__photo" src="/img/events/<?= $eventId ?>/<?= $photo->photo ?>"
                          alt="Фото мероприятия <?= $eventId ?>">
                     <div class="edit__event__photo__delete__container">
-                        <form action="">
+                        <form action="/admin/event/photos/deletePhoto" method="post">
                             <input type="hidden" name="photoId" value="<?= $photo->id ?>">
                             <button type="submit" class="edit__event__photo__delete">Удалить</button>
                         </form>

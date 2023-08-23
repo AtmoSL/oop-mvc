@@ -48,4 +48,32 @@ class EventPhotoRepository extends MainRepository
                 "photo" => $photoName
             ]);
     }
+
+    /**
+     * Получить фото по id
+     * @param $id
+     * @return mixed
+     */
+    public function getPhotoById($id)
+    {
+        $photo = $this->startRequest()
+            ->one(["id"=>$id])
+            ->find();
+
+        return $photo;
+    }
+
+    /**
+     * Удаление фото по id
+     * @param $id
+     * @return true
+     */
+    public function deletePhoto($id)
+    {
+        $this->startRequest()
+            ->where(["id"=>$id])
+            ->delete();
+
+        return true;
+    }
 }

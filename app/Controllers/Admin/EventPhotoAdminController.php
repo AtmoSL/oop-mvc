@@ -54,4 +54,22 @@ class EventPhotoAdminController extends MainAdminController
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+
+    public function deletePhoto($data)
+    {
+        if (empty($data)) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $photoId = $data["photoId"];
+
+        $photo = $this->eventPhotoRepository->getPhotoById($photoId);
+        $photoPath = "img/events/".$photo->event_id."/".$photo->photo;
+        $this->eventPhotoRepository->deletePhoto($photoId);
+
+        unlink($photoPath);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
 }
