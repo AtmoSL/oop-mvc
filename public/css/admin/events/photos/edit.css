@@ -21,14 +21,30 @@ td{
 
 .edit__event__photo__delete{
     color: red;
-    text-decoration: none;
     border: 1px solid red;
     padding: 10px 20px;
     margin-left: 10px;
     border-radius: 20px;
     transition: 0.3s;
+    background-color: #1E1E1E;
 }
 .edit__event__photo__delete:hover{
     color: #1E1E1E;
     background-color: red;
+    cursor: pointer;
+}
+
+.event__photos__all{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.event__photos__row{
+    margin: 10px;
+    align-items: center;
+    height: 100%;
+    display: flex;
 }

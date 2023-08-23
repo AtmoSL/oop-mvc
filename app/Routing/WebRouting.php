@@ -197,6 +197,11 @@ $router->setRoutes([
         "action" => "addPhoto",
         "method" => "POST",
     ],
+    "/admin/event/photos/deletePhoto" => [
+        "controller" => "Admin\EventPhotoAdmin",
+        "action" => "deletePhoto",
+        "method" => "POST",
+    ],
 
     //Ряды
     "/admin/event/rows/edit" => [

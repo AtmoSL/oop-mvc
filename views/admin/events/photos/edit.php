@@ -12,21 +12,24 @@
             <input type="hidden" name="eventId" id="eventId" value="<?= /** @var int $eventId */
             $eventId ?>">
             <button type="submit" class="form__input">Загрузить</button>
-
-            <table>
-                <?php /** @var array $photos */
-                foreach ($photos as $photo) { ?>
-                    <tr>
-                        <td>
-                            <img class="edit__event__photo" src="/img/events/<?= $eventId ?>/<?= $photo->photo ?>"
-                                 alt="Фото мероприятия <?= $eventId ?>">
-                        </td>
-                        <td><a class="edit__event__photo__delete" href="#">Удалить</a></td>
-                    </tr>
-                <?php } ?>
-            </table>
-
         </form>
+
+        <div class="event__photos__all">
+            <?php /** @var array $photos */
+            foreach ($photos as $photo) { ?>
+                <div class="event__photos__row">
+                    <img class="edit__event__photo" src="/img/events/<?= $eventId ?>/<?= $photo->photo ?>"
+                         alt="Фото мероприятия <?= $eventId ?>">
+                    <div class="edit__event__photo__delete__container">
+                        <form action="">
+                            <input type="hidden" name="photoId" value="<?= $photo->id ?>">
+                            <button type="submit" class="edit__event__photo__delete">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+
+            <?php } ?>
+        </div>
     </div>
 </section>
 
