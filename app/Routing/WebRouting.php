@@ -245,6 +245,11 @@ $router->setRoutes([
         "action" => "deleteAdmin",
         "method" => "GET",
     ],
+    "/admin/users/add" => [
+        "controller" => "Admin\UserAdmin",
+        "action" => "addAdmin",
+        "method" => "GET",
+    ],
 
 ]);
 

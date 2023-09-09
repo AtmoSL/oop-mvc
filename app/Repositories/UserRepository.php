@@ -103,4 +103,17 @@ class UserRepository extends MainRepository
             ->set(["role_id"=>"1"]);
         return true;
     }
+
+    /**
+     * Сделать пользователя администратором
+     * @param $userEmail
+     * @return true
+     */
+    public function setAdmin($userEmail)
+    {
+        $this->startRequest()
+            ->where(["email" => "$userEmail"])
+            ->set(["role_id"=>"2"]);
+        return true;
+    }
 }

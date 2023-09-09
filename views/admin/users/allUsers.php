@@ -8,19 +8,10 @@
             Все администраторы
         </div>
         <div class="all__users__wrapper">
-            <form action="" class="users__add">
+            <form action="/admin/users/add" method="get" class="users__add">
                 <div class="form__group">
                     <input class="form__input users__add__input" type="email" name="email" id="email"
                            placeholder="Email пользователя">
-                    <?php if (isset($_SESSION["loginMessages"]["email"]["errorMessages"])) { ?>
-                        <div class="form__error__messages">
-                            <ul>
-                                <?php foreach ($_SESSION["loginMessages"]["email"]["errorMessages"] as $message) { ?>
-                                    <li><?= $message ?></li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    <?php } ?>
                 </div>
                 <div class="form__group">
                     <button class="form__btn" type="submit">Добавить администратора</button>

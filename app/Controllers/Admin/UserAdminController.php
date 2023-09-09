@@ -42,4 +42,19 @@ class UserAdminController extends MainAdminController
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         return true;
     }
+
+    public function addAdmin($data)
+    {
+        if (empty($data["email"])) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            die();
+        }
+
+        $userEmail = $data["email"];
+
+        $this->userRepository->setAdmin($userEmail);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        return true;
+    }
 }
