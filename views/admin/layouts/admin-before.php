@@ -5,6 +5,7 @@
             <li><a href="/admin/events" class="admin__menu__link">Мероприятия</a></li>
             <li><a href="/admin/theaters" class="admin__menu__link">Театры</a></li>
             <li><a href="/admin/genres" class="admin__menu__link">Жанры</a></li>
+            <li><a href="/admin/users" class="admin__menu__link">Администраторы</a></li>
         </ul>
     </div>
 </div>

@@ -1,0 +1,70 @@
+@import url("../../forms.css");
+
+.all__users__title {
+    margin: 49px 60px 40px;
+
+    text-transform: uppercase;
+    color: #FAFF00;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+
+    text-align: center;
+}
+
+.users__add {
+    display: flex;
+    margin: 0 auto;
+    max-width: 450px;
+}
+
+.users__add__input {
+    margin-right: 10px;
+}
+
+.all__users__list {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.all__users__row {
+    display: flex;
+    justify-content: space-around;
+    color: #E4E900;
+    margin: 30px 0;
+}
+
+.all__users__email {
+    align-self: center;
+}
+
+.all__users__separator{
+    width: 1px;
+    height: 40px;
+    background-color: #E4E900;
+    margin: 0 10px;
+}
+
+.all__users__btn {
+    color: #1E1E1E;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.all__users__btn:hover {
+    background-color: #1E1E1E;
+    color: red;
+}
+
+.all__users__btn-no-active{
+    padding: 10px 20px;
+    border: 1px solid #575757;
+    background-color: #575757;
+    border-radius: 20px;
+    color: #1E1E1E;
+}

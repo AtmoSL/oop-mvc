@@ -78,4 +78,29 @@ class UserRepository extends MainRepository
 
         return $user;
     }
+
+    /**
+     * Получить список всех администраторов
+     * @return mixed
+     */
+    public function getAllAdmins(){
+        $users = $this->startRequest()
+            ->where(["role_id" => 2], ["id","email"])
+            ->find();
+
+        return $users;
+    }
+
+    /**
+     * Снятие роли администратора с пользователя
+     * @param $userId
+     * @return true
+     */
+    public function unsetAdmin($userId)
+    {
+        $this->startRequest()
+            ->where(["id" => "$userId"])
+            ->set(["role_id"=>"1"]);
+        return true;
+    }
 }

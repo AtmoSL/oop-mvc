@@ -234,6 +234,18 @@ $router->setRoutes([
         "action" => "deleteRow",
         "method" => "GET",
     ],
+
+    //Администраторы
+    "/admin/users" => [
+        "controller" => "Admin\UserAdmin",
+        "action" => "usersPage",
+    ],
+    "/admin/users/delete" => [
+        "controller" => "Admin\UserAdmin",
+        "action" => "deleteAdmin",
+        "method" => "GET",
+    ],
+
 ]);
 
 $router->start();
