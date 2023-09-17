@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 06 2023 г., 20:09
+-- Время создания: Сен 17 2023 г., 15:47
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -29,23 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `events` (
   `id` int NOT NULL,
-  `title` varchar(65) NOT NULL,
+  `title` varchar(65) COLLATE utf8mb4_general_ci NOT NULL,
   `genre_id` int NOT NULL,
   `theater_id` int NOT NULL,
   `date` date NOT NULL,
-  `is_published` tinyint(1) DEFAULT '1',
-  `count` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `is_published` tinyint(1) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `genre_id`, `theater_id`, `date`, `is_published`, `count`) VALUES
-(3, 'Бешенные деньги', 1, 1, '2023-04-26', 1, 23),
-(4, 'Без вины виноватые', 1, 1, '2023-04-13', 1, 42),
-(5, 'Приговор любви', 2, 3, '2023-04-29', 1, 53),
-(6, 'Мастер и Маргарита', 2, 2, '2023-04-12', 1, 12);
+INSERT INTO `events` (`id`, `title`, `genre_id`, `theater_id`, `date`, `is_published`) VALUES
+(3, 'Бешенные деньги', 1, 1, '2023-07-06', 1),
+(4, 'Без вины виноватые', 1, 1, '2023-04-13', 1),
+(5, 'Приговор любви', 2, 3, '2023-04-29', 1),
+(6, 'Мастер и Маргарита', 2, 2, '2023-04-12', 1);
 
 -- --------------------------------------------------------
 
@@ -56,15 +55,14 @@ INSERT INTO `events` (`id`, `title`, `genre_id`, `theater_id`, `date`, `is_publi
 CREATE TABLE `event_photos` (
   `id` int NOT NULL,
   `event_id` int NOT NULL,
-  `photo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `photo` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `event_photos`
 --
 
 INSERT INTO `event_photos` (`id`, `event_id`, `photo`) VALUES
-(1, 3, 'besh1.webp'),
 (2, 3, 'besh2.webp'),
 (3, 3, 'besh3.webp'),
 (5, 4, '1.webp'),
@@ -75,7 +73,9 @@ INSERT INTO `event_photos` (`id`, `event_id`, `photo`) VALUES
 (10, 5, 'prig3.webp'),
 (11, 6, 'mim1.webp'),
 (12, 6, 'mim2.webp'),
-(13, 6, 'mim3.webp');
+(13, 6, 'mim3.webp'),
+(14, 3, '64b4283cbb82a.jpg'),
+(16, 3, '64e6707b8bd28.webp');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `event_rows` (
   `num` int NOT NULL,
   `event_id` int NOT NULL,
   `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `event_rows`
@@ -102,7 +102,8 @@ INSERT INTO `event_rows` (`id`, `num`, `event_id`, `price`) VALUES
 (5, 1, 5, 500),
 (6, 2, 5, 300),
 (7, 1, 6, 500),
-(8, 2, 6, 300);
+(8, 2, 6, 300),
+(9, 3, 3, 200);
 
 -- --------------------------------------------------------
 
@@ -115,7 +116,7 @@ CREATE TABLE `event_seats` (
   `event_row_id` int NOT NULL,
   `num` int NOT NULL,
   `is_occupied` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `event_seats`
@@ -130,7 +131,7 @@ INSERT INTO `event_seats` (`id`, `event_row_id`, `num`, `is_occupied`) VALUES
 (6, 1, 7, 0),
 (7, 1, 8, 0),
 (8, 1, 9, 0),
-(9, 1, 10, 0),
+(9, 1, 1, 0),
 (10, 2, 1, 0),
 (11, 2, 2, 0),
 (12, 2, 3, 0),
@@ -169,12 +170,6 @@ INSERT INTO `event_seats` (`id`, `event_row_id`, `num`, `is_occupied`) VALUES
 (45, 5, 8, 0),
 (46, 5, 9, 0),
 (47, 5, 10, 0),
-(48, 5, 1, 0),
-(49, 6, 2, 0),
-(50, 6, 3, 0),
-(51, 6, 4, 0),
-(52, 6, 5, 0),
-(53, 6, 6, 0),
 (54, 6, 7, 0),
 (55, 6, 8, 0),
 (56, 6, 9, 0),
@@ -198,8 +193,7 @@ INSERT INTO `event_seats` (`id`, `event_row_id`, `num`, `is_occupied`) VALUES
 (74, 8, 7, 0),
 (75, 8, 8, 0),
 (76, 8, 9, 0),
-(77, 8, 10, 0),
-(78, 8, 1, 0);
+(77, 8, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -209,8 +203,8 @@ INSERT INTO `event_seats` (`id`, `event_row_id`, `num`, `is_occupied`) VALUES
 
 CREATE TABLE `genres` (
   `id` int NOT NULL,
-  `title` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(32) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `genres`
@@ -233,7 +227,7 @@ CREATE TABLE `orders` (
   `event_id` int NOT NULL,
   `total_price` int NOT NULL,
   `order_status_id` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `orders`
@@ -257,7 +251,7 @@ CREATE TABLE `order_seats` (
   `id` int NOT NULL,
   `order_id` int NOT NULL,
   `event_seat_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `order_seats`
@@ -300,8 +294,8 @@ INSERT INTO `order_seats` (`id`, `order_id`, `event_seat_id`) VALUES
 
 CREATE TABLE `order_statuses` (
   `id` int NOT NULL,
-  `title` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(32) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `order_statuses`
@@ -320,8 +314,8 @@ INSERT INTO `order_statuses` (`id`, `title`) VALUES
 
 CREATE TABLE `theaters` (
   `id` int NOT NULL,
-  `title` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(64) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `theaters`
@@ -340,19 +334,20 @@ INSERT INTO `theaters` (`id`, `title`) VALUES
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `password` varchar(64) NOT NULL,
+  `name` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
   `role_id` int NOT NULL DEFAULT '1',
   `date_of_registration` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `email` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `email` varchar(64) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `role_id`, `date_of_registration`, `email`) VALUES
-(16, 'Админ Админович', 'f5bb0c8de146c67b44babbf4e6584cc0', 2, '2023-05-15 15:54:55', 'admin@admin.ru');
+(16, 'Админ Админович', 'f5bb0c8de146c67b44babbf4e6584cc0', 2, '2023-05-15 15:54:55', 'admin@admin.ru'),
+(19, 'Юзер Юзерович', 'f5bb0c8de146c67b44babbf4e6584cc0', 2, '2023-09-09 14:16:03', 'user@user.com');
 
 -- --------------------------------------------------------
 
@@ -362,8 +357,8 @@ INSERT INTO `users` (`id`, `name`, `password`, `role_id`, `date_of_registration`
 
 CREATE TABLE `user_roles` (
   `id` int NOT NULL,
-  `title` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(32) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `user_roles`
@@ -371,8 +366,7 @@ CREATE TABLE `user_roles` (
 
 INSERT INTO `user_roles` (`id`, `title`) VALUES
 (1, 'Пользователь'),
-(2, 'Администратор'),
-(3, 'Супер-администратор');
+(2, 'Администратор');
 
 --
 -- Индексы сохранённых таблиц
@@ -461,25 +455,25 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT для таблицы `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `event_photos`
 --
 ALTER TABLE `event_photos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `event_rows`
 --
 ALTER TABLE `event_rows`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `event_seats`
 --
 ALTER TABLE `event_seats`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT для таблицы `genres`
@@ -515,7 +509,7 @@ ALTER TABLE `theaters`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `user_roles`
@@ -543,7 +537,7 @@ ALTER TABLE `event_rows`
 -- Ограничения внешнего ключа таблицы `event_seats`
 --
 ALTER TABLE `event_seats`
-  ADD CONSTRAINT `event_seats_ibfk_1` FOREIGN KEY (`event_row_id`) REFERENCES `event_rows` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `event_seats_ibfk_1` FOREIGN KEY (`event_row_id`) REFERENCES `event_rows` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `orders`
