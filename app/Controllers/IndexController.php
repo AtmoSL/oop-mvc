@@ -37,6 +37,7 @@ class IndexController
 
         foreach ($events as &$event){
             $event->price = $this->eventRowRepository->getMinPriceForEvent($event->id);
+
         }
 
         Viewer::view("index", compact("events"));

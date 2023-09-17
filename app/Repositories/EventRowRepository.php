@@ -26,10 +26,10 @@ class EventRowRepository extends MainRepository
 
         $row = $this
             ->startRequest()
-            ->one(["event_id" => $eventId, "price" => "min"], ["price"])
+            ->where(["event_id" => $eventId], ["price"])
+            ->orderAsc("price")
             ->find();
-
-        if (isset($row->price)) $price = $row->price;
+        if (isset($row[0]->price)) $price = $row[0]->price;
 
         return $price;
     }
